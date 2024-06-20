@@ -36,5 +36,5 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
 
 - [Jefté Mendoza <br> <img src="https://github.com/JEFTEDARIEL123.png" width="60px;"/>](https://github.com/JEFTEDARIEL123)
 - [Kristell Gamboa <br> <img src="https://github.com/KristelGamboaM.png" width="60px;" />](https://github.com/KristelGamboaM)
-- [José Jimenez <br> <img src="https://github.com/JoseJimenez.png" width="60px;"/>](https://github.com/)
+- [José Jimenez <br> <img src="https://github.com/jojimenez78.png" width="60px;"/>](https://github.com/jojimenez78)
 - [Luis Villalobos <br> <img src="https://github.com/LuisVillalobos.png" width="60px;"/>](https://github.com/)
