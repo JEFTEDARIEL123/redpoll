@@ -17,7 +17,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com/tu_usuario/ganaderia-redpoll.git
+   git clone https://github.com/JEFTEDARIEL123/redpoll.git
    ```
 2. **Crea una nueva rama**
    ```bash
