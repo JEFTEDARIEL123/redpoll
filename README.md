@@ -1,4 +1,4 @@
-# Sistema de Gestión Ganadera Red Poll
+# Sistema de Gestión Ganadera Red Poll 🐮
 
 Este sistema es una aplicación desarrollada en Java con GUI que permite llevar un control eficiente de la información de sus animales, producción de leche, registros médicos, y más.
 
