@@ -3,23 +3,10 @@
 Este sistema es una aplicación desarrollada en Java con GUI que permite llevar un control eficiente de la información de sus animales, producción de leche, registros médicos, y más.
 
 ## Características Principales 🔥
-
-- **Gestión de Grupos:**
-  - Administración de grupos de animales con categorización y descripción.
-
-- **Gestión de Chequeos y Vacunas:**
   - Registro y seguimiento de chequeos médicos realizados a los animales.
-  - Administración de vacunas aplicadas a cada animal, con detalles de fecha y tipo de vacuna.
-
-- **Gestión de Producción:**
   - Control de la producción de leche por animal, incluyendo registros de ordeños y total.
-
-- **Gestión de Animales:**
-  - Mantenimiento de registros individuales de cada animal, incluyendo raza y fecha de nacimiento.
-
-- **Generación de Reportes:**
-  - Creación de reportes detallados como la producción de leche por período y el historial de salud de cada animal.
-  - Exportación de reportes.
+  - Manejo de registros individuales de cada animal, incluyendo raza y fecha de nacimiento.
+  - Creación y exportacion de reportes detallados.
 ## Requisitos 🔑
   Importante tener instalado:
 
