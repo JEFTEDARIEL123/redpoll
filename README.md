@@ -2,7 +2,7 @@
 
 Este sistema es una aplicación desarrollada en Java con GUI que permite llevar un control eficiente de la información de sus animales, producción de leche, registros médicos, y más.
 
-## Características Principales
+## Características Principales 🔥
 
 - **Gestión de Grupos:**
   - Administración de grupos de animales con categorización y descripción.
@@ -20,13 +20,13 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
 - **Generación de Reportes:**
   - Creación de reportes detallados como la producción de leche por período y el historial de salud de cada animal.
   - Exportación de reportes.
-## Requisitos
+## Requisitos 🔑
   Importante tener instalado:
 
 - [Java](https://adoptium.net/) (version 21.0.3 o una más reciente)
 - [IDE para Java](https://netbeans.apache.org/front/main/download/) (De preferencia NetBeans)
 - [Git](https://git-scm.com/)
-## Uso del Repositorio
+## Uso del Repositorio 🛠️
 
 1. **Clonar el repositorio:**
    ```bash
@@ -44,7 +44,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
    ```bash
    git push origin feature/nombre-mejora
    ```
-## Colaboradores
+## Colaboradores 🔍️
 
 
 - [Jefté Mendoza <br> <img src="https://github.com/JEFTEDARIEL123.png" width="60px;"/>](https://github.com/JEFTEDARIEL123)
