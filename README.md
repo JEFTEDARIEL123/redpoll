@@ -25,7 +25,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
    ```
 3. **Hacer un commit con los cambios**
    ```bash
-   git checkout -am "Se realizó x cambio en el codigo"
+   git commit -am "Se realizó x cambio en el codigo"
    ```
 5. **Subir el commit la rama creada**
    ```bash
