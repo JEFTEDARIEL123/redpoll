@@ -19,7 +19,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
    ```bash
    git clone https://github.com/JEFTEDARIEL123/redpoll.git
    ```
-2. **Crea una nueva rama**
+2. **Cambiarse a la rama creada desde issues**
    ```bash
    git checkout nombre-de-rama
    ```
