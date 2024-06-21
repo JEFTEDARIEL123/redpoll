@@ -21,7 +21,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
    ```
 2. **Crea una nueva rama**
    ```bash
-   git checkout -b feature/nombre-mejora
+   git checkout nombre-de-rama
    ```
 3. **Hacer un commit con los cambios**
    ```bash
@@ -29,7 +29,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
    ```
 5. **Subir el commit la rama creada**
    ```bash
-   git push origin feature/nombre-mejora
+   git push origin nombre-rama
    ```
 ## Colaboradores 🔍️
 
