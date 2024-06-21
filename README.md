@@ -19,17 +19,17 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
    ```bash
    git clone https://github.com/JEFTEDARIEL123/redpoll.git
    ```
-2. **Crea una nueva rama**
+2. **Cambiarse a la rama creada desde issues**
    ```bash
-   git checkout -b feature/nombre-mejora
+   git checkout nombre-de-rama
    ```
 3. **Hacer un commit con los cambios**
    ```bash
-   git checkout -am "Se realizó x cambio en el codigo"
+   git commit -am "Se realizó x cambio en el codigo"
    ```
 5. **Subir el commit la rama creada**
    ```bash
-   git push origin feature/nombre-mejora
+   git push origin nombre-rama
    ```
 ## Colaboradores 🔍️
 
