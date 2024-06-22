@@ -5,6 +5,7 @@
 package redpoll.ClasesProduccion;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class GuiProduccion extends javax.swing.JFrame {
     private GuiAgregarProduccion agregarProduccion;
+    private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form GestionProduccion
@@ -20,6 +22,9 @@ public class GuiProduccion extends javax.swing.JFrame {
         this.setUndecorated(true);
         this.agregarProduccion = new GuiAgregarProduccion(this, true);
         initComponents();
+        String[] nombreColumnas = new String[]{"Id", "Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
+        this.modelo.setColumnIdentifiers(nombreColumnas);
+        this.tbProducciones.setModel(modelo);
         
     }
 
@@ -39,7 +44,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         btnEliminarProduccion = new javax.swing.JButton();
         btnMostrarProduccion = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbProducciones = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +73,7 @@ public class GuiProduccion extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbProducciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -76,7 +81,7 @@ public class GuiProduccion extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbProducciones);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,9 +140,15 @@ public class GuiProduccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarProduccionActionPerformed
     
     private void abrirFormularioAgregar(){
-        this.agregarProduccion.setVisible(true);
-        
-        
+        this.agregarProduccion.setVisible(true);        
+    }
+    
+    private void cargarTabla() {
+        this.modelo.setRowCount(0);
+        for (Produccion produccion : gestionProducciones) {
+            this.modelo.addRow(new Object[]{persona.getId(), persona.getNombre(), persona.getCedula()});
+        }
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProduccion;
@@ -147,6 +158,6 @@ public class GuiProduccion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbProducciones;
     // End of variables declaration//GEN-END:variables
 }

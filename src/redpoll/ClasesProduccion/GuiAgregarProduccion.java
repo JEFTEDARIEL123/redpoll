@@ -28,7 +28,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
             return Double.parseDouble(input);
        } else{
             JOptionPane.showMessageDialog(null,"Error debe ingresar unicamente números");
-            
+            return 0;
        }
     }
 
