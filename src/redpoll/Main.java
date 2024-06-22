@@ -4,6 +4,7 @@
  */
 package redpoll;
 import java.util.Date;
+import redpoll.ClasesProduccion.GuiProduccion;
 /**
  *
  * @author jefte
@@ -17,11 +18,10 @@ public class Main {
 
     
     public static void main(String[] args) {
-        GestionProduccion  gestionProduccion;
-        Produccion produccion;
-        gestionProduccion = new GestionProduccion();
-        gestionProduccion.agregarProduccion(produccion(1,0,0,0));
-
+        GuiProduccion gui = new GuiProduccion();
+        gui.setVisible(true);
+        gui.setResizable(false);
+        gui.setLocationRelativeTo(null);
     }
     
 }
