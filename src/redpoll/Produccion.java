@@ -7,6 +7,7 @@ package redpoll;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author jefte
@@ -16,6 +17,7 @@ public class Produccion {
    private int id;
    private double ordeño_mañana,ordeño_tarde, total;
    private Date fecha;
+   private hash
 
     public Produccion(int id, double ordeño_mañana, double ordeño_tarde, double total, Date fecha) {
         this.id = id;
@@ -25,8 +27,12 @@ public class Produccion {
         this.fecha = fecha;
     }
     
+    public void agregarProduccion(Produccion produccion){
+        
+    }
+    
     public void editarProduccion(int seleccionEdit, double datoNuevo){
-        // El 1 equivale al dato de Ordeño_mañana
+        // El 1 equivale al dato de Ordeño_mañana, mientras que el 2 a la tarde
         if(datoNuevo >= 0){
             switch(seleccionEdit){
                 case 1:
@@ -38,7 +44,7 @@ public class Produccion {
                     JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error!, el campo a modificar no es válido", "Error", JOptionPane.ERROR_MESSAGE);
                     break;
             }
         }
@@ -47,6 +53,7 @@ public class Produccion {
             JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
     
     public int getId() {
         return id;
