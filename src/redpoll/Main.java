@@ -17,8 +17,8 @@ public class Main {
         Date fecha = new Date(20,2,2003);
         Produccion uno = new Produccion(1,0,0,0,fecha);
         
-        uno.editarProduccion(5, 799);
-        System.out.println(uno.getOrdeño_tarde());
+        uno.editarProduccion(1,100);
+
     }
     
 }

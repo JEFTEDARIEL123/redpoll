@@ -27,30 +27,27 @@ public class Produccion {
     
     public void editarProduccion(int seleccionEdit, double datoNuevo){
         // El 1 equivale al dato de Ordeño_mañana
-        if(seleccionEdit == 1){
-            if(datoNuevo >= 0){
-                setOrdeño_mañana(datoNuevo);
-                JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+        if(datoNuevo >= 0){
+            switch(seleccionEdit){
+                case 1:
+                    setOrdeño_mañana(datoNuevo);
+                    JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                case 2:
+                    setOrdeño_tarde(datoNuevo);
+                    JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
             }
         }
         
-        if(seleccionEdit == 2){
-            if(datoNuevo >= 0){
-                setOrdeño_tarde(datoNuevo);
-                JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        if (!(datoNuevo >= 0)){
+            JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        if(!(seleccionEdit == 1 || seleccionEdit == 2)){
-            JOptionPane.showMessageDialog(null, "El dato seleccionado para editar No es válido","Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
     }
+    
     public int getId() {
         return id;
     }
