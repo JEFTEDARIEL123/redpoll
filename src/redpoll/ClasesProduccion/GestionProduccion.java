@@ -30,7 +30,7 @@ public class GestionProduccion {
     }
     
     public void agregarProduccion(Produccion produccion){
-        this.producciones.put(generarId(), produccion);
+        this.producciones.put(1, produccion);
     }
     
     public void editarProduccion(int id, int seleccionEdit, double datoNuevo){

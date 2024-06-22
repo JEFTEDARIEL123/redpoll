@@ -10,8 +10,10 @@ import javax.swing.JOptionPane;
  *
  * @author jefte
  */
-public class GuiAgregarProduccion extends javax.swing.JDialog {
 
+
+public class GuiAgregarProduccion extends javax.swing.JDialog {
+    private double datoMañana, datoTarde;
     /**
      * Creates new form GuiAgregarProduccion
      */
@@ -128,14 +130,21 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrdeñoMañanaActionPerformed
 
+    private void vaciarTxt(){
+        this.txtOrdeñoMañana.setText("");
+        this.txtOrdeñoTarde.setText("");
+    }
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        double datoMañana = validarInt(this.txtOrdeñoMañana.getText());
-        double datoTarde = validarInt(this.txtOrdeñoTarde.getText());
-        JOptionPane.showMessageDialog(null,"Ordeño Mañana: "+ datoMañana + "\n Dato Tarde: " + datoTarde);
-        this.dispose();
 
+        GuiProduccion agregar = (GuiProduccion) getOwner();
+        
+        agregar.info(Double.parseDouble(this.txtOrdeñoMañana.getText()), Double.parseDouble(this.txtOrdeñoTarde.getText()));
+        this.vaciarTxt();
+        this.dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JPanel jPanel1;

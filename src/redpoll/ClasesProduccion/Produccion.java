@@ -4,7 +4,7 @@
  */
 package redpoll.ClasesProduccion;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
  * @author jefte
  */
 
+//Con esta clase se van a crear los diferentes objetos
+//Referentes a cada produccion ingresada.
 public class Produccion {
    private int id;
    private double ordeño_mañana,ordeño_tarde, total;
-   private Date fecha;
+   private LocalDate fecha;
 
-    public Produccion(int id, double ordeño_mañana, double ordeño_tarde, double total, Date fecha) {
+    public Produccion(int id, double ordeño_mañana, double ordeño_tarde, double total, LocalDate fecha) {
         this.id = id;
         this.ordeño_mañana = ordeño_mañana;
         this.ordeño_tarde = ordeño_tarde;
@@ -43,7 +45,7 @@ public class Produccion {
         return total;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
         
@@ -63,7 +65,7 @@ public class Produccion {
         this.total = total;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
    

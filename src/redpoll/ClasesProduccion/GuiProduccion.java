@@ -4,27 +4,33 @@
  */
 package redpoll.ClasesProduccion;
 
-import javax.swing.JOptionPane;
+import java.time.LocalDate;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jefte
  */
+
+//Menú Principal para la gestión de las producciones
 public class GuiProduccion extends javax.swing.JFrame {
     private GuiAgregarProduccion agregarProduccion;
     private DefaultTableModel modelo = new DefaultTableModel();
+    private GestionProduccion gestionProduccion;
+    private Produccion produccion;
 
     /**
      * Creates new form GestionProduccion
      */
     public GuiProduccion() {
         this.setUndecorated(true);
+        //Instanciamos la clase con el menú para Agregar Producciones
         this.agregarProduccion = new GuiAgregarProduccion(this, true);
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbProducciones.setModel(modelo);
+        this.gestionProduccion = new GestionProduccion();
         
     }
 
@@ -100,7 +106,10 @@ public class GuiProduccion extends javax.swing.JFrame {
                         .addComponent(btnMostrarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap(92, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,8 +122,9 @@ public class GuiProduccion extends javax.swing.JFrame {
                     .addComponent(btnEliminarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,16 +149,25 @@ public class GuiProduccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMostrarProduccionActionPerformed
     
+    //Método para abrir un modal en el que ingresar una nueva produccion
     private void abrirFormularioAgregar(){
-        this.agregarProduccion.setVisible(true);        
+        this.agregarProduccion.setVisible(true);
+        //Se cargan los datos ingresados.
+        cargarTabla();
     }
     
-    private void cargarTabla() {
+   private void cargarTabla() {
         this.modelo.setRowCount(0);
-        for (Produccion produccion : gestionProducciones) {
-            this.modelo.addRow(new Object[]{persona.getId(), persona.getNombre(), persona.getCedula()});
+        //System.out.println(gestionProduccion.getProducciones().values());
+        for (Produccion produccion : gestionProduccion.getProducciones().values()) {
+            System.out.println(produccion.getId() +" "+ produccion.getOrdeño_mañana()+" "+ produccion.getOrdeño_tarde() +" "+ produccion.getTotal() +" "+ produccion.getFecha());
+            this.modelo.addRow(new Object[]{produccion.getId(), produccion.getOrdeño_mañana(), produccion.getOrdeño_tarde(), produccion.getTotal(), produccion.getFecha()});
         }
-
+    }
+   
+    public void info(double ordeñoMañana, double ordeñoTarde) {
+        LocalDate date = LocalDate.now();
+        this.produccion = new Produccion(1, ordeñoMañana, ordeñoTarde, ordeñoMañana+ordeñoTarde, date);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProduccion;
