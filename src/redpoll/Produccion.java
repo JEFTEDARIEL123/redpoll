@@ -5,6 +5,7 @@
 package redpoll;
 
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 
@@ -17,7 +18,6 @@ public class Produccion {
    private int id;
    private double ordeño_mañana,ordeño_tarde, total;
    private Date fecha;
-   private hash
 
     public Produccion(int id, double ordeño_mañana, double ordeño_tarde, double total, Date fecha) {
         this.id = id;
@@ -26,34 +26,6 @@ public class Produccion {
         this.total = total;
         this.fecha = fecha;
     }
-    
-    public void agregarProduccion(Produccion produccion){
-        
-    }
-    
-    public void editarProduccion(int seleccionEdit, double datoNuevo){
-        // El 1 equivale al dato de Ordeño_mañana, mientras que el 2 a la tarde
-        if(datoNuevo >= 0){
-            switch(seleccionEdit){
-                case 1:
-                    setOrdeño_mañana(datoNuevo);
-                    JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                case 2:
-                    setOrdeño_tarde(datoNuevo);
-                    JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Error!, el campo a modificar no es válido", "Error", JOptionPane.ERROR_MESSAGE);
-                    break;
-            }
-        }
-        
-        if (!(datoNuevo >= 0)){
-            JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
     
     public int getId() {
         return id;
@@ -74,7 +46,7 @@ public class Produccion {
     public Date getFecha() {
         return fecha;
     }
-
+        
     public void setId(int id) {
         this.id = id;
     }

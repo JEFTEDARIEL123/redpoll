@@ -13,11 +13,14 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    
+
+    
     public static void main(String[] args) {
-        Date fecha = new Date(20,2,2003);
-        Produccion uno = new Produccion(1,0,0,0,fecha);
-        
-        uno.editarProduccion(1,100);
+        GestionProduccion  gestionProduccion;
+        Produccion produccion;
+        gestionProduccion = new GestionProduccion();
+        gestionProduccion.agregarProduccion(produccion(1,0,0,0));
 
     }
     
