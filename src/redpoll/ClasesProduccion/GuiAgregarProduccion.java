@@ -21,12 +21,13 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
      */
 
 
-    public GuiAgregarProduccion(java.awt.Frame parent, boolean modal, Produccion produccion) {
+    public GuiAgregarProduccion(java.awt.Frame parent, boolean modal, Produccion produccion, int id) {
         super(parent, modal);
         initComponents();
         this.gui(produccion);
         this.setResizable(false);
         this.setLocationRelativeTo(parent);
+        this.id = id;
     }
 
     private void gui(Produccion produccion) {
@@ -172,7 +173,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
     }
     
     public Produccion consultarProduccion() {
-        return new Produccion(this.edicion ? this.id : ,
+        return new Produccion(this.id,
                 Double.parseDouble(this.txtOrdeñoMañana.getText()),
                 Double.parseDouble(this.txtOrdeñoTarde.getText())
         );

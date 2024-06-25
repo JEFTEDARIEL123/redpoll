@@ -25,9 +25,7 @@ public class GestionProduccion {
     }
     
     public void agregarProduccion(Produccion produccion){
-        
-        int id = (obtenerUltimoId()+1);
-        this.producciones.put(id, produccion);
+        this.producciones.put((obtenerUltimoId()+1), produccion);
     }
     
     public Produccion obtenerProduccion(int id) {    
@@ -50,9 +48,8 @@ public class GestionProduccion {
         return this.producciones.containsKey(id);
     }
     
-    private int obtenerUltimoId() {
+    public int obtenerUltimoId() {
         if (this.producciones.isEmpty()) {
-            System.out.println("producciones vacia");
             return 0;
         } 
         System.out.println("aa");
