@@ -1,12 +1,19 @@
 package redpoll;
 
-
+import java.util.HashMap;
+import java.util.Map;
 
 
  
 public class Grupo {
     private int idGrupo;
     private String tipo,descripcion;
+    private Map<String, Usuario> usuario;
+    
+    
+    public Map<String, Usuario> getTareas() {
+        return usuario;
+    }
 
     public Grupo(int idGrupo, String tipo, String descripcion) {
         this.idGrupo = idGrupo;
