@@ -11,9 +11,14 @@ public class Grupo {
     private Map<String, Usuario> usuario;
     
     
-    public Map<String, Usuario> getTareas() {
+    public Map<String, Usuario> getUsuario() {
         return usuario;
     }
+    
+    public Map<String, Usuario> setUsuario() {
+        return usuario;
+    }
+    
 
     public Grupo(int idGrupo, String tipo, String descripcion) {
         this.idGrupo = idGrupo;
