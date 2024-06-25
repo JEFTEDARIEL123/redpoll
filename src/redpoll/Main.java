@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-import java.util.Date;
 import redpoll.ClasesProduccion.GuiProduccion;
 /**
  *

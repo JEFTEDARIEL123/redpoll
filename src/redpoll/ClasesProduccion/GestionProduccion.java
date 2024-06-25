@@ -4,10 +4,9 @@
  */
 package redpoll.ClasesProduccion;
 
-import redpoll.ClasesProduccion.Produccion;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -17,56 +16,48 @@ public class GestionProduccion {
     
     private Map<Integer, Produccion> producciones;
     
-    public void GestionProduccion(){
-        this.producciones = new HashMap<>();
+    public GestionProduccion(){
+        producciones = new HashMap<>();
     }
     
     public void setProducciones(Map<Integer, Produccion> producciones) {
         this.producciones = producciones;
     }
-
-    public int generarId(){
-        return (((Map.Entry<Integer, String>)this.producciones.entrySet().toArray()[producciones.size()-1]).getKey())+1;
-    }
     
     public void agregarProduccion(Produccion produccion){
-        this.producciones.put(1, produccion);
+        
+        int id = (obtenerUltimoId()+1);
+        this.producciones.put(id, produccion);
     }
     
-    public void editarProduccion(int id, int seleccionEdit, double datoNuevo){
-        // El 1 equivale al dato de Ordeño_mañana, mientras que el 2 a la tarde
-        Produccion produccion = this.producciones.get(id);
-        
-        if(datoNuevo >= 0){
-            switch(seleccionEdit){
-                case 1:
-                    produccion.setOrdeño_mañana(datoNuevo);
-                    JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                case 2:
-                    produccion.setOrdeño_tarde(datoNuevo);
-                    JOptionPane.showMessageDialog(null, "Los datos se han actualizado exitosamente.", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Error!, el campo a modificar no es válido", "Error", JOptionPane.ERROR_MESSAGE);
-                    break;
-            }
-        }
-        
-        if (!(datoNuevo >= 0)){
-            JOptionPane.showMessageDialog(null, "Debe ingresar un dato mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    public Produccion obtenerProduccion(int id) {    
+        return this.producciones.get(id);
     }
     
-    public void eliminarProduccion(int id){
-        if(this.producciones.remove(id) == null){
-            JOptionPane.showMessageDialog(null, "Error! El campo a modificar no es válido o no existe.", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            this.producciones.remove(id);
-        }
+    public void editarProduccion(Produccion produccion) {
+        this.producciones.put(produccion.getId(), produccion);
+    }
+    
+    public void eliminarTarea(int id) {
+        this.producciones.remove(id);
     }
     
     public Map<Integer, Produccion> getProducciones() {
         return producciones;
+    }
+    
+    public boolean validarExistencia(int id){
+        return this.producciones.containsKey(id);
+    }
+    
+    private int obtenerUltimoId() {
+        if (this.producciones.isEmpty()) {
+            System.out.println("producciones vacia");
+            return 0;
+        } 
+        System.out.println("aa");
+        return this.producciones.values().stream()
+                .mapToInt(Produccion::getId)
+                .max().getAsInt(); 
     }
 }

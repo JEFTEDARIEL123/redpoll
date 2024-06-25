@@ -14,10 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 //Menú Principal para la gestión de las producciones
 public class GuiProduccion extends javax.swing.JFrame {
-    private GuiAgregarProduccion agregarProduccion;
     private DefaultTableModel modelo = new DefaultTableModel();
     private GestionProduccion gestionProduccion;
-    private Produccion produccion;
 
     /**
      * Creates new form GestionProduccion
@@ -25,12 +23,11 @@ public class GuiProduccion extends javax.swing.JFrame {
     public GuiProduccion() {
         this.setUndecorated(true);
         //Instanciamos la clase con el menú para Agregar Producciones
-        this.agregarProduccion = new GuiAgregarProduccion(this, true);
+        this.gestionProduccion = new GestionProduccion();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbProducciones.setModel(modelo);
-        this.gestionProduccion = new GestionProduccion();
         
     }
 
@@ -142,7 +139,7 @@ public class GuiProduccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProduccionActionPerformed
-        this.abrirFormularioAgregar();
+        this.abrirFormularioProduccion(null);
     }//GEN-LAST:event_btnAgregarProduccionActionPerformed
 
     private void btnMostrarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarProduccionActionPerformed
@@ -150,24 +147,29 @@ public class GuiProduccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarProduccionActionPerformed
     
     //Método para abrir un modal en el que ingresar una nueva produccion
-    private void abrirFormularioAgregar(){
-        this.agregarProduccion.setVisible(true);
-        //Se cargan los datos ingresados.
-        cargarTabla();
+    private void abrirFormularioProduccion(Produccion produccion){
+        GuiAgregarProduccion gui = new GuiAgregarProduccion(this,true,produccion);
+        gui.setVisible(true);
+        if(gui.confirmacion()){
+            Produccion prod = gui.consultarProduccion();
+            if(produccion ==null){
+              
+                this.gestionProduccion.agregarProduccion(prod);
+            }else{
+                
+                this.gestionProduccion.editarProduccion(prod);
+            }
+            this.cargarTabla();
+        }
     }
     
    private void cargarTabla() {
         this.modelo.setRowCount(0);
         //System.out.println(gestionProduccion.getProducciones().values());
         for (Produccion produccion : gestionProduccion.getProducciones().values()) {
-            System.out.println(produccion.getId() +" "+ produccion.getOrdeño_mañana()+" "+ produccion.getOrdeño_tarde() +" "+ produccion.getTotal() +" "+ produccion.getFecha());
-            this.modelo.addRow(new Object[]{produccion.getId(), produccion.getOrdeño_mañana(), produccion.getOrdeño_tarde(), produccion.getTotal(), produccion.getFecha()});
+            System.out.println(produccion.getOrdeñoMañana()+" "+ produccion.getOrdeñoTarde() +" "+ produccion.getTotal() +" "+ produccion.getFecha());
+            this.modelo.addRow(new Object[]{produccion.getOrdeñoMañana(), produccion.getOrdeñoTarde(), produccion.getTotal(), produccion.getFecha()});
         }
-    }
-   
-    public void info(double ordeñoMañana, double ordeñoTarde) {
-        LocalDate date = LocalDate.now();
-        this.produccion = new Produccion(1, ordeñoMañana, ordeñoTarde, ordeñoMañana+ordeñoTarde, date);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProduccion;

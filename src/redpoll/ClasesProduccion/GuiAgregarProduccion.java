@@ -4,6 +4,7 @@
  */
 package redpoll.ClasesProduccion;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,16 +14,29 @@ import javax.swing.JOptionPane;
 
 
 public class GuiAgregarProduccion extends javax.swing.JDialog {
-    private double datoMañana, datoTarde;
+    private int id;
+    private boolean edicion, confirmar;
     /**
      * Creates new form GuiAgregarProduccion
      */
-    public GuiAgregarProduccion(java.awt.Frame parent, boolean modal) {
+
+
+    public GuiAgregarProduccion(java.awt.Frame parent, boolean modal, Produccion produccion) {
         super(parent, modal);
-        this.setUndecorated(true);
-        
-        initComponents(); 
+        initComponents();
+        this.gui(produccion);
+        this.setResizable(false);
         this.setLocationRelativeTo(parent);
+    }
+
+    private void gui(Produccion produccion) {
+        if (produccion != null) {
+            this.txtOrdeñoMañana.setText(String.valueOf(produccion.getOrdeñoMañana()));
+            this.txtOrdeñoTarde.setText(String.valueOf(produccion.getOrdeñoTarde()));
+            this.edicion = true;
+        } else {
+            this.edicion = false;
+        }
     }
     
     public double validarInt(String input){
@@ -44,18 +58,19 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnAgregar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblOrdeñoMañana = new javax.swing.JLabel();
         txtOrdeñoMañana = new javax.swing.JTextField();
         lblOrdeñoTarde = new javax.swing.JLabel();
         txtOrdeñoTarde = new javax.swing.JTextField();
+        btnAgregar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -75,14 +90,17 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
             }
         });
 
+        btnAgregar1.setText("Agregar");
+        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregar)
-                .addGap(46, 46, 46))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -91,6 +109,12 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
                     .addComponent(txtOrdeñoMañana)
                     .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
                 .addContainerGap(536, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregar1)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +127,11 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
                 .addComponent(lblOrdeñoTarde)
                 .addGap(18, 18, 18)
                 .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
-                .addComponent(btnAgregar)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar1)
+                    .addComponent(btnCancelar))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,23 +156,30 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrdeñoMañanaActionPerformed
 
-    private void vaciarTxt(){
-        this.txtOrdeñoMañana.setText("");
-        this.txtOrdeñoTarde.setText("");
+    
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.confirmar = false;
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+        this.confirmar = true;
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAgregar1ActionPerformed
+    
+    public boolean confirmacion() {
+        return this.confirmar;
     }
     
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
-        GuiProduccion agregar = (GuiProduccion) getOwner();
-        
-        agregar.info(Double.parseDouble(this.txtOrdeñoMañana.getText()), Double.parseDouble(this.txtOrdeñoTarde.getText()));
-        this.vaciarTxt();
-        this.dispose();
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-     
+    public Produccion consultarProduccion() {
+        return new Produccion(this.edicion ? this.id : ,
+                Double.parseDouble(this.txtOrdeñoMañana.getText()),
+                Double.parseDouble(this.txtOrdeñoTarde.getText())
+        );
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregar1;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblOrdeñoMañana;
     private javax.swing.JLabel lblOrdeñoTarde;

@@ -5,8 +5,6 @@
 package redpoll.ClasesProduccion;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import javax.swing.JOptionPane;
 
 
 /**
@@ -17,28 +15,29 @@ import javax.swing.JOptionPane;
 //Con esta clase se van a crear los diferentes objetos
 //Referentes a cada produccion ingresada.
 public class Produccion {
-   private int id;
-   private double ordeño_mañana,ordeño_tarde, total;
-   private LocalDate fecha;
+   int id;
+   double ordeñoMañana,ordeñoTarde, total;
+   LocalDate fecha;
 
-    public Produccion(int id, double ordeño_mañana, double ordeño_tarde, double total, LocalDate fecha) {
+    public Produccion(int id, double ordeñoMañana, double ordeñoTarde) {
         this.id = id;
-        this.ordeño_mañana = ordeño_mañana;
-        this.ordeño_tarde = ordeño_tarde;
-        this.total = total;
-        this.fecha = fecha;
+        this.ordeñoMañana = ordeñoMañana;
+        this.ordeñoTarde = ordeñoTarde;
+        this.total = this.ordeñoMañana+this.ordeñoTarde;
+        this.fecha = LocalDate.now();
     }
-    
+
     public int getId() {
         return id;
     }
 
-    public double getOrdeño_mañana() {
-        return ordeño_mañana;
+
+    public double getOrdeñoMañana() {
+        return ordeñoMañana;
     }
 
-    public double getOrdeño_tarde() {
-        return ordeño_tarde;
+    public double getOrdeñoTarde() {
+        return ordeñoTarde;
     }
 
     public double getTotal() {
@@ -49,16 +48,13 @@ public class Produccion {
         return fecha;
     }
         
-    public void setId(int id) {
-        this.id = id;
+
+    public void setOrdeño_mañana(double ordeñoMañana) {
+        this.ordeñoMañana = ordeñoMañana;
     }
 
-    public void setOrdeño_mañana(double ordeño_mañana) {
-        this.ordeño_mañana = ordeño_mañana;
-    }
-
-    public void setOrdeño_tarde(double ordeño_tarde) {
-        this.ordeño_tarde = ordeño_tarde;
+    public void setOrdeño_tarde(double ordeñoTarde) {
+        this.ordeñoTarde = ordeñoTarde;
     }
 
     public void setTotal(double total) {
