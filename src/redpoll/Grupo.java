@@ -8,16 +8,10 @@ import java.util.Map;
 public class Grupo {
     private int idGrupo;
     private String tipo,descripcion;
-    private Map<String, Usuario> usuario;
+   
     
     
-    public Map<String, Usuario> getUsuario() {
-        return usuario;
-    }
     
-    public Map<String, Usuario> setUsuario() {
-        return usuario;
-    }
     
 
     public Grupo(int idGrupo, String tipo, String descripcion) {
