@@ -4,6 +4,8 @@
  */
 package redpoll;
 
+import proyectodos.JFChequeo;
+
 /**
  *
  * @author jefte
@@ -14,7 +16,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Mi ramita de trabajo");
+        JFChequeo chequeo = new JFChequeo();
+       chequeo.setVisible(true);
+       chequeo.setResizable(false);
+       chequeo.setLocationRelativeTo(null);
     }
     
 }
