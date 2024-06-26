@@ -32,11 +32,13 @@ public class GestionProduccion {
         return this.producciones.get(id);
     }
     
-    public void editarProduccion(Produccion produccion) {
-        this.producciones.put(produccion.getId(), produccion);
+    public void editarProduccion(int id, Produccion produccion) {
+        System.out.println(produccion.getId()+" "+ produccion.toString()); 
+        this.producciones.replace(id, produccion);
+    
     }
     
-    public void eliminarTarea(int id) {
+    public void eliminarProduccion(int id) {
         this.producciones.remove(id);
     }
     
@@ -51,8 +53,7 @@ public class GestionProduccion {
     public int obtenerUltimoId() {
         if (this.producciones.isEmpty()) {
             return 0;
-        } 
-        System.out.println("aa");
+        }
         return this.producciones.values().stream()
                 .mapToInt(Produccion::getId)
                 .max().getAsInt(); 

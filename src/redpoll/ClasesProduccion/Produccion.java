@@ -15,9 +15,9 @@ import java.time.LocalDate;
 //Con esta clase se van a crear los diferentes objetos
 //Referentes a cada produccion ingresada.
 public class Produccion {
-   int id;
-   double ordeñoMañana,ordeñoTarde, total;
-   LocalDate fecha;
+   private int id;
+   private double ordeñoMañana,ordeñoTarde, total;
+   private LocalDate fecha;
 
     public Produccion(int id, double ordeñoMañana, double ordeñoTarde) {
         this.id = id;
@@ -27,11 +27,16 @@ public class Produccion {
         this.fecha = LocalDate.now();
     }
 
+    @Override
+    public String toString() {
+        return "Produccion{" + "id=" + id + ", orde\u00f1oMa\u00f1ana=" + ordeñoMañana + ", orde\u00f1oTarde=" + ordeñoTarde + ", total=" + total + ", fecha=" + fecha + '}';
+    }
+
     public int getId() {
         return id;
     }
 
-
+    
     public double getOrdeñoMañana() {
         return ordeñoMañana;
     }

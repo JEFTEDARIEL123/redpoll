@@ -23,6 +23,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
 
     public GuiAgregarProduccion(java.awt.Frame parent, boolean modal, Produccion produccion, int id) {
         super(parent, modal);
+        this.setUndecorated(true);
         initComponents();
         this.gui(produccion);
         this.setResizable(false);
@@ -40,11 +41,11 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         }
     }
     
-    public double validarInt(String input){
-       if(input.matches("[0-9]+")){
+    public double validar(String input){
+       if(input.matches("[0-9]+|[0-9.0-9]+")){
             return Double.parseDouble(input);
        } else{
-            JOptionPane.showMessageDialog(null,"Error debe ingresar unicamente números");
+            JOptionPane.showMessageDialog(null,"Error debe ingresar unicamente números.");
             return 0;
        }
     }
@@ -159,8 +160,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
 
     
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.confirmar = false;
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
@@ -173,10 +173,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
     }
     
     public Produccion consultarProduccion() {
-        return new Produccion(this.id,
-                Double.parseDouble(this.txtOrdeñoMañana.getText()),
-                Double.parseDouble(this.txtOrdeñoTarde.getText())
-        );
+        return new Produccion(this.id, validar(this.txtOrdeñoMañana.getText()) , validar(this.txtOrdeñoTarde.getText()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar1;

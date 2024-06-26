@@ -15,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 //Menú Principal para la gestión de las producciones
 public class GuiProduccion extends javax.swing.JFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
-    private GestionProduccion gestionProduccion;
+    private final DefaultTableModel modelo = new DefaultTableModel();
+    private final GestionProduccion gestionProduccion;
 
     /**
      * Creates new form GestionProduccion
@@ -73,6 +73,11 @@ public class GuiProduccion extends javax.swing.JFrame {
         });
 
         btnEliminarProduccion.setText("Eliminar Produccion");
+        btnEliminarProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProduccionActionPerformed(evt);
+            }
+        });
 
         btnMostrarProduccion.setText("Mostrar Produccion");
         btnMostrarProduccion.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +159,10 @@ public class GuiProduccion extends javax.swing.JFrame {
     private void btnEditarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProduccionActionPerformed
         editarProduccion();
     }//GEN-LAST:event_btnEditarProduccionActionPerformed
+
+    private void btnEliminarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProduccionActionPerformed
+        eliminarProduccion();
+    }//GEN-LAST:event_btnEliminarProduccionActionPerformed
     
     //Método para abrir un modal en el que ingresar una nueva produccion
     private void formProduccion(Produccion produccion){
@@ -161,12 +170,13 @@ public class GuiProduccion extends javax.swing.JFrame {
         gui.setVisible(true);
         if(gui.confirmacion()){
             Produccion prod = gui.consultarProduccion();
+            
             if(produccion ==null){
-              
+                System.out.println("agregando");
                 this.gestionProduccion.agregarProduccion(prod);
             }else{
-                
-                this.gestionProduccion.editarProduccion(prod);
+                System.out.println("editando");
+                this.gestionProduccion.editarProduccion(prod.getId(),prod);
             }
             this.cargarTabla();
         }
@@ -175,18 +185,30 @@ public class GuiProduccion extends javax.swing.JFrame {
     private void editarProduccion(){
        int fila = this.tbProducciones.getSelectedRow();
        if(fila!=-1){
-           int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 1)));
+           int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
            Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
            this.formProduccion(produccion);
        }else{
            JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
        }
     }
+    
+    private void eliminarProduccion(){
+       int fila = this.tbProducciones.getSelectedRow();
+       if(fila!=-1){
+           int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
+           Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
+           this.gestionProduccion.eliminarProduccion(id);
+           this.cargarTabla();
+       }else{
+           JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder eliminarla.");
+       }
+    }
    private void cargarTabla() {
         this.modelo.setRowCount(0);
         //System.out.println(gestionProduccion.getProducciones().values());
         for (Produccion produccion : gestionProduccion.getProducciones().values()) {
-            System.out.println(produccion.getOrdeñoMañana()+" "+ produccion.getOrdeñoTarde() +" "+ produccion.getTotal() +" "+ produccion.getFecha());
+            System.out.println(produccion.getId()+" "+produccion.getOrdeñoMañana()+" "+ produccion.getOrdeñoTarde() +" "+ produccion.getTotal() +" "+ produccion.getFecha());
             this.modelo.addRow(new Object[]{produccion.getId(),produccion.getOrdeñoMañana(), produccion.getOrdeñoTarde(), produccion.getTotal(), produccion.getFecha()});
         }
     }
