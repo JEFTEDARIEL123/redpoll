@@ -8,11 +8,15 @@ package redpoll;
  *
  * @author Extremetech SC
  */
+
 public class GestorUsuarioRoles extends javax.swing.JFrame {
 
     /**
      * Creates new form GestorUsuarioRoles
      */
+    //instancia
+     private GestorUsuario manager;
+     
     public GestorUsuarioRoles() {
         initComponents();
     }
@@ -43,6 +47,8 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
         btxEditar = new javax.swing.JButton();
         btcConsultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbCRUDUsuarios = new javax.swing.JTable();
 
         lblMensajeAgregar.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lblMensajeAgregar.setText("label1");
@@ -111,6 +117,18 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
 
         jLabel1.setText("Administrador ");
 
+        tbCRUDUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3"
+            }
+        ));
+        jScrollPane1.setViewportView(tbCRUDUsuarios);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -118,18 +136,23 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(btxAgregar)
-                        .addGap(47, 47, 47)
-                        .addComponent(btxEliminar)
-                        .addGap(57, 57, 57)
-                        .addComponent(btxEditar)
-                        .addGap(51, 51, 51)
-                        .addComponent(btcConsultar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(286, 286, 286)
-                        .addComponent(jLabel1)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btxAgregar)
+                                .addGap(47, 47, 47)
+                                .addComponent(btxEliminar)
+                                .addGap(57, 57, 57)
+                                .addComponent(btxEditar)
+                                .addGap(51, 51, 51)
+                                .addComponent(btcConsultar)))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,22 +165,22 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
                     .addComponent(btxEliminar)
                     .addComponent(btxEditar)
                     .addComponent(btcConsultar))
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -165,6 +188,8 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
 
     private void btxAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btxAgregarActionPerformed
         // TODO add your handling code here:
+        
+       
     }//GEN-LAST:event_btxAgregarActionPerformed
 
     private void btcConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcConsultarActionPerformed
@@ -185,6 +210,7 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
@@ -194,5 +220,6 @@ public class GestorUsuarioRoles extends javax.swing.JFrame {
     private javax.swing.JLabel lblMostrarEditar;
     private javax.swing.JLabel lblMostrarEliminar;
     private java.awt.Label lblShowAgregar;
+    private javax.swing.JTable tbCRUDUsuarios;
     // End of variables declaration//GEN-END:variables
 }

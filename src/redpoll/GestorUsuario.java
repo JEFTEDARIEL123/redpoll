@@ -33,5 +33,18 @@ public class GestorUsuario {
     public void agregarUsuario(Usuario usu) {
         this.usu.put(usu.getNombre(), usu);
     }
+    public void eliminarUsuario(int idUsuario, Map usu){
+    this.usu.remove(idUsuario);
+    }
+    
+    public void editarUsuario(){
+    
+    }
+    
+    
+    public void consultarUsuario(){
+    
+    }
+    
     
 }
