@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyectodos;
+package redpoll.clasesgestion;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,43 +13,60 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFChequeo extends javax.swing.JFrame {
     private  DefaultTableModel modelo = new DefaultTableModel();
-    private  GestionChequeo chequeo;
+    private  GestionChequeo gestionChequeo;
+    private GUIFormularioChequeo formulario; 
+    private Chequeo chequeo;
 
  
     public JFChequeo() {
-        this.chequeo = new GestionChequeo();
+        this.gestionChequeo = new GestionChequeo();
         initComponents();
         String[] columnasChequeo = new String[]{"Id", "Fecha", "Nombre del veterinario","Descripción"};
         this.modelo.setColumnIdentifiers(columnasChequeo);
         this.tbChequeos.setModel(modelo);
+        mostrarTabla();
     }
     
     private void abrirFormularioChequeo(Chequeo chequeo){
-        GUIFormularioChequeo formulario = new GUIFormularioChequeo(this,true,chequeo);
+        this.formulario=new GUIFormularioChequeo(this,true,chequeo);
         formulario.setVisible(true);
         if(formulario.confirmacion()){
-            Chequeo chequeos = formulario.consultarChequeo();
+            Chequeo chequeoConsulta= formulario.consultarChequeo();
             if(chequeo ==null){
-                this.chequeo.agregarChequeo(chequeos);
-            }else{
-                
-                this.chequeo.actualizarChequeo(chequeos);
+                if (this.gestionChequeo.validarExistencia(chequeoConsulta.getId())) {
+                    JOptionPane.showMessageDialog(this, "La vacuna ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    
+                    this.gestionChequeo.agregarChequeo(chequeoConsulta);
+                    this.actualizarTabla();
+                }
+
+            } else {
+                this.gestionChequeo.actualizarChequeo(chequeoConsulta);
             }
-            this.actualizarTabla();
         }
+    }
+    
+    private boolean validarSeleccion(){
+        boolean valor = false;
+        int filaSeleccionada = this.tbChequeos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            valor= true;
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar unchequeo para poder editarlo.");
+        }
+        return valor;
     }
     
     private void editarChequeo(){
        int filaSeleccionada = this.tbChequeos.getSelectedRow();
        System.out.println(filaSeleccionada);
        if(filaSeleccionada!=-1){
-           int idV= (int) this.tbChequeos.getValueAt(filaSeleccionada, 1);
-           System.out.println(idV);
-           Chequeo chequeos = this.chequeo.obtenerChequeo(idV);
-           System.out.println(chequeos);
-           this.abrirFormularioChequeo(chequeos);
+           int idChequeo = (int) this.tbChequeos.getValueAt(filaSeleccionada, 1);
+           Chequeo chequeoObtenido = this.gestionChequeo.obtenerChequeo(idChequeo);
+           this.abrirFormularioChequeo(chequeoObtenido);
        }else{
-           JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
+           JOptionPane.showMessageDialog(this, "Debe seleccionar un chequeo para poder editarlo.");
        }
     }
     
@@ -57,21 +74,26 @@ public class JFChequeo extends javax.swing.JFrame {
        int filaSeleccionada = this.tbChequeos.getSelectedRow();
        if(filaSeleccionada!=-1){
            int idV = (int) this.tbChequeos.getValueAt(filaSeleccionada, 1);
-           this.chequeo.eliminarChequeo(idV);
+           this.gestionChequeo.eliminarChequeo(idV);
            this.actualizarTabla();
        }else{
-           JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder eliminarla.");
+           JOptionPane.showMessageDialog(this, "Debe seleccionar un chequeo para poder eliminarlo.");
        }
     }
     
     private void actualizarTabla(){
         this.modelo.setRowCount(0);
-        for(Chequeo chequeo: this.chequeo.getInfoChequeo().values()){
-            this.modelo.addRow(new Object[]{chequeo.getId(),chequeo.nombreVeterinario,chequeo.getObservaciones()});
+        for(Chequeo chequeos: this.gestionChequeo.getInfoChequeo().values()){
+            this.modelo.addRow(new Object[]{chequeos.getId(),chequeos.getNombreVeterinario(),chequeos.getObservaciones(),chequeos.getFecha()});
         }
     }
+    
+    private void mostrarTabla() {
+        this.actualizarTabla();
+        this.tbChequeos.setModel(modelo);
+        this.tbChequeos.repaint(); 
+    }
 
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,7 +120,7 @@ public class JFChequeo extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
         lblTitulo.setText("Gestión de Chequeo");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         jPanel2.setToolTipText("");
 
         btnAgregar.setText("Agregar");
@@ -194,7 +216,7 @@ public class JFChequeo extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel2.getAccessibleContext().setAccessibleName("Opciones");
@@ -214,7 +236,7 @@ public class JFChequeo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        this.abrirFormularioChequeo(null);
+        this.abrirFormularioChequeo(chequeo);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

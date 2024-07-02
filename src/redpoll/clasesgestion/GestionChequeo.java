@@ -2,18 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyectodos;
+package redpoll.clasesgestion;
 import java.util.Map;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
-import java.util.Date;
+
 
 /**
  *
  * @author Kristel Gamboa M
  */
 public class GestionChequeo {
-    protected Date fecha=new Date();
     protected Map<Integer,Chequeo> infoChequeo;
 
     public GestionChequeo() {
@@ -28,28 +26,13 @@ public class GestionChequeo {
         this.infoChequeo = infoChequeo;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-    
-    
     public void agregarChequeo(Chequeo chequeo) {
         int id = obtenerUltimoId() + 1;
         chequeo.setId(id);
-        
-        if(infoChequeo.containsKey(chequeo.getId())){
-            JOptionPane.showMessageDialog(null, "La tarea ya existe");
-        }else{
-            this.infoChequeo.put(chequeo.getId(), chequeo);
-        } 
+        this.infoChequeo.put(chequeo.getId(), chequeo);
     }
     
      public Chequeo obtenerChequeo(int id) {
-        
         return this.infoChequeo.get(id);
     }
     public boolean validarExistencia(int id){

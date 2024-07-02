@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package proyectodos;
+package redpoll.clasesgestion;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -20,10 +22,12 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
         this.inicializarFormulario(chequeo);
         this.setResizable(false);
         this.setLocationRelativeTo(parent);
+        txtFecha.setText(fechaSistema());
     }
     
     private void inicializarFormulario(Chequeo chequeo) {
         if (chequeo!=null){
+            txtFecha.setText(fechaSistema());
             this.idChequeo = chequeo.getId();
             this.txtNombreV.setText(chequeo.getNombreVeterinario());
             this.taObservaciones.setText(chequeo.getObservaciones());
@@ -32,7 +36,6 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
             this.editar=false;
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +61,7 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setText("Informacion del Chequeo");
 
@@ -75,6 +78,12 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
         taObservaciones.setColumns(20);
         taObservaciones.setRows(5);
         jScrollPane1.setViewportView(taObservaciones);
+
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,28 +106,22 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(133, 133, 133)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIdChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitulo))
+                    .addComponent(lblTitulo)
+                    .addComponent(txtIdChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombreV, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblFecha)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
+                        .addComponent(txtNombreV)
+                        .addGap(126, 126, 126))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIdChequeo)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblIdAnimal)
                                 .addGap(28, 28, 28)
-                                .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblVeterinario)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblObservaciones)
@@ -129,7 +132,13 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
                                         .addGap(76, 76, 76)
                                         .addComponent(btnCancelar))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(53, Short.MAX_VALUE))))
+                        .addContainerGap(53, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,17 +196,27 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
+  
     public boolean confirmacion() {
         return this.confirmacion;
     }
     
-    public Chequeo consultarChequeo(){
-        return new Chequeo( 
-            this.editar ? this.idChequeo:0,    
-            this.txtIdChequeo.getText(),
-            this.taObservaciones.getText()
+    public Chequeo consultarChequeo() {
+        return new Chequeo(
+                this.editar?this.idChequeo:0,
+                this.txtNombreV.getText(),
+                this.txtIdAnimal.getText(),
+                this.taObservaciones.getText()
         );
+    }
+    
+    private String fechaSistema(){
+        Date fecha=new Date();
+        SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
+        return formatoFecha.format(fecha);
     }
     
     /**

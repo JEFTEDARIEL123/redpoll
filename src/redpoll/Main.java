@@ -4,7 +4,9 @@
  */
 package redpoll;
 
-import proyectodos.JFChequeo;
+import redpoll.clasesgestion.JFChequeo;
+import redpoll.Vacuna.JFVacuna;
+
 
 /**
  *
@@ -16,7 +18,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFChequeo chequeo = new JFChequeo();
+       //JFVacuna vacuna = new JFVacuna();
+       //vacuna.setVisible(true);
+       //vacuna.setResizable(false);
+       //vacuna.setLocationRelativeTo(null);
+       
+       JFChequeo chequeo=new JFChequeo();
        chequeo.setVisible(true);
        chequeo.setResizable(false);
        chequeo.setLocationRelativeTo(null);
