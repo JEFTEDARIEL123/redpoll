@@ -9,10 +9,7 @@ public class Grupo {
     private int idGrupo;
     private String tipo,descripcion;
    
-    
-    
-    
-    
+
 
     public Grupo(int idGrupo, String tipo, String descripcion) {
         this.idGrupo = idGrupo;
