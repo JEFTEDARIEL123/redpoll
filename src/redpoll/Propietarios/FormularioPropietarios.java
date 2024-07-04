@@ -214,11 +214,13 @@ public class FormularioPropietarios extends javax.swing.JDialog {
     }
 
     public Propietario consultarPropietario() {
+        int Cedula = Integer.parseInt(this.txtCedula.getText());
+        int Telefono = Integer.parseInt(this.txtTelefono.getText());
         return new Propietario(
                 this.edicion ? this.idPropietario : 0,
                 this.txtNombre.getText(),
-                this.edicion ? this.cedulaPropietario : 0,
-                this.edicion ? this.telefonoPropietario : 0,
+                Cedula, 
+                Telefono,
                 this.txtDireccion.getText(),
                 this.txtCorreo.getText()
         );
