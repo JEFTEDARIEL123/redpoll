@@ -223,6 +223,7 @@ public class FormularioPropietarios extends javax.swing.JDialog {
                 Telefono,
                 this.txtDireccion.getText(),
                 this.txtCorreo.getText()
+                
         );
     }
 
