@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
+import redpoll.Propietarios.GitPropietario;
 
 /**
  *
@@ -14,7 +15,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        GitPropietario propietario = new GitPropietario();
+        propietario.setVisible(true);
+        propietario.setResizable(false);
+        propietario.setLocationRelativeTo(null);
+        
     }
     
 }
