@@ -15,6 +15,14 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+         NuevoFormularioGrupo fG = new NuevoFormularioGrupo();
+       fG.setVisible(true);
+       fG.setResizable(false);
+       fG.setLocationRelativeTo(null);
+        
+       
+       
     }
     
 }
