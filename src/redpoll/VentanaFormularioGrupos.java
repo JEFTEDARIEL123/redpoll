@@ -15,10 +15,12 @@ private boolean confirmar;
     /**
      * Creates new form VentanaFormularioGrupos
      */
-    public VentanaFormularioGrupos() {
+    public VentanaFormularioGrupos(java.awt.Frame parent, boolean modal, Grupo grupo) {
+          super();
         initComponents();
-        
-        
+        this.inicializarFormulario(grupo);
+        this.setResizable(false);
+        this.setLocationRelativeTo(parent);
         
     }
     
@@ -32,6 +34,8 @@ private boolean confirmar;
         this.edicion = false;
     }
 }
+    
+    
     
     
     
@@ -73,7 +77,6 @@ private boolean confirmar;
 
         txaDescripcion.setColumns(20);
         txaDescripcion.setRows(5);
-        txaDescripcion.setText("Hola");
         jScrollPane1.setViewportView(txaDescripcion);
 
         btnGuardar.setText("Guardar");
@@ -170,9 +173,7 @@ private boolean confirmar;
         this.setVisible(false);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
     
      public boolean confirmacion() {
         return this.confirmar;
