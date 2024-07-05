@@ -13,16 +13,18 @@ import java.util.Date;
  */
 public class Chequeo {
     protected int id;
-    private String fecha;
+    protected String fecha;
     protected String nombreVeterinario;
     protected String observaciones;
+    protected int idAnimal;
     
 
-    public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones) {
+    public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones,int idAnimal) {
         this.id = id;
         this.fecha=fecha;
         this.nombreVeterinario = nombreVeterinario;
         this.observaciones = observaciones;
+        this.idAnimal=idAnimal;
     }
     
     public int getId() {
@@ -57,9 +59,19 @@ public class Chequeo {
         this.fecha = fecha;
     }
 
+    public int getIdAnimal() {
+        return idAnimal;
+    }
+
+    public void setIdAnimal(int idAnimal) {
+        this.idAnimal = idAnimal;
+    }
+
     @Override
     public String toString() {
-        return "Chequeo{" + "id=" + id + ", fecha=" + fecha + ", nombreVeterinario=" + nombreVeterinario + ", observaciones=" + observaciones + '}';
+        return "Chequeo{" + "id=" + id + ", fecha=" + fecha + ", nombreVeterinario=" + nombreVeterinario + ", observaciones=" + observaciones + ", idAnimal=" + idAnimal + '}';
     }
+
+    
     
 }
