@@ -42,6 +42,7 @@ public class FormularioVacuna extends javax.swing.JDialog {
     
     private void inicializarFormulario(Vacuna vacuna) {
         if (vacuna != null) {
+            txtFecha.setText(fechaSistema());
             this.idVacuna=vacuna.getId();
             this.txtNameVacuna.setText(vacuna.getNombre());
             this.edicion = true;

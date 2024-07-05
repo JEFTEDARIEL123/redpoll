@@ -28,8 +28,9 @@ public class GestionVacuna {
     public void agregarVacuna(Vacuna vacuna){
         int id=obtenerUltimoId()+1;
         vacuna.setId(id);
-        this.vacunas.put(vacuna.getNombre(),vacuna);
-        
+        this.vacunas.put(String.valueOf(vacuna.getId()),vacuna);
+        ordenarIds();
+   
     }
     
     public Vacuna obtenerVacuna(String vacuna) {
@@ -40,11 +41,11 @@ public class GestionVacuna {
         return this.vacunas.containsKey(vacuna);
     }
     public void actualizarVacuna(Vacuna vacuna) {
-        this.vacunas.put(vacuna.getNombre(), vacuna);
+        this.vacunas.put(String.valueOf(vacuna.getId()), vacuna);
     }
 
-    public void eliminarVacuna(String vacuna) {
-        this.vacunas.remove(vacuna);
+    public void eliminarVacuna(String idVacuna) {
+        this.vacunas.remove(idVacuna);
     }
     
     public int obtenerUltimoId() {
@@ -56,4 +57,13 @@ public class GestionVacuna {
                 .max()
                 .orElse(0); 
     }
+    
+    public void ordenarIds() {
+        int id = 1;
+        for (Vacuna vacuna : this.vacunas.values()) {
+            vacuna.setId(id);
+            id++;
+        }
+   }
+    
 }
