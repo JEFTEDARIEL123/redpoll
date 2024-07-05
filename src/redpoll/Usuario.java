@@ -6,6 +6,11 @@ public class Usuario {
     private int idUsuario,idRol;
     private String nombre,correo,password;
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "idUsuario=" + idUsuario + ", idRol=" + idRol + ", nombre=" + nombre + ", correo=" + correo + ", password=" + password + '}';
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }

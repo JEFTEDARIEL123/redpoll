@@ -14,10 +14,13 @@ import java.util.HashMap;
 public class GestorUsuario {
     
      private Map<String, Usuario> usu;
+     //contructor
+    public GestorUsuario(Map<String, Usuario> usu) {
+        this.usu = usu;
+    }
+     
     
-    
-    
-    
+
     
     public Map<String, Usuario> getUsuario() {
         return usu;
@@ -26,25 +29,7 @@ public class GestorUsuario {
     public Map<String, Usuario> setUsuario() {
         return usu;
     }
+
     
-    
-    
-    //
-    public void agregarUsuario(Usuario usu) {
-        this.usu.put(usu.getNombre(), usu);
-    }
-    public void eliminarUsuario(int idUsuario, Map usu){
-    this.usu.remove(idUsuario);
-    }
-    
-    public void editarUsuario(){
-    
-    }
-    
-    
-    public void consultarUsuario(){
-    
-    }
-    
-    
+
 }
