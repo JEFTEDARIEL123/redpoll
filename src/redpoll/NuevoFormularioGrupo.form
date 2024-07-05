@@ -139,6 +139,9 @@
           <Properties>
             <Property name="visible" type="boolean" value="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jInternalFrame1FocusLost"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">

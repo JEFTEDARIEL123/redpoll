@@ -173,8 +173,6 @@ private boolean confirmar;
         this.setVisible(false);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-   
-    
      public boolean confirmacion() {
         return this.confirmar;
     }

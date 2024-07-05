@@ -4,6 +4,7 @@
  */
 package redpoll;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -14,8 +15,8 @@ public class GestorGrupo {
     
     private Map<String, Grupo> grupos;
 
-    public GestorGrupo(Map<String, Grupo> grupos) {
-        this.grupos = grupos;
+    public GestorGrupo() {
+        grupos = new HashMap<>();
     }
 
     public Map<String, Grupo> getGrupos() {

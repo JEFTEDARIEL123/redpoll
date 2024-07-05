@@ -17,7 +17,7 @@ import java.util.Map;
 public class NuevoFormularioGrupo extends javax.swing.JFrame {
     
      private GestorGrupo gestionGrupos;
-    private VentanaFormularioGrupos formularioGrupo;
+    private VentanaFormularioGrupos VentanaFormularioGrupos;
      private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
@@ -25,8 +25,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
      */
      //Metodos
      public NuevoFormularioGrupo() {
-         Map<String, Grupo> mapaGrupos = new HashMap<>();
-        this.gestionGrupos = new GestorGrupo(mapaGrupos);
+        
+        this.gestionGrupos = new GestorGrupo();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Tipo", "Descripción"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
@@ -44,6 +44,11 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         return valor;}
      //Constructor
      public NuevoFormularioGrupo(GestorGrupo gestionGrupos) {
+         this.gestionGrupos = new GestorGrupo();
+        initComponents();
+        String[] nombreColumnas = new String[]{"Id", "Tipo", "Descripcion"};
+        this.modelo.setColumnIdentifiers(nombreColumnas);
+        this.tbGrupos.setModel(modelo);
         
        
     }
@@ -55,10 +60,10 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     }
       
        private void abrirFormularioGrupo(Grupo grupo) {
-        VentanaFormularioGrupos formularioGrupos = new VentanaFormularioGrupos(this, true, grupo);
-        formularioGrupos.setVisible(true);
-        if (formularioGrupos.confirmacion()) {
-            Grupo nuevoGrupo = formularioGrupos.consultarGrupo();
+        this.VentanaFormularioGrupos = new VentanaFormularioGrupos(this, true, grupo);
+        VentanaFormularioGrupos.setVisible(true);
+        if (VentanaFormularioGrupos.confirmacion()) {
+            Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
             if (grupo == null) {
                 if (this.gestionGrupos.validarExistencia(nuevoGrupo.getTipo())) {
                     JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -136,6 +141,11 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         lblGrupos.setText("Grupos");
 
         jInternalFrame1.setVisible(true);
+        jInternalFrame1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jInternalFrame1FocusLost(evt);
+            }
+        });
 
         tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,6 +285,10 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     private void tbGruposCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tbGruposCaretPositionChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_tbGruposCaretPositionChanged
+
+    private void jInternalFrame1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jInternalFrame1FocusLost
 
     /**
      * @param args the command line arguments

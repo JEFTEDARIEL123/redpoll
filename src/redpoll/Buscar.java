@@ -56,7 +56,7 @@ public class Buscar extends javax.swing.JFrame {
 
         jLabel1.setText("Busqueda");
 
-        jPanel2.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         cbxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxBuscar.addActionListener(new java.awt.event.ActionListener() {
