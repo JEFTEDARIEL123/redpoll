@@ -30,8 +30,8 @@ public class FormularioPropietarios extends javax.swing.JDialog {
         if (propietario != null) {
             this.idPropietario = propietario.getID();
             this.txtNombre.setText(propietario.getNombre());
-            this.cedulaPropietario = propietario.getCedula();
-            this.telefonoPropietario = propietario.getTelefono();
+            this.txtCedula.setText(Integer.toString(propietario.getCedula()));
+            this.txtTelefono.setText(Integer.toString(propietario.getTelefono()));
             this.txtDireccion.setText(propietario.getDireccion());
             this.txtCorreo.setText(propietario.getCorreo());         
             this.edicion = true;
