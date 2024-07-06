@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-
+import redpoll.reportes.MenuReportes;
 /**
  *
  * @author jefte
@@ -14,7 +14,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MenuReportes rep = new MenuReportes();
+        rep.setVisible(true);
     }
     
 }
