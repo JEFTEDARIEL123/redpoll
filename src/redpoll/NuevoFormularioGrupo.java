@@ -6,7 +6,11 @@ package redpoll;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.ImageIcon;
+import javax.swing.table.TableRowSorter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.RowFilter;
 
 
 /**
@@ -18,6 +22,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
      private GestorGrupo gestionGrupos;
     private VentanaFormularioGrupos VentanaFormularioGrupos;
      private DefaultTableModel modelo = new DefaultTableModel();
+     private  TableRowSorter trsfilttro;
+     String filtro;
 
     /**
      * Creates new form NuevoFormularioGrupo
@@ -69,9 +75,10 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
      
      
       private void actualizarTabla() {
-        this.modelo.setRowCount(0); 
-        for (Grupo grupo : this.gestionGrupos.getGrupos().values()) {
-            this.modelo.addRow(new Object[]{grupo.getIdGrupo(), grupo.getTipo(), grupo.getDescripcion()});
+         
+        this.modelo.setRowCount(0);
+        for (Grupo tarea : this.gestionGrupos.getGrupos().values()) {
+            this.modelo.addRow(new Object[]{tarea.getIdGrupo(), tarea.getTipo(), tarea.getDescripcion()});
         }
     }
       
@@ -110,6 +117,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
         lblGrupos = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbGrupo = new javax.swing.JTable();
+        txtConsultar = new javax.swing.JTextField();
+        lblIngreseTipo = new javax.swing.JLabel();
 
         tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -211,6 +220,19 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
         ));
         jScrollPane2.setViewportView(tbGrupo);
 
+        txtConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConsultarActionPerformed(evt);
+            }
+        });
+        txtConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtConsultarKeyTyped(evt);
+            }
+        });
+
+        lblIngreseTipo.setText("Ingrese Tipo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,19 +240,25 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                                .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnConsultar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(197, 197, 197)
-                        .addComponent(lblGrupos)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(lblGrupos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                                    .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnConsultar)
+                                    .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblIngreseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,18 +267,23 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
                 .addComponent(lblGrupos)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminar)
                         .addGap(12, 12, 12)
                         .addComponent(btnEditar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnConsultar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConsultar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblIngreseTipo)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,7 +294,10 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -275,6 +311,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
+        
+        
          this.actualizarTabla();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -302,7 +340,30 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
+        txtConsultar.addKeyListener(new KeyAdapter() {
+    @Override
+    public void keyReleased(KeyEvent e) {
+        filtro = txtConsultar.getText();
+        filtro();
+    }
+});
+
+
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConsultarActionPerformed
+
+    private void txtConsultarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultarKeyTyped
+        //KEYACT
+        trsfilttro = new TableRowSorter(tbGrupo.getModel());
+        tbGrupo.setRowSorter(trsfilttro);
+    }//GEN-LAST:event_txtConsultarKeyTyped
+   
+    public void filtro() {
+    trsfilttro.setRowFilter(RowFilter.regexFilter(filtro, 1)); 
+}
 
     /**
      * @param args the command line arguments
@@ -319,7 +380,9 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblGrupos;
+    private javax.swing.JLabel lblIngreseTipo;
     private javax.swing.JTable tbGrupo;
     private javax.swing.JTable tbGrupos;
+    private javax.swing.JTextField txtConsultar;
     // End of variables declaration//GEN-END:variables
 }
