@@ -80,7 +80,21 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
         for (Grupo tarea : this.gestionGrupos.getGrupos().values()) {
             this.modelo.addRow(new Object[]{tarea.getIdGrupo(), tarea.getTipo(), tarea.getDescripcion()});
         }
+     
+
     }
+      private void update(){
+      int filaSeleccionada = this.tbGrupo.getSelectedRow();
+    if (this.validarSeleccion()) {
+        String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
+        Grupo grupo = this.gestionGrupos.getGrupos().get(tipoGrupo);
+        this.abrirFormularioGrupo(grupo);
+        eliminarGrupo();
+        //Solucion 
+    }
+          
+          
+      }
       
        
       //Eliminar
@@ -311,9 +325,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        
-        
-         this.actualizarTabla();
+  
+         this.update();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

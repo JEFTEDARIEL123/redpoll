@@ -52,8 +52,9 @@ public class GestorGrupo {
         this.grupos.remove(tipo);
     }
      
-      public Grupo obtenerGrupo(String animal) {
-        return this.grupos.get(animal);
+      public Grupo obtenerGrupo(Grupo grupos) {
+        this.grupos.put(grupos.getTipo(), grupos);
+        return null;
     }
      
      public int obtenerUltimoId() {
@@ -67,7 +68,7 @@ public class GestorGrupo {
     }
 
     void actualizarGrupo(String gP) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
     
     
