@@ -1,27 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package redpoll;
 
 /**
  *
  * @author Usuario
  */
-public class VentanaFormularioGrupos extends javax.swing.JFrame {
+public class VentanaFormularioGrupos extends javax.swing.JDialog  {
 private boolean confirmar;
     private int idGrupo;
     private boolean edicion;
+    
+    
+    
     /**
      * Creates new form VentanaFormularioGrupos
+     * @param parent
+     * @param modal
+     * @param grupo
      */
     public VentanaFormularioGrupos(java.awt.Frame parent, boolean modal, Grupo grupo) {
-          super();
+        super(parent, modal);
         initComponents();
         this.inicializarFormulario(grupo);
         this.setResizable(false);
         this.setLocationRelativeTo(parent);
         
+           
     }
     
     private void inicializarFormulario(Grupo grupo) {
@@ -59,7 +63,7 @@ private boolean confirmar;
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -139,18 +143,22 @@ private boolean confirmar;
                         .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,6 +172,7 @@ private boolean confirmar;
         // TODO add your handling code here:
          this.confirmar = false;
         this.setVisible(false);
+       
         
     }//GEN-LAST:event_btnCancelarActionPerformed
 

@@ -6,15 +6,14 @@ package redpoll;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 /**
  *
  * @author Usuario
  */
-public class NuevoFormularioGrupo extends javax.swing.JFrame {
+public class NuevoFormularioGrupo extends javax.swing.JFrame  {
     
      private GestorGrupo gestionGrupos;
     private VentanaFormularioGrupos VentanaFormularioGrupos;
@@ -30,41 +29,18 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Tipo", "Descripción"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
-        this.tbGrupos.setModel(modelo);
-    }
-     
-     private boolean validarSeleccion(){
-        boolean valor = false;
-        int filaSeleccionada = this.tbGrupos.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            valor= true;
-        }else{
-            JOptionPane.showMessageDialog(this, "Primero selccione un grupo.");
-        }
-        return valor;}
-     //Constructor
-     public NuevoFormularioGrupo(GestorGrupo gestionGrupos) {
-         this.gestionGrupos = new GestorGrupo();
-        initComponents();
-        String[] nombreColumnas = new String[]{"Id", "Tipo", "Descripcion"};
-        this.modelo.setColumnIdentifiers(nombreColumnas);
-        this.tbGrupos.setModel(modelo);
+        this.tbGrupo.setModel(modelo);
+     }
         
-       
-    }
-      private void actualizarTabla() {
-        this.modelo.setRowCount(0); 
-        for (Grupo grupo : this.gestionGrupos.getGrupos().values()) {
-            this.modelo.addRow(new Object[]{grupo.getIdGrupo(), grupo.getTipo(), grupo.getDescripcion()});
-        }
-    }
-      
-       private void abrirFormularioGrupo(Grupo grupo) {
-        this.VentanaFormularioGrupos = new VentanaFormularioGrupos(this, true, grupo);
+        private void abrirFormularioGrupo(Grupo grup) {
+           
+        this.VentanaFormularioGrupos = new VentanaFormularioGrupos(this, true, grup);
         VentanaFormularioGrupos.setVisible(true);
+                                        //Revisar
         if (VentanaFormularioGrupos.confirmacion()) {
             Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
-            if (grupo == null) {
+            if (grup == null) {
+                                        //Revisar
                 if (this.gestionGrupos.validarExistencia(nuevoGrupo.getTipo())) {
                     JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -76,13 +52,36 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             }
         }
     }
+     
+     
+     
+     
+     private boolean validarSeleccion(){
+        boolean valor = false;
+        int filaSeleccionada = this.tbGrupo.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            valor= true;
+        }else{
+            JOptionPane.showMessageDialog(this, "Primero selccione un grupo.");
+        }
+        return valor;}
+     
+     
+     
+      private void actualizarTabla() {
+        this.modelo.setRowCount(0); 
+        for (Grupo grupo : this.gestionGrupos.getGrupos().values()) {
+            this.modelo.addRow(new Object[]{grupo.getIdGrupo(), grupo.getTipo(), grupo.getDescripcion()});
+        }
+    }
       
+       
+      //Eliminar
       private void eliminarGrupo() {
-         this.modelo.setRowCount(0);
-        int filaSeleccionada = this.tbGrupos.getSelectedRow();
+        int filaSeleccionada = this.tbGrupo.getSelectedRow();
         if (this.validarSeleccion()) {
-            String titulo = String.valueOf(this.tbGrupos.getValueAt(filaSeleccionada, 1));
-            this.gestionGrupos.eliminarGrupo(titulo);
+            String gP = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
+            this.gestionGrupos.eliminarGrupo(gP);
             this.actualizarTabla();
         }
     }
@@ -100,52 +99,17 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbGrupos = new javax.swing.JTable();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         btnConsultar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         lblGrupos = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbGrupos = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-
-        btnConsultar.setText("Consultar");
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
-        lblGrupos.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblGrupos.setText("Grupos");
-
-        jInternalFrame1.setVisible(true);
-        jInternalFrame1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jInternalFrame1FocusLost(evt);
-            }
-        });
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbGrupo = new javax.swing.JTable();
 
         tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,22 +145,71 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbGrupos);
 
+        jInternalFrame1.setVisible(true);
+        jInternalFrame1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jInternalFrame1FocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 294, Short.MAX_VALUE)
         );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        lblGrupos.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblGrupos.setText("Grupos");
+
+        tbGrupo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "id", "Tipo", "Descripcion"
+            }
+        ));
+        jScrollPane2.setViewportView(tbGrupo);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,53 +218,50 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(lblGrupos))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btnConsultar))
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnConsultar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(lblGrupos)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(24, 24, 24)
                 .addComponent(lblGrupos)
-                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminar)
                         .addGap(12, 12, 12)
                         .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnConsultar))
-                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -259,19 +269,19 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-       abrirFormularioGrupo(null);
+      this.abrirFormularioGrupo(null);
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-         actualizarTabla();
+         this.actualizarTabla();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
             // TODO add your handling code here:
             
-            eliminarGrupo();
+            this.eliminarGrupo();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tbGruposComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tbGruposComponentAdded
@@ -290,6 +300,10 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jInternalFrame1FocusLost
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -303,7 +317,9 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblGrupos;
+    private javax.swing.JTable tbGrupo;
     private javax.swing.JTable tbGrupos;
     // End of variables declaration//GEN-END:variables
 }
