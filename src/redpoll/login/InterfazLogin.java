@@ -1,6 +1,6 @@
 package redpoll.login;
 
-import ManejoArchivos.MantenimientoArchivos;
+import redpoll.ManejoArchivos.MantenimientoArchivos;
 import javax.swing.JOptionPane;
 import redpoll.Propietarios.GitPropietario;
 /**
