@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author Luis Villalobos
  */
 public class MantenimientoArchivos {
-    String PathUsuarios = "C://Users//Luis Villalobos//Desktop//redpoll//src//Usuario.txt";
+    String PathUsuarios = "./Usuario.txt";
     private File file;
     FileReader fr = null;
     BufferedReader br = null;
