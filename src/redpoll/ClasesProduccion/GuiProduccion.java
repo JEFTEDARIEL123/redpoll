@@ -176,7 +176,7 @@ public class GuiProduccion extends javax.swing.JFrame {
                 this.gestionProduccion.agregarProduccion(prod);
             }else{
                 System.out.println("editando");
-                this.gestionProduccion.editarProduccion(prod.getId(),prod);
+                this.gestionProduccion.editarProduccion(produccion.getId(),prod);
             }
             this.cargarTabla();
         }

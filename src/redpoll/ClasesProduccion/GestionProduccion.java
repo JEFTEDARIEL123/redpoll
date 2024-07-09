@@ -34,7 +34,7 @@ public class GestionProduccion {
     
     public void editarProduccion(int id, Produccion produccion) {
         System.out.println(produccion.getId()+" "+ produccion.toString()); 
-        this.producciones.replace(id, produccion);
+        this.producciones.put(id, produccion);
     
     }
     

@@ -29,12 +29,14 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         this.setResizable(false);
         this.setLocationRelativeTo(parent);
         this.id = id;
+        this.confirmar=false;
     }
 
     private void gui(Produccion produccion) {
         if (produccion != null) {
             this.txtOrdeñoMañana.setText(String.valueOf(produccion.getOrdeñoMañana()));
             this.txtOrdeñoTarde.setText(String.valueOf(produccion.getOrdeñoTarde()));
+            this.id = produccion.getId();
             this.edicion = true;
         } else {
             this.edicion = false;
