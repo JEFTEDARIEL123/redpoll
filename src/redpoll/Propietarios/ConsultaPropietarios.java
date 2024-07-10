@@ -1,23 +1,41 @@
 package redpoll.Propietarios;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Luis Villalobos
  */
-public class ConsultaPropietarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConsultaPropietarios
-     */
-    public ConsultaPropietarios() {
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class ConsultaPropietarios extends javax.swing.JFrame {
+    private DefaultTableModel modelo;
+    private GitPropietario parent;
+
+    public ConsultaPropietarios(GitPropietario parent, DefaultTableModel modelo) {
+        this.parent = parent;
+        this.modelo = modelo;
         initComponents();
     }
 
-    public static void abrirConsultaPropietarios(JFrame parent) {
-        ConsultaPropietarios consultaPropietarios = new ConsultaPropietarios();
-        consultaPropietarios.setLocationRelativeTo(parent); // Centrar respecto al padre
+    private DefaultTableModel modeloTabla;
+    private TableRowSorter<DefaultTableModel> sorter;
+
+    public ConsultaPropietarios(DefaultTableModel modelo) {
+        initComponents();
+        this.modeloTabla = modelo;
+        tblResultados.setModel(modeloTabla);
+        sorter = new TableRowSorter<>(modeloTabla);
+        tblResultados.setRowSorter(sorter);
+    }
+
+    public static void abrirConsultaPropietarios(JFrame parent, DefaultTableModel modelo) {
+        ConsultaPropietarios consultaPropietarios = new ConsultaPropietarios(modelo);
+        consultaPropietarios.setLocationRelativeTo(parent);
         consultaPropietarios.setVisible(true);
     }
     
@@ -195,7 +213,7 @@ public class ConsultaPropietarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        this.setVisible(false);       
+        this.dispose();    
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -212,11 +230,32 @@ public class ConsultaPropietarios extends javax.swing.JFrame {
         txtTelefono.setText("");
         txtCorreo.setText("");
     }
-    
+
     private void buscarPropietarios() {
-        // Aquí puedes implementar la lógica para buscar propietarios y actualizar la tabla
-        JOptionPane.showMessageDialog(this, "Método de búsqueda no implementado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+    String nombre = txtNombre.getText().trim();
+    String cedula = txtCedula.getText().trim();
+    String telefono = txtTelefono.getText().trim();
+    String correo = txtCorreo.getText().trim();
+    
+    List<RowFilter<Object, Object>> filters = new ArrayList<>();
+    
+    if (!nombre.isEmpty()) {
+        filters.add(RowFilter.regexFilter(nombre, 1));
     }
+    if (!cedula.isEmpty()) {
+        filters.add(RowFilter.regexFilter(cedula, 2));
+    }
+    if (!telefono.isEmpty()) {
+        filters.add(RowFilter.regexFilter(telefono, 3));
+    }
+    if (!correo.isEmpty()) {
+        filters.add(RowFilter.regexFilter(correo, 5));
+    }
+    
+    RowFilter<Object, Object> rf = RowFilter.andFilter(filters);
+    sorter.setRowFilter(rf);
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

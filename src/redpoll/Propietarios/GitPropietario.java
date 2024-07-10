@@ -1,22 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package redpoll.Propietarios;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author Luis Villalobos
- */
+
 public class GitPropietario extends javax.swing.JFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
     private GestionPropietario gestionPropietario;
     private FormularioPropietarios formulario;
     private ConsultaPropietarios consultaPropietarios;
-    
     
     public GitPropietario() {
         this.gestionPropietario = new GestionPropietario();
@@ -24,32 +15,35 @@ public class GitPropietario extends javax.swing.JFrame {
         String[] nombreColumnas = new String[]{"Id", "Nombre", "Cedula", "Telefono", "Dirección", "Correo"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbPropietario.setModel(modelo);
+        actualizarTabla();
     }
     
     private void abrirFormularioPropietario(Propietario propietario) {
-        this.formulario = new FormularioPropietarios(this, true, propietario);
-        this.formulario.setVisible(true);
-        if (formulario.confirmacion()) {
-            Propietario cp = formulario.consultarPropietario();
-            if (propietario == null) {
-                if (this.gestionPropietario.validarExistencia(cp.getNombre())) {
-                    JOptionPane.showMessageDialog(this, "El titulo ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    this.gestionPropietario.agregarPropietario(cp);
-                    this.actualizarTabla();
-                }
-
+    this.formulario = new FormularioPropietarios(this, true, propietario);
+    this.formulario.setVisible(true);
+    if (formulario.confirmacion()) {
+        Propietario cp = formulario.consultarPropietario();
+        if (cp == null) {
+            JOptionPane.showMessageDialog(this, "Los datos del propietario no son válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (propietario == null) {
+            if (this.gestionPropietario.validarExistencia(cp.getNombre())) {
+                JOptionPane.showMessageDialog(this, "El propietario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-
-                this.gestionPropietario.actualizarPropietario(cp);
+                this.gestionPropietario.agregarPropietario(cp);
+                this.actualizarTabla();
             }
-
+        } else {
+            this.gestionPropietario.actualizarPropietario(cp);
+            this.actualizarTabla();
         }
     }
+}
 
-public void abrirConsultaPropietarios() {
-        consultaPropietarios = new ConsultaPropietarios();
-        consultaPropietarios.setLocationRelativeTo(this); // Centrar respecto al padre
+    public void abrirConsultaPropietarios() {
+        consultaPropietarios = new ConsultaPropietarios(this, this.modelo);
+        consultaPropietarios.setLocationRelativeTo(this);
         consultaPropietarios.setVisible(true);
     }
     
@@ -58,11 +52,12 @@ public void abrirConsultaPropietarios() {
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
         if (filaSeleccionada != -1) {
             valor= true;
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un propietario para poder editarlo.");
         }
         return valor;
     }
+    
     private void editarPropietario() {
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
         if (this.validarSeleccion()) {
@@ -246,24 +241,6 @@ public void abrirConsultaPropietarios() {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GitPropietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GitPropietario().setVisible(true);
