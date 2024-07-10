@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package redpoll.Propietarios;
 
 import javax.swing.JOptionPane;
@@ -39,6 +35,7 @@ public class FormularioPropietarios extends javax.swing.JDialog {
             this.edicion = false;
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,10 +195,9 @@ public class FormularioPropietarios extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        this.confirmar = true;
-        //this.cedulaPropietario = Integer.parseInt(this.txtCedula.getText());
-        //this.telefonoPropietario = Integer.parseInt(this.txtTelefono.getText());
+    this.confirmar = true;
         this.setVisible(false);
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -248,4 +244,6 @@ public class FormularioPropietarios extends javax.swing.JDialog {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+ 
 }
