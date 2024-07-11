@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class GitPropietario extends javax.swing.JFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo;
     private GestionPropietario gestionPropietario;
     private FormularioPropietarios formulario;
     private ConsultaPropietarios consultaPropietarios;
@@ -13,45 +13,45 @@ public class GitPropietario extends javax.swing.JFrame {
         this.gestionPropietario = new GestionPropietario();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Nombre", "Cedula", "Telefono", "Dirección", "Correo"};
-        this.modelo.setColumnIdentifiers(nombreColumnas);
+        this.modelo = new DefaultTableModel(null, nombreColumnas);
         this.tbPropietario.setModel(modelo);
         actualizarTabla();
     }
-    
+
     private void abrirFormularioPropietario(Propietario propietario) {
-    this.formulario = new FormularioPropietarios(this, true, propietario);
-    this.formulario.setVisible(true);
-    if (formulario.confirmacion()) {
-        Propietario cp = formulario.consultarPropietario();
-        if (cp == null) {
-            JOptionPane.showMessageDialog(this, "Los datos del propietario no son válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (propietario == null) {
-            if (this.gestionPropietario.validarExistencia(cp.getNombre())) {
-                JOptionPane.showMessageDialog(this, "El propietario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+        this.formulario = new FormularioPropietarios(this, true, propietario);
+        this.formulario.setVisible(true);
+        if (formulario.confirmacion()) {
+            Propietario cp = formulario.consultarPropietario();
+            if (cp == null) {
+                JOptionPane.showMessageDialog(this, "Los datos del propietario no son válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (propietario == null) {
+                if (this.gestionPropietario.validarExistencia(cp.getNombre())) {
+                    JOptionPane.showMessageDialog(this, "El propietario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    this.gestionPropietario.agregarPropietario(cp);
+                    this.actualizarTabla();
+                }
             } else {
-                this.gestionPropietario.agregarPropietario(cp);
+                this.gestionPropietario.actualizarPropietario(cp);
                 this.actualizarTabla();
             }
-        } else {
-            this.gestionPropietario.actualizarPropietario(cp);
-            this.actualizarTabla();
         }
     }
-}
 
     public void abrirConsultaPropietarios() {
-        consultaPropietarios = new ConsultaPropietarios(this, this.modelo);
+        consultaPropietarios = new ConsultaPropietarios(this.modelo);
         consultaPropietarios.setLocationRelativeTo(this);
         consultaPropietarios.setVisible(true);
     }
     
-    private boolean validarSeleccion(){
+    private boolean validarSeleccion() {
         boolean valor = false;
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
         if (filaSeleccionada != -1) {
-            valor= true;
+            valor = true;
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un propietario para poder editarlo.");
         }

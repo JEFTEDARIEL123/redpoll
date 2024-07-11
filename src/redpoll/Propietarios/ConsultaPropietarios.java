@@ -10,24 +10,13 @@ import javax.swing.table.TableRowSorter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class ConsultaPropietarios extends javax.swing.JFrame {
-    private DefaultTableModel modelo;
-    private GitPropietario parent;
-
-    public ConsultaPropietarios(GitPropietario parent, DefaultTableModel modelo) {
-        this.parent = parent;
-        this.modelo = modelo;
-        initComponents();
-    }
-
     private DefaultTableModel modeloTabla;
     private TableRowSorter<DefaultTableModel> sorter;
 
     public ConsultaPropietarios(DefaultTableModel modelo) {
-        initComponents();
         this.modeloTabla = modelo;
+        initComponents();
         tblResultados.setModel(modeloTabla);
         sorter = new TableRowSorter<>(modeloTabla);
         tblResultados.setRowSorter(sorter);
@@ -217,44 +206,74 @@ public class ConsultaPropietarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiarCampos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        buscarPropietarios();
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void limpiarCampos() {
         txtNombre.setText("");
         txtCedula.setText("");
         txtTelefono.setText("");
         txtCorreo.setText("");
-    }
 
-    private void buscarPropietarios() {
-    String nombre = txtNombre.getText().trim();
-    String cedula = txtCedula.getText().trim();
-    String telefono = txtTelefono.getText().trim();
-    String correo = txtCorreo.getText().trim();
+        sorter.setRowFilter(null);
     
-    List<RowFilter<Object, Object>> filters = new ArrayList<>();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String nombre = txtNombre.getText().trim();
+        String cedula = txtCedula.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String correo = txtCorreo.getText().trim();
+
+        List<RowFilter<Object, Object>> filters = new ArrayList<>(4);
+
+        if (!nombre.isEmpty()) {
+            filters.add(RowFilter.regexFilter("(?i)" + nombre, 0));
+        }
+        if (!cedula.isEmpty()) {
+            filters.add(RowFilter.regexFilter(cedula, 1));
+        }
+        if (!telefono.isEmpty()) {
+            filters.add(RowFilter.regexFilter(telefono, 2));
+        }
+        if (!correo.isEmpty()) {
+            filters.add(RowFilter.regexFilter("(?i)" + correo, 4));
+        }
+
+        sorter.setRowFilter(RowFilter.andFilter(filters));
     
-    if (!nombre.isEmpty()) {
-        filters.add(RowFilter.regexFilter(nombre, 1));
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+
+    public static void main(String args[]) {
+        DefaultTableModel modelo = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"Nombre", "Cedula", "Telefono", "Direccion", "Correo"}
+        );
+
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ConsultaPropietarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ConsultaPropietarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ConsultaPropietarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ConsultaPropietarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                abrirConsultaPropietarios(null, modelo);
+            }
+        });
     }
-    if (!cedula.isEmpty()) {
-        filters.add(RowFilter.regexFilter(cedula, 2));
-    }
-    if (!telefono.isEmpty()) {
-        filters.add(RowFilter.regexFilter(telefono, 3));
-    }
-    if (!correo.isEmpty()) {
-        filters.add(RowFilter.regexFilter(correo, 5));
-    }
-    
-    RowFilter<Object, Object> rf = RowFilter.andFilter(filters);
-    sorter.setRowFilter(rf);
-}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
