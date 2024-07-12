@@ -1,5 +1,5 @@
 
-package redpoll;
+package redpoll.grupos;
 
 /**
  *
@@ -151,7 +151,7 @@ private boolean confirmar;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
