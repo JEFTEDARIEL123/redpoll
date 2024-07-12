@@ -235,7 +235,7 @@ public class ConsultaPropietarios extends javax.swing.JFrame {
         if (!correo.isEmpty()) {
             filters.add(RowFilter.regexFilter("(?i)" + correo, 4));
         }
-
+        
         sorter.setRowFilter(RowFilter.andFilter(filters));
     
     }//GEN-LAST:event_btnBuscarActionPerformed

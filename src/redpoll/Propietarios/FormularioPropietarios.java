@@ -195,7 +195,7 @@ public class FormularioPropietarios extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-    this.confirmar = true;
+        this.confirmar = true;
         this.setVisible(false);
 
     }//GEN-LAST:event_btnSaveActionPerformed
