@@ -14,14 +14,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Usuario usuario = new Usuario(1, 1, "Juan", "juan@email.com","1234");
-        
-        GestionRoles roles = new GestionRoles();
-        
-        
-        
-        
+        // TODO code application logic here
     }
     
 }

@@ -10,7 +10,7 @@ import java.util.HashMap;
  * @author Usuario
  */
 public class GestionRoles {
-    private HashMap<Integer, Role> ListaRoles;
+    private HashMap<Integer, Role> ListaRoles = new HashMap<>();
    
     public GestionRoles() {
         Role role1 = new Role(1,"Admin", true);
@@ -27,6 +27,10 @@ public class GestionRoles {
     
     public void agregarRole(Role role){
         this.ListaRoles.put(obtenerUltimoId()+1, role);
+    }
+    
+    public Role mostrarRole(int id){
+        return this.ListaRoles.get(id);
     }
     
   }
