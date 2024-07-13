@@ -1,5 +1,8 @@
 package redpoll.Propietarios;
-
+/**
+ *
+ * @author Luis Villalobos
+ */
 
 public class Propietario {
     private int ID;
