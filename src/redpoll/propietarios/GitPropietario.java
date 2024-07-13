@@ -1,4 +1,4 @@
-package redpoll.Propietarios;
+package redpoll.propietarios;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

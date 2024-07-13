@@ -1,4 +1,4 @@
-package redpoll.Propietarios;
+package redpoll.propietarios;
 /**
  *
  * @author Luis Villalobos

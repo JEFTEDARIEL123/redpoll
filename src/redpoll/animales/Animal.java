@@ -1,5 +1,5 @@
 
-package redpoll.Animal;
+package redpoll.animales;
 import java.util.Date;
 /**
  *
