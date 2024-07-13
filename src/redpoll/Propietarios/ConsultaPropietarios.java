@@ -1,24 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package redpoll.Propietarios;
-
-
-
 /**
  *
  * @author Luis Villalobos
  */
-public class ConsultaPropietarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConsultaPropietarios
-     */
-    public ConsultaPropietarios() {
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConsultaPropietarios extends javax.swing.JFrame {
+    private DefaultTableModel modeloTabla;
+    private TableRowSorter<DefaultTableModel> sorter;
+
+    public ConsultaPropietarios(DefaultTableModel modelo) {
+        this.modeloTabla = modelo;
         initComponents();
+        tblResultados.setModel(modeloTabla);
+        sorter = new TableRowSorter<>(modeloTabla);
+        tblResultados.setRowSorter(sorter);
     }
 
+    public static void abrirConsultaPropietarios(JFrame parent, DefaultTableModel modelo) {
+        ConsultaPropietarios consultaPropietarios = new ConsultaPropietarios(modelo);
+        consultaPropietarios.setLocationRelativeTo(parent);
+        consultaPropietarios.setVisible(true);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -193,26 +202,53 @@ public class ConsultaPropietarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();    
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        txtNombre.setText("");
+        txtCedula.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+
+        sorter.setRowFilter(null);
+    
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        String nombre = txtNombre.getText().trim();
+        String cedula = txtCedula.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String correo = txtCorreo.getText().trim();
+
+        List<RowFilter<Object, Object>> filters = new ArrayList<>(4);
+
+        if (!nombre.isEmpty()) {
+            filters.add(RowFilter.regexFilter("(?i)" + nombre, 0));
+        }
+        if (!cedula.isEmpty()) {
+            filters.add(RowFilter.regexFilter(cedula, 1));
+        }
+        if (!telefono.isEmpty()) {
+            filters.add(RowFilter.regexFilter(telefono, 2));
+        }
+        if (!correo.isEmpty()) {
+            filters.add(RowFilter.regexFilter("(?i)" + correo, 4));
+        }
+        
+        sorter.setRowFilter(RowFilter.andFilter(filters));
+    
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
+        DefaultTableModel modelo = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"Nombre", "Cedula", "Telefono", "Direccion", "Correo"}
+        );
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -234,10 +270,11 @@ public class ConsultaPropietarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaPropietarios().setVisible(true);
+                abrirConsultaPropietarios(null, modelo);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
