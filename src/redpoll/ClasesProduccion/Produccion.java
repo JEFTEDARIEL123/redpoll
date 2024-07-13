@@ -6,24 +6,23 @@ package redpoll.ClasesProduccion;
 
 import java.time.LocalDate;
 
-
 /**
  *
  * @author jefte
  */
-
 //Con esta clase se van a crear los diferentes objetos
 //Referentes a cada produccion ingresada.
 public class Produccion {
-   private int id;
-   private double ordeñoMañana,ordeñoTarde, total;
-   private LocalDate fecha;
+
+    private int id;
+    private double ordeñoMañana, ordeñoTarde, total;
+    private LocalDate fecha;
 
     public Produccion(int id, double ordeñoMañana, double ordeñoTarde) {
         this.id = id;
         this.ordeñoMañana = ordeñoMañana;
         this.ordeñoTarde = ordeñoTarde;
-        this.total = this.ordeñoMañana+this.ordeñoTarde;
+        this.total = this.ordeñoMañana + this.ordeñoTarde;
         this.fecha = LocalDate.now();
     }
 
@@ -36,7 +35,10 @@ public class Produccion {
         return id;
     }
 
-    
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public double getOrdeñoMañana() {
         return ordeñoMañana;
     }
@@ -52,7 +54,6 @@ public class Produccion {
     public LocalDate getFecha() {
         return fecha;
     }
-        
 
     public void setOrdeño_mañana(double ordeñoMañana) {
         this.ordeñoMañana = ordeñoMañana;
@@ -69,8 +70,5 @@ public class Produccion {
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
-   
-   
-   
-   
+
 }

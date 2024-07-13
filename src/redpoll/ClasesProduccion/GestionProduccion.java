@@ -25,16 +25,16 @@ public class GestionProduccion {
     }
     
     public void agregarProduccion(Produccion produccion){
-        this.producciones.put((obtenerUltimoId()+1), produccion);
+        this.producciones.put(this.obtenerUltimoId()+1, produccion);
     }
     
     public Produccion obtenerProduccion(int id) {    
         return this.producciones.get(id);
     }
     
-    public void editarProduccion(int id, Produccion produccion) {
+    public void editarProduccion(Produccion produccion) {
         System.out.println(produccion.getId()+" "+ produccion.toString()); 
-        this.producciones.put(id, produccion);
+        this.producciones.put(produccion.getId(), produccion);
     
     }
     

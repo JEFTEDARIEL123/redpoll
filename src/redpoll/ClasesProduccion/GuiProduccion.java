@@ -12,9 +12,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jefte
  */
-
 //Menú Principal para la gestión de las producciones
 public class GuiProduccion extends javax.swing.JFrame {
+
     private final DefaultTableModel modelo = new DefaultTableModel();
     private final GestionProduccion gestionProduccion;
 
@@ -26,10 +26,10 @@ public class GuiProduccion extends javax.swing.JFrame {
         //Instanciamos la clase con el menú para Agregar Producciones
         this.gestionProduccion = new GestionProduccion();
         initComponents();
-        String[] nombreColumnas = new String[]{"Id","Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
+        String[] nombreColumnas = new String[]{"Id", "Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbProducciones.setModel(modelo);
-        
+
     }
 
     /**
@@ -163,53 +163,58 @@ public class GuiProduccion extends javax.swing.JFrame {
     private void btnEliminarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProduccionActionPerformed
         eliminarProduccion();
     }//GEN-LAST:event_btnEliminarProduccionActionPerformed
-    
+
     //Método para abrir un modal en el que ingresar una nueva produccion
-    private void formProduccion(Produccion produccion){
-        GuiAgregarProduccion gui = new GuiAgregarProduccion(this,true,produccion, gestionProduccion.obtenerUltimoId()+1);
+    private void formProduccion(Produccion produccion) {
+        int id = (produccion != null) ? produccion.getId() : gestionProduccion.obtenerUltimoId();
+        
+        GuiAgregarProduccion gui = new GuiAgregarProduccion(this, true, produccion, id);
         gui.setVisible(true);
-        if(gui.confirmacion()){
+        
+        if (gui.confirmacion()) {
             Produccion prod = gui.consultarProduccion();
-            
-            if(produccion ==null){
+
+            if (produccion == null) {
                 System.out.println("agregando");
+                prod.setId(gestionProduccion.obtenerUltimoId() + 1);
                 this.gestionProduccion.agregarProduccion(prod);
-            }else{
+            } else {
                 System.out.println("editando");
-                this.gestionProduccion.editarProduccion(produccion.getId(),prod);
+                this.gestionProduccion.editarProduccion(prod);
             }
             this.cargarTabla();
         }
     }
-    
-    private void editarProduccion(){
-       int fila = this.tbProducciones.getSelectedRow();
-       if(fila!=-1){
-           int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
-           Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
-           this.formProduccion(produccion);
-       }else{
-           JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
-       }
+
+    private void editarProduccion() {
+        int fila = this.tbProducciones.getSelectedRow();
+        if (fila != -1) {
+            int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
+            Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
+            this.formProduccion(produccion);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
+        }
     }
-    
-    private void eliminarProduccion(){
-       int fila = this.tbProducciones.getSelectedRow();
-       if(fila!=-1){
-           int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
-           Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
-           this.gestionProduccion.eliminarProduccion(id);
-           this.cargarTabla();
-       }else{
-           JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder eliminarla.");
-       }
+
+    private void eliminarProduccion() {
+        int fila = this.tbProducciones.getSelectedRow();
+        if (fila != -1) {
+            int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
+            Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
+            this.gestionProduccion.eliminarProduccion(id);
+            this.cargarTabla();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder eliminarla.");
+        }
     }
-   private void cargarTabla() {
+
+    private void cargarTabla() {
         this.modelo.setRowCount(0);
         //System.out.println(gestionProduccion.getProducciones().values());
         for (Produccion produccion : gestionProduccion.getProducciones().values()) {
-            System.out.println(produccion.getId()+" "+produccion.getOrdeñoMañana()+" "+ produccion.getOrdeñoTarde() +" "+ produccion.getTotal() +" "+ produccion.getFecha());
-            this.modelo.addRow(new Object[]{produccion.getId(),produccion.getOrdeñoMañana(), produccion.getOrdeñoTarde(), produccion.getTotal(), produccion.getFecha()});
+            System.out.println(produccion.getId() + " " + produccion.getOrdeñoMañana() + " " + produccion.getOrdeñoTarde() + " " + produccion.getTotal() + " " + produccion.getFecha());
+            this.modelo.addRow(new Object[]{produccion.getId(), produccion.getOrdeñoMañana(), produccion.getOrdeñoTarde(), produccion.getTotal(), produccion.getFecha()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
