@@ -4,7 +4,6 @@
  */
 package redpoll.ClasesProduccion;
 
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,7 +45,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         btnAgregarProduccion = new javax.swing.JButton();
         btnEditarProduccion = new javax.swing.JButton();
         btnEliminarProduccion = new javax.swing.JButton();
-        btnMostrarProduccion = new javax.swing.JButton();
+        btnFiltrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProducciones = new javax.swing.JTable();
 
@@ -79,10 +78,18 @@ public class GuiProduccion extends javax.swing.JFrame {
             }
         });
 
-        btnMostrarProduccion.setText("Mostrar Produccion");
-        btnMostrarProduccion.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFiltrarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnFiltrarMousePressed(evt);
+            }
+        });
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarProduccionActionPerformed(evt);
+                btnFiltrarActionPerformed(evt);
             }
         });
 
@@ -110,7 +117,7 @@ public class GuiProduccion extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(btnEliminarProduccion)
                         .addGap(18, 18, 18)
-                        .addComponent(btnMostrarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -125,7 +132,7 @@ public class GuiProduccion extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMostrarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,9 +159,10 @@ public class GuiProduccion extends javax.swing.JFrame {
         this.formProduccion(null);
     }//GEN-LAST:event_btnAgregarProduccionActionPerformed
 
-    private void btnMostrarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarProduccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMostrarProduccionActionPerformed
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        FiltroProduccion filtro = new FiltroProduccion(this, true);
+        filtro.setVisible(true);
+    }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void btnEditarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProduccionActionPerformed
         editarProduccion();
@@ -164,13 +172,21 @@ public class GuiProduccion extends javax.swing.JFrame {
         eliminarProduccion();
     }//GEN-LAST:event_btnEliminarProduccionActionPerformed
 
+    private void btnFiltrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarMousePressed
+
+    private void btnFiltrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarMouseClicked
+
     //Método para abrir un modal en el que ingresar una nueva produccion
     private void formProduccion(Produccion produccion) {
         int id = (produccion != null) ? produccion.getId() : gestionProduccion.obtenerUltimoId();
-        
+
         GuiAgregarProduccion gui = new GuiAgregarProduccion(this, true, produccion, id);
         gui.setVisible(true);
-        
+
         if (gui.confirmacion()) {
             Produccion prod = gui.consultarProduccion();
 
@@ -209,6 +225,22 @@ public class GuiProduccion extends javax.swing.JFrame {
         }
     }
 
+    /*private void filtrarProduccion() {
+        String textoBusqueda = this.txtBuscar.getText();
+        if (textoBusqueda.isEmpty()) {
+            mostrarTabla();
+        } else {
+            this.modelo.setRowCount(0);
+            for (Animal animal : this.gestionAnimal.getAnimales().values()) {
+                if (String.valueOf(animal.getId()).contains(textoBusqueda) || animal.getRaza().contains(textoBusqueda) || animal.getFechaNacimiento().contains(textoBusqueda)) {
+                    this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(), animal.getFechaNacimiento(), animal.getIdGrupo(), animal.getIdPropietario(), animal.getIdProduccion()});
+                }
+            }
+            this.tbAnimales.setModel(modelo);
+            this.tbAnimales.repaint();
+        }
+    } */
+
     private void cargarTabla() {
         this.modelo.setRowCount(0);
         //System.out.println(gestionProduccion.getProducciones().values());
@@ -221,7 +253,7 @@ public class GuiProduccion extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProduccion;
     private javax.swing.JButton btnEditarProduccion;
     private javax.swing.JButton btnEliminarProduccion;
-    private javax.swing.JButton btnMostrarProduccion;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
