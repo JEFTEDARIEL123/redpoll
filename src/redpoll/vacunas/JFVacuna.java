@@ -2,118 +2,124 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package redpoll.clasesgestion;
+package redpoll.vacunas;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author PC-Familiar
+ * @author Kristel Gamboa M
  */
-public class JFChequeo extends javax.swing.JFrame {
-    private  DefaultTableModel modelo = new DefaultTableModel();
-    private  GestionChequeo gestionChequeo;
-    private GUIFormularioChequeo formulario; 
-    private Chequeo chequeo;
+public class JFVacuna extends javax.swing.JFrame {
 
- 
-    public JFChequeo() {
-        this.gestionChequeo = new GestionChequeo();
+   private DefaultTableModel modelo = new DefaultTableModel();
+   private GestionVacuna gestionVacuna;
+   private FormularioVacuna formulario;
+   private Vacuna vacuna;
+   
+   
+    public JFVacuna() {
+        this.gestionVacuna=new GestionVacuna();
         initComponents();
-        String[] columnasChequeo = new String[]{"Id", "Fecha", "Nombre del veterinario","Descripción", "ID Animal"};
-        this.modelo.setColumnIdentifiers(columnasChequeo);
-        this.tbChequeos.setModel(modelo);
+        String[] nombreColumnas = new String[]{"Id", "Nombre", "Fecha","Id-Animal"};
+        this.modelo.setColumnIdentifiers(nombreColumnas);
+        this.tbVacunas.setModel(modelo);
         mostrarTabla();
+        tbVacunas.getTableHeader().setReorderingAllowed(false);
     }
     
-    private void abrirFormularioChequeo(Chequeo chequeo){
-        this.formulario=new GUIFormularioChequeo(this,true,chequeo);
-        formulario.setVisible(true);
-        if(formulario.confirmacion()){
-            Chequeo chequeoConsulta= formulario.consultarChequeo();
-            if(chequeo == null){
-                if (this.gestionChequeo.validarExistencia(chequeoConsulta.getNombreVeterinario())) {
-                    JOptionPane.showMessageDialog(this, "El chequeo ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+    
+    private void abrirFormularioVacuna(Vacuna vacuna) {
+        this.formulario = new FormularioVacuna(this, true, vacuna);
+        this.formulario.setVisible(true);
+        if (formulario.confirmacion()) {
+            Vacuna vcna = formulario.consultarVacuna();
+            if (vacuna == null) {
+                if (this.gestionVacuna.validarExistencia(vcna.getNombre())) {
+                    JOptionPane.showMessageDialog(this, "La vacuna ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    this.gestionChequeo.agregarChequeo(chequeoConsulta);
+                    
+                    this.gestionVacuna.agregarVacuna(vcna);
                     this.actualizarTabla();
                 }
+
             } else {
-                this.gestionChequeo.actualizarChequeo(chequeoConsulta);
+                this.gestionVacuna.actualizarVacuna(vcna);
             }
         }
     }
-    
     private boolean validarSeleccion(){
         boolean valor = false;
-        int filaSeleccionada = this.tbChequeos.getSelectedRow();
+        int filaSeleccionada = this.tbVacunas.getSelectedRow();
         if (filaSeleccionada != -1) {
             valor= true;
         }else{
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un chequeo");
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
         }
         return valor;
     }
-    
-    private void editarChequeo(){
-       int filaSeleccionada = this.tbChequeos.getSelectedRow();
-       if(this.validarSeleccion()){
-           String idChequeo = String.valueOf(this.tbChequeos.getValueAt(filaSeleccionada, 0));
-           Chequeo chequeoObtenido = this.gestionChequeo.obtenerChequeo(idChequeo);
-           this.abrirFormularioChequeo(chequeoObtenido);
-           actualizarTabla(); 
-        }
-    }
-    
-    private void eliminarChequeo(){
-       int filaSeleccionada = this.tbChequeos.getSelectedRow();
-       if(this.validarSeleccion()){
-           String idChequeo = String.valueOf(this.tbChequeos.getValueAt(filaSeleccionada, 0));
-           this.gestionChequeo.eliminarChequeo(idChequeo);
-           this.actualizarTabla();
-       }
-    }
-    
-    private void actualizarTabla(){
-        this.modelo.setRowCount(0);
-        for(Chequeo chequeos: this.gestionChequeo.getInfoChequeo().values()){
-            this.modelo.addRow(new Object[]{chequeos.getId(),chequeos.getFecha(),chequeos.getNombreVeterinario(),chequeos.getObservaciones(),chequeos.getIdAnimal()});
+    private void editarVacuna() {
+        int filaSeleccionada = this.tbVacunas.getSelectedRow();
+        if (this.validarSeleccion()) {
+            String idVacuna = String.valueOf(this.tbVacunas.getValueAt(filaSeleccionada, 0));
+            Vacuna vacuna = this.gestionVacuna.obtenerVacuna(idVacuna);
+            this.abrirFormularioVacuna(vacuna);
+            actualizarTabla();
         }
     }
 
+    private void eliminarVacuna() {
+        int filaSeleccionada = this.tbVacunas.getSelectedRow();
+        if (this.validarSeleccion()) {
+            String idVacuna = String.valueOf(this.tbVacunas.getValueAt(filaSeleccionada, 0));
+            this.gestionVacuna.eliminarVacuna(idVacuna);
+            this.actualizarTabla();
+        }
+    }
+    
+    private void actualizarTabla() {
+        this.modelo.setRowCount(0);
+        for (Vacuna vacuna : this.gestionVacuna.getVacunas().values()) {
+            this.modelo.addRow(new Object[]{vacuna.getId(), vacuna.getNombre(),vacuna.getFecha()});
+        }
+    }
+    
     private void mostrarTabla() {
         this.actualizarTabla();
-        this.tbChequeos.setModel(modelo);
-        this.tbChequeos.repaint(); 
+        this.tbVacunas.setModel(modelo);
+        this.tbVacunas.repaint(); 
     }
+    
+    
 
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbChequeos = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbVacunas = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
-        txtBusqueda = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Gestion de Chequeos");
+        setTitle("Gestion de Vacunas");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        lblTitulo.setText("Gestión de Chequeo");
+        lblTitulo.setText("Gestión de Vacunas");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
-        jPanel2.setToolTipText("");
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +135,7 @@ public class JFChequeo extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("Elimiar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -141,13 +147,13 @@ public class JFChequeo extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(15, 15, 15)
                 .addComponent(btnAgregar)
-                .addGap(60, 60, 60)
+                .addGap(53, 53, 53)
                 .addComponent(btnEditar)
-                .addGap(59, 59, 59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnEliminar)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,42 +163,34 @@ public class JFChequeo extends javax.swing.JFrame {
                     .addComponent(btnAgregar)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        tbChequeos.setModel(new javax.swing.table.DefaultTableModel(
+        tbVacunas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tbChequeos);
+        jScrollPane1.setViewportView(tbVacunas);
 
         btnBuscar.setText("Buscar");
-        btnBuscar.setToolTipText("");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
-            }
-        });
-
-        txtBusqueda.setToolTipText("");
-        txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaActionPerformed(evt);
             }
         });
 
@@ -200,90 +198,92 @@ public class JFChequeo extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(147, 147, 147))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(lblTitulo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
                         .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
-                    .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        this.abrirFormularioChequeo(chequeo);
+        this.abrirFormularioVacuna(vacuna);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       this.editarChequeo();
+        this.editarVacuna();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-       this.eliminarChequeo();
+        this.eliminarVacuna();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       this.buscarChequeo();
+        this.buscarVacuna();
     }//GEN-LAST:event_btnBuscarActionPerformed
-        
-    private void txtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusquedaActionPerformed
     
-    private void buscarChequeo() {
-        String textoBusqueda = this.txtBusqueda.getText();
+    private void buscarVacuna() {
+        String textoBusqueda = this.txtBuscar.getText();
         if (textoBusqueda.isEmpty()) {
             mostrarTabla();
         }else {
             this.modelo.setRowCount(0);
-            for (Chequeo chequeo : this.gestionChequeo.getInfoChequeo().values()) {
-                if (String.valueOf(chequeo.getId()).contains(textoBusqueda)|| chequeo.getNombreVeterinario().contains(textoBusqueda) || chequeo.getFecha().contains(textoBusqueda) || chequeo.getObservaciones().contains(textoBusqueda)) {
-                    this.modelo.addRow(new Object[]{chequeo.getId(),chequeo.getFecha(), chequeo.getNombreVeterinario(), chequeo.getObservaciones(),chequeo.getIdAnimal()});
+            for (Vacuna vacuna : this.gestionVacuna.getVacunas().values()) {
+                if (String.valueOf(vacuna.getId()).contains(textoBusqueda)|| vacuna.getNombre().contains(textoBusqueda) || vacuna.getFecha().contains(textoBusqueda)) {
+                    this.modelo.addRow(new Object[]{vacuna.getId(), vacuna.getNombre(), vacuna.getFecha()});
                 }
             }
-            this.tbChequeos.setModel(modelo);
-            this.tbChequeos.repaint();
+            this.tbVacunas.setModel(modelo);
+            this.tbVacunas.repaint();
         }
     }
+
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -293,9 +293,8 @@ public class JFChequeo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tbChequeos;
-    private javax.swing.JTextField txtBusqueda;
+    private javax.swing.JTable tbVacunas;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
