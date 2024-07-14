@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-
+import redpoll.produccion.GuiProduccion;
 /**
  *
  * @author jefte
@@ -13,8 +13,14 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    
+
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        GuiProduccion gui = new GuiProduccion();
+        gui.setVisible(true);
+        gui.setResizable(false);
+        gui.setLocationRelativeTo(null);
     }
     
 }
