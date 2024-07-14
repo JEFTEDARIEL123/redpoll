@@ -1,20 +1,21 @@
-package redpoll.login;
+package redpoll.auth;
 
-import redpoll.ManejoArchivos.MantenimientoArchivos;
 import javax.swing.JOptionPane;
+import redpoll.Validaciones;
 
 /**
  *
  * @author Luis Villalobos
  */
 public class Registro extends javax.swing.JFrame {
-    MantenimientoArchivos mante;
+    private boolean confirmar;
+    private int id;
     
     public Registro() {
         initComponents();
-        mante = new MantenimientoArchivos();
+        this.confirmar = false;
+        this.id = id;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -23,15 +24,15 @@ public class Registro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblRegistro = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
-        lblCorreoVerificado = new javax.swing.JLabel();
         lblContraseña = new javax.swing.JLabel();
         lblContraseñaVerificada = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JTextField();
         txtContraseñaVerificada = new javax.swing.JTextField();
-        txtCorreoVerificado = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,9 +43,6 @@ public class Registro extends javax.swing.JFrame {
 
         lblCorreo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         lblCorreo.setText("Correo electronico");
-
-        lblCorreoVerificado.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        lblCorreoVerificado.setText("Repita su correo");
 
         lblContraseña.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         lblContraseña.setText("Contraseña");
@@ -78,6 +76,15 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        lblNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre");
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -89,19 +96,20 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(lblRegistro))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGuardar))
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCorreo)
-                            .addComponent(lblCorreoVerificado)
-                            .addComponent(txtCorreoVerificado, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblContraseña)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblContraseñaVerificada)
-                            .addComponent(txtContraseñaVerificada, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnCancelar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnGuardar))
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCorreo)
+                                .addComponent(lblContraseña)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblContraseñaVerificada)
+                                .addComponent(txtContraseñaVerificada, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,19 +121,19 @@ public class Registro extends javax.swing.JFrame {
                 .addComponent(lblCorreo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblCorreoVerificado)
+                .addGap(18, 18, 18)
+                .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreoVerificado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(lblContraseña)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblContraseñaVerificada)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtContraseñaVerificada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
@@ -147,22 +155,22 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        
+
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(txtCorreo.getText().equals(txtCorreoVerificado.getText())&& txtContraseña.getText().equals(txtContraseñaVerificada.getText())){
-        mante.GuardarArchivo(txtCorreo.getText(), txtContraseña.getText());
-        InterfazLogin InterLogin = new InterfazLogin();
-        InterLogin.setVisible(true);
-        this.setVisible(false);
-        }
-        else{
-        JOptionPane.showInternalMessageDialog(rootPane, "Datos incorrectos, ingreselos de nuevo.");
-        txtCorreo.setText("");
-        txtCorreoVerificado.setText("");
-        txtContraseña.setText("");
-        txtContraseñaVerificada.setText("");
+        if(!(this.txtContraseña.getText().equals(this.txtContraseñaVerificada.getText()))){
+            Validaciones.menuErr("Las contraseñas no coinciden. \n vuelva a intentarlo");
+            this.txtContraseña.setText("");
+            this.txtContraseñaVerificada.setText("");
+        }else if(!(Validaciones.validar(this.txtNombre.getText(), "Debe ingresar unicamente letras", "[A-Za-z]"))){
+            this.txtNombre.setText("");
+        
+        }else if (Validaciones.validar(this.txtCorreo.getText(), "Debe ingresar un correo valido", "[A-Za-z0-9\\._%+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}")
+            && this.txtContraseña.getText().equals(this.txtContraseñaVerificada.getText())) {
+            InterfazLogin InterLogin = new InterfazLogin();
+            InterLogin.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -170,16 +178,15 @@ public class Registro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        // El método main para ejecutar la aplicación
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registro().setVisible(true);
-            }
-        });
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+    public boolean confirmacion() {
+        return this.confirmar;
+    }
+    
+    public Usuario consultarUsuario() {
+        return new Usuario(this.id,this.txtNombre.getText(), this.txtCorreo.getText(), this.txtContraseña.getText());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -189,11 +196,11 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblContraseñaVerificada;
     private javax.swing.JLabel lblCorreo;
-    private javax.swing.JLabel lblCorreoVerificado;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtContraseñaVerificada;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtCorreoVerificado;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
