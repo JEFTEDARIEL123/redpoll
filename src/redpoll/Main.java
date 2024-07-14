@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-import redpoll.propietarios.GuiPropietario;
+import redpoll.vacunas.JFVacuna;
 /**
  *
  * @author jefte
@@ -17,7 +17,7 @@ public class Main {
 
     
     public static void main(String[] args) {
-        GuiPropietario gui = new GuiPropietario();
+        JFVacuna gui = new JFVacuna();
         gui.setVisible(true);
         gui.setResizable(false);
         gui.setLocationRelativeTo(null);

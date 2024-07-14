@@ -9,15 +9,15 @@ import redpoll.produccion.Produccion;
  *
  * @author Luis Villalobos
  */
-
 public class GuiPropietario extends javax.swing.JFrame {
+
     private DefaultTableModel modelo;
     private GestionPropietario gestionPropietario;
     private FormularioPropietarios formulario;
-    
+
     private TableRowSorter trsfiltro;
     String filtro;
-    
+
     public GuiPropietario() {
         this.gestionPropietario = new GestionPropietario();
         initComponents();
@@ -50,7 +50,6 @@ public class GuiPropietario extends javax.swing.JFrame {
         }
     }
 
-    
     private boolean validarSeleccion() {
         boolean valor = false;
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
@@ -61,7 +60,7 @@ public class GuiPropietario extends javax.swing.JFrame {
         }
         return valor;
     }
-    
+
     private void editarPropietario() {
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
         if (this.validarSeleccion()) {
@@ -78,14 +77,15 @@ public class GuiPropietario extends javax.swing.JFrame {
             this.gestionPropietario.eliminarPropietario(nombreP);
             this.actualizarTabla();
         }
-    }    
-    
+    }
+
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
         for (Propietario propietario : this.gestionPropietario.getPropietarios().values()) {
             this.modelo.addRow(new Object[]{propietario.getID(), propietario.getNombre(), propietario.getCedula(), propietario.getTelefono(), propietario.getDireccion(), propietario.getCorreo()});
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -224,22 +224,22 @@ public class GuiPropietario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        abrirFormularioPropietario(null);
+        this.abrirFormularioPropietario(null);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        editarPropietario();
+        this.editarPropietario();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        eliminarPropietario();
+        this.eliminarPropietario();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-        formFiltro();
+        this.formFiltro();
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
-        private void formFiltro() {
+    private void formFiltro() {
 
         FiltroPropietarios guiFiltro = new FiltroPropietarios(this, true);
         guiFiltro.setVisible(true);
@@ -267,11 +267,11 @@ public class GuiPropietario extends javax.swing.JFrame {
 
                 if (filtro) {
                     this.modelo.addRow(new Object[]{
-                        propietario.getID(), 
+                        propietario.getID(),
                         propietario.getNombre(),
-                        propietario.getCedula(), 
-                        propietario.getTelefono(), 
-                        propietario.getDireccion(), 
+                        propietario.getCedula(),
+                        propietario.getTelefono(),
+                        propietario.getDireccion(),
                         propietario.getCorreo()
                     });
                 }
