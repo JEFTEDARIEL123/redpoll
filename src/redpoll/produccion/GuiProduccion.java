@@ -211,13 +211,13 @@ public class GuiProduccion extends javax.swing.JFrame {
 
             for (Produccion produccion : this.gestionProduccion.getProducciones().values()) {
                 boolean filtro = true;
-                if (guiFiltro.getCheckMañana() && String.valueOf(produccion.getOrdeñoMañana()).contains(guiFiltro.getDatos(0))) {
+                if (guiFiltro.getCheckMañana() && !String.valueOf(produccion.getOrdeñoMañana()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;
                 }
-                if (guiFiltro.getCheckTarde() && String.valueOf(produccion.getOrdeñoTarde()).contains(guiFiltro.getDatos(1))) {
+                if (guiFiltro.getCheckTarde() && !String.valueOf(produccion.getOrdeñoTarde()).contentEquals(guiFiltro.getDatos(1))) {
                     filtro = false;
                 }
-                if (guiFiltro.getCheckFecha() && String.valueOf(produccion.getFecha()).contains(guiFiltro.getDatos(2))) {
+                if (guiFiltro.getCheckFecha() && !String.valueOf(produccion.getFecha()).contentEquals(guiFiltro.getDatos(2))) {
                     filtro = false;
                 }
 
