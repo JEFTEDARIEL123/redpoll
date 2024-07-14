@@ -2,7 +2,7 @@ package redpoll.login;
 
 import redpoll.ManejoArchivos.MantenimientoArchivos;
 import javax.swing.JOptionPane;
-import redpoll.propietarios.GitPropietario;
+import redpoll.propietarios.GuiPropietario;
 /**
  *
  * @author Luis Villalobos
@@ -164,7 +164,7 @@ public class InterfazLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if(mante.validarCorreoContraseña(txtCorreo.getText(), pswContraseña.getText())){
-        GitPropietario gitProp = new GitPropietario();
+        GuiPropietario gitProp = new GuiPropietario();
         gitProp.setVisible(true);
         this.setVisible(false);
         }

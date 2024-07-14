@@ -13,7 +13,7 @@ import java.util.HashMap;
  * @author Kristel Gamboa M
  */
 public class GestionChequeo {
-    protected Map<String ,Chequeo> infoChequeo;
+    private Map<String ,Chequeo> infoChequeo;
 
     public GestionChequeo() {
         this.infoChequeo = new HashMap<>();

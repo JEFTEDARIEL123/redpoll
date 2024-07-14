@@ -76,7 +76,46 @@ public class JFAnimal extends javax.swing.JFrame {
             this.actualizarTabla();
         }
     }
-    
+    private void formFiltro() {
+
+        FiltroAnimal guiFiltro = new FiltroAnimal(this, true);
+        guiFiltro.setVisible(true);
+
+        if (guiFiltro.confirmacion()) {
+            this.modelo.setRowCount(0);
+
+            for (Animal animal : this.gestionAnimal.getAnimales().values()) {
+                boolean filtro = true;
+                if (guiFiltro.getCheckRaza() && !String.valueOf(animal.getRaza()).contentEquals(guiFiltro.getDatos(0))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckFechaNacimiento() && !String.valueOf(animal.getFechaNacimiento()).contentEquals(guiFiltro.getDatos(1))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckGrupo() && !String.valueOf(animal.getIdGrupo()).contentEquals(guiFiltro.getDatos(2))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckPropietario() && !String.valueOf(animal.getIdPropietario()).contentEquals(guiFiltro.getDatos(3))) {
+                    filtro = false;
+                }
+
+                if (filtro) {
+                    this.modelo.addRow(new Object[]{
+                        animal.getId(),
+                        animal.getRaza(),
+                        animal.getFechaNacimiento(),
+                        animal.getIdGrupo(),
+                        animal.getIdPropietario(),
+                        animal.getIdProduccion()
+                    });
+                }
+
+            }
+
+            this.tbAnimales.setModel(modelo);
+            this.tbAnimales.repaint();
+        }
+    }
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
         for (Animal animal : this.gestionAnimal.getAnimales().values()) {
@@ -100,10 +139,9 @@ public class JFAnimal extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnFiltrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbAnimales = new javax.swing.JTable();
-        btnBuscar = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion de Animales");
@@ -133,18 +171,27 @@ public class JFAnimal extends javax.swing.JFrame {
             }
         });
 
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(btnAgregar)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(btnEditar)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(btnEliminar)
-                .addGap(32, 32, 32))
+                .addGap(18, 18, 18)
+                .addComponent(btnFiltrar)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +200,8 @@ public class JFAnimal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEditar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnFiltrar))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -170,35 +218,22 @@ public class JFAnimal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbAnimales);
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lblTitulo)
                         .addGap(224, 224, 224))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(btnBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,11 +242,7 @@ public class JFAnimal extends javax.swing.JFrame {
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -246,37 +277,21 @@ public class JFAnimal extends javax.swing.JFrame {
         this.eliminarAnimal();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        this.buscarAnimal();
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        formFiltro();
+    }//GEN-LAST:event_btnFiltrarActionPerformed
     
-    private void buscarAnimal() {
-        String textoBusqueda = this.txtBuscar.getText();
-        if (textoBusqueda.isEmpty()) {
-            mostrarTabla();
-        }else {
-            this.modelo.setRowCount(0);
-            for (Animal animal : this.gestionAnimal.getAnimales().values()) {
-                if (String.valueOf(animal.getId()).contains(textoBusqueda)||animal.getRaza().contains(textoBusqueda)|| animal.getFechaNacimiento().contains(textoBusqueda)) {
-                    this.modelo.addRow(new Object[]{animal.getId(),animal.getRaza(),animal.getFechaNacimiento(), animal.getIdGrupo(), animal.getIdPropietario(),animal.getIdProduccion()});
-                }
-            }
-            this.tbAnimales.setModel(modelo);
-            this.tbAnimales.repaint();
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tbAnimales;
-    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 
 }

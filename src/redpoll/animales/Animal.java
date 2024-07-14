@@ -6,12 +6,12 @@ import java.util.Date;
  * @author PC-Familiar
  */
 public class Animal {
-    protected int id;
-    protected String raza;
-    protected String fechaNacimiento;
-    protected int idGrupo;
-    protected int idPropietario;
-    protected int idProduccion;
+    private int id;
+    private String raza;
+    private String fechaNacimiento;
+    private int idGrupo;
+    private int idPropietario;
+    private int idProduccion;
 
     public Animal(int id, String raza, String fechaNacimiento, int idGrupo, int idPropietario, int idProduccion) {
         this.id = id;
