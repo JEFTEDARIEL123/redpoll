@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-import redpoll.animales.JFAnimal;
+import redpoll.chequeos.JFChequeo;
 /**
  *
  * @author jefte
@@ -17,7 +17,7 @@ public class Main {
 
     
     public static void main(String[] args) {
-        JFAnimal gui = new JFAnimal();
+        JFChequeo gui = new JFChequeo();
         gui.setVisible(true);
         gui.setResizable(false);
         gui.setLocationRelativeTo(null);

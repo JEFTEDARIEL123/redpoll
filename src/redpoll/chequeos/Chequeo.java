@@ -12,11 +12,11 @@ import java.util.Date;
  * @author PC-Familiar
  */
 public class Chequeo {
-    protected int id;
-    protected String fecha;
-    protected String nombreVeterinario;
-    protected String observaciones;
-    protected int idAnimal;
+    private int id;
+    private String fecha;
+    private String nombreVeterinario;
+    private String observaciones;
+    private int idAnimal;
     
 
     public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones,int idAnimal) {

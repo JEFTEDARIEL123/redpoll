@@ -76,7 +76,7 @@ public class JFAnimal extends javax.swing.JFrame {
             this.actualizarTabla();
         }
     }
-        private void formFiltro() {
+    private void formFiltro() {
 
         FiltroAnimal guiFiltro = new FiltroAnimal(this, true);
         guiFiltro.setVisible(true);
