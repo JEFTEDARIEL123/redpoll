@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-import redpoll.grupos.NuevoFormularioGrupo;
+import redpoll.propietarios.GuiPropietario;
 /**
  *
  * @author jefte
@@ -17,7 +17,7 @@ public class Main {
 
     
     public static void main(String[] args) {
-        NuevoFormularioGrupo gui = new NuevoFormularioGrupo();
+        GuiPropietario gui = new GuiPropietario();
         gui.setVisible(true);
         gui.setResizable(false);
         gui.setLocationRelativeTo(null);

@@ -3,25 +3,22 @@ package redpoll.propietarios;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.RowFilter;
+import redpoll.produccion.Produccion;
 
 /**
  *
  * @author Luis Villalobos
  */
 
-public class GitPropietario extends javax.swing.JFrame {
+public class GuiPropietario extends javax.swing.JFrame {
     private DefaultTableModel modelo;
     private GestionPropietario gestionPropietario;
     private FormularioPropietarios formulario;
-    private ConsultaPropietarios consultaPropietarios;
     
     private TableRowSorter trsfiltro;
     String filtro;
     
-    public GitPropietario() {
+    public GuiPropietario() {
         this.gestionPropietario = new GestionPropietario();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Nombre", "Cedula", "Telefono", "Dirección", "Correo"};
@@ -53,11 +50,6 @@ public class GitPropietario extends javax.swing.JFrame {
         }
     }
 
-    public void abrirConsultaPropietarios() {
-        consultaPropietarios = new ConsultaPropietarios(this.modelo);
-        consultaPropietarios.setLocationRelativeTo(this);
-        consultaPropietarios.setVisible(true);
-    }
     
     private boolean validarSeleccion() {
         boolean valor = false;
@@ -109,8 +101,7 @@ public class GitPropietario extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnConsulta = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
+        btnFiltrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPropietario = new javax.swing.JTable();
 
@@ -142,16 +133,10 @@ public class GitPropietario extends javax.swing.JFrame {
             }
         });
 
-        btnConsulta.setText("Buscar");
-        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultaActionPerformed(evt);
-            }
-        });
-
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyTyped(evt);
+                btnFiltrarActionPerformed(evt);
             }
         });
 
@@ -159,21 +144,16 @@ public class GitPropietario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCrear)
-                        .addGap(79, 79, 79)
-                        .addComponent(btnUpdate)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnDelete)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnConsulta)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107))))
+                .addComponent(btnCrear)
+                .addGap(79, 79, 79)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(btnDelete)
+                .addGap(70, 70, 70))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +164,7 @@ public class GitPropietario extends javax.swing.JFrame {
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnConsulta)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnFiltrar)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -246,60 +224,73 @@ public class GitPropietario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        this.abrirFormularioPropietario(null);
+        abrirFormularioPropietario(null);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        this.editarPropietario();
+        editarPropietario();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        this.eliminarPropietario();
+        eliminarPropietario();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
-        txtBuscar.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(final KeyEvent e) {
-                String cadena = txtBuscar.getText();
-                txtBuscar.setText(cadena);
-                repaint();
-                filtro();
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        formFiltro();
+    }//GEN-LAST:event_btnFiltrarActionPerformed
+
+        private void formFiltro() {
+
+        FiltroPropietarios guiFiltro = new FiltroPropietarios(this, true);
+        guiFiltro.setVisible(true);
+
+        if (guiFiltro.confirmacion()) {
+            this.modelo.setRowCount(0);
+
+            for (Propietario propietario : this.gestionPropietario.getPropietarios().values()) {
+                boolean filtro = true;
+                if (guiFiltro.getCheckNombre() && !String.valueOf(propietario.getNombre()).contentEquals(guiFiltro.getDatos(0))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckCedula() && !String.valueOf(propietario.getCedula()).contentEquals(guiFiltro.getDatos(1))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckTelefono() && !String.valueOf(propietario.getTelefono()).contentEquals(guiFiltro.getDatos(2))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckDireccion() && !String.valueOf(propietario.getDireccion()).contentEquals(guiFiltro.getDatos(3))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckCorreo() && !String.valueOf(propietario.getCorreo()).contentEquals(guiFiltro.getDatos(4))) {
+                    filtro = false;
+                }
+
+                if (filtro) {
+                    this.modelo.addRow(new Object[]{
+                        propietario.getID(), 
+                        propietario.getNombre(),
+                        propietario.getCedula(), 
+                        propietario.getTelefono(), 
+                        propietario.getDireccion(), 
+                        propietario.getCorreo()
+                    });
+                }
+
             }
-        });
-    }//GEN-LAST:event_btnConsultaActionPerformed
 
-    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
-        trsfiltro = new TableRowSorter (tbPropietario.getModel());
-        tbPropietario.setRowSorter(trsfiltro);
-    }//GEN-LAST:event_txtBuscarKeyTyped
-
-        public void filtro() {
-        filtro = txtBuscar.getText();
-        trsfiltro.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(), 1));
+            this.tbPropietario.setModel(modelo);
+            this.tbPropietario.repaint();
         }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GitPropietario().setVisible(true);
-            }
-        });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tbPropietario;
-    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
