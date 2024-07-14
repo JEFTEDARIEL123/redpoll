@@ -124,15 +124,12 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
         tbGrupos = new javax.swing.JTable();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
-        btnConsultar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         lblGrupos = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbGrupo = new javax.swing.JTable();
-        txtConsultar = new javax.swing.JTextField();
-        lblIngreseTipo = new javax.swing.JLabel();
 
         tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,13 +187,6 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        btnConsultar.setText("Consultar");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
-
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,19 +224,6 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
         ));
         jScrollPane2.setViewportView(tbGrupo);
 
-        txtConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConsultarActionPerformed(evt);
-            }
-        });
-        txtConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtConsultarKeyTyped(evt);
-            }
-        });
-
-        lblIngreseTipo.setText("Ingrese Tipo");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -257,20 +234,12 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
                         .addGap(197, 197, 197)
                         .addComponent(lblGrupos))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                                    .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnConsultar)
-                                    .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblIngreseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
@@ -291,13 +260,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
                         .addComponent(btnEliminar)
                         .addGap(12, 12, 12)
                         .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsultar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblIngreseTipo)
-                        .addGap(4, 4, 4)
-                        .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))))
+                        .addGap(57, 228, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,29 +313,6 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
     private void jInternalFrame1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame1FocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jInternalFrame1FocusLost
-
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
-        txtConsultar.addKeyListener(new KeyAdapter() {
-    @Override
-    public void keyReleased(KeyEvent e) {
-        filtro = txtConsultar.getText();
-        filtro();
-    }
-});
-
-
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
-    private void txtConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtConsultarActionPerformed
-
-    private void txtConsultarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConsultarKeyTyped
-        //KEYACT
-        trsfilttro = new TableRowSorter(tbGrupo.getModel());
-        tbGrupo.setRowSorter(trsfilttro);
-    }//GEN-LAST:event_txtConsultarKeyTyped
    
     public void filtro() {
     trsfilttro.setRowFilter(RowFilter.regexFilter(filtro, 1)); 
@@ -385,7 +325,6 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -393,9 +332,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame  {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblGrupos;
-    private javax.swing.JLabel lblIngreseTipo;
     private javax.swing.JTable tbGrupo;
     private javax.swing.JTable tbGrupos;
-    private javax.swing.JTextField txtConsultar;
     // End of variables declaration//GEN-END:variables
 }
