@@ -2,20 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package redpoll.ClasesProduccion;
+package redpoll.produccion;
+
+import javax.swing.JCheckBox;
 
 /**
  *
  * @author jefte
  */
 public class FiltroProduccion extends javax.swing.JDialog {
-
+    private String[] datos = {"", "", ""};
+    private boolean confirmar;
     /**
      * Creates new form NewJDialog
      */
     public FiltroProduccion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setUndecorated(true);
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(parent);
+        this.confirmar=false;
     }
 
     /**
@@ -78,7 +85,7 @@ public class FiltroProduccion extends javax.swing.JDialog {
             }
         });
 
-        checkFecha.setText("Ordeño Tarde");
+        checkFecha.setText("Fecha");
         checkFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkFechaActionPerformed(evt);
@@ -149,39 +156,56 @@ public class FiltroProduccion extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public boolean confirmacion() {
+       return this.confirmar;
+    }    
     private void txtMañanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMañanaActionPerformed
         
     }//GEN-LAST:event_txtMañanaActionPerformed
-
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        String[] datos = {null,null,null};
-        datos[0] = (this.txtMañana.isEnabled()) ? this.txtMañana.getText() : null;
-        datos[1] = (this.txtTarde.isEnabled()) ? this.txtTarde.getText() : null;
-        datos[2] = (this.txtFecha.isEnabled()) ? this.txtFecha.getText() : null;
         
-        this.dispose();
+        datos[0] = (this.txtMañana.isEnabled()) ? this.txtMañana.getText() : "";
+        datos[1] = (this.txtTarde.isEnabled()) ? this.txtTarde.getText() : "";
+        datos[2] = (this.txtFecha.isEnabled()) ? this.txtFecha.getText() : "";
+        
+        this.confirmar = true;
+        this.setVisible(false);
         
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    public String getDatos(int indice) {
+        return datos[indice];
+    }
+    
     private void txtTardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTardeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTardeActionPerformed
 
     private void checkTardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkTardeActionPerformed
-        boolean estado = (this.txtTarde.isEnabled()) ? false : true;
-        this.txtTarde.setEnabled(estado);
+        this.txtTarde.setEnabled((this.txtTarde.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkTardeActionPerformed
 
     private void checkMañanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkMañanaActionPerformed
-        boolean estado = (this.txtMañana.isEnabled()) ? false : true;
-        this.txtMañana.setEnabled(estado);
+        this.txtMañana.setEnabled((this.txtMañana.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkMañanaActionPerformed
 
     private void checkFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFechaActionPerformed
-        boolean estado = (this.txtFecha.isEnabled()) ? false : true;
-        this.txtFecha.setEnabled(estado);
+        this.txtFecha.setEnabled((this.txtFecha.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkFechaActionPerformed
+
+    public boolean getCheckFecha() {
+        return checkFecha.isSelected();
+    }
+
+    public boolean getCheckMañana() {
+        return checkMañana.isSelected();
+    }
+
+    public boolean getCheckTarde() {
+        return checkTarde.isSelected();
+    }
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         // TODO add your handling code here:

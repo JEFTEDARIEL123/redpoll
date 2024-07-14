@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package redpoll.ClasesProduccion;
+package redpoll.produccion;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -160,8 +160,7 @@ public class GuiProduccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarProduccionActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-        FiltroProduccion filtro = new FiltroProduccion(this, true);
-        filtro.setVisible(true);
+        formFiltro();
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void btnEditarProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProduccionActionPerformed
@@ -202,6 +201,43 @@ public class GuiProduccion extends javax.swing.JFrame {
         }
     }
 
+    private void formFiltro() {
+
+        FiltroProduccion guiFiltro = new FiltroProduccion(this, true);
+        guiFiltro.setVisible(true);
+
+        if (guiFiltro.confirmacion()) {
+            this.modelo.setRowCount(0);
+
+            for (Produccion produccion : this.gestionProduccion.getProducciones().values()) {
+                boolean filtro = true;
+                if (guiFiltro.getCheckMañana() && String.valueOf(produccion.getOrdeñoMañana()).contains(guiFiltro.getDatos(0))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckTarde() && String.valueOf(produccion.getOrdeñoTarde()).contains(guiFiltro.getDatos(1))) {
+                    filtro = false;
+                }
+                if (guiFiltro.getCheckFecha() && String.valueOf(produccion.getFecha()).contains(guiFiltro.getDatos(2))) {
+                    filtro = false;
+                }
+
+                if (filtro) {
+                    this.modelo.addRow(new Object[]{
+                        produccion.getId(),
+                        produccion.getOrdeñoMañana(),
+                        produccion.getOrdeñoTarde(),
+                        produccion.getTotal(),
+                        produccion.getFecha()
+                    });
+                }
+
+            }
+
+            this.tbProducciones.setModel(modelo);
+            this.tbProducciones.repaint();
+        }
+    }
+
     private void editarProduccion() {
         int fila = this.tbProducciones.getSelectedRow();
         if (fila != -1) {
@@ -224,22 +260,6 @@ public class GuiProduccion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder eliminarla.");
         }
     }
-
-    /*private void filtrarProduccion() {
-        String textoBusqueda = this.txtBuscar.getText();
-        if (textoBusqueda.isEmpty()) {
-            mostrarTabla();
-        } else {
-            this.modelo.setRowCount(0);
-            for (Animal animal : this.gestionAnimal.getAnimales().values()) {
-                if (String.valueOf(animal.getId()).contains(textoBusqueda) || animal.getRaza().contains(textoBusqueda) || animal.getFechaNacimiento().contains(textoBusqueda)) {
-                    this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(), animal.getFechaNacimiento(), animal.getIdGrupo(), animal.getIdPropietario(), animal.getIdProduccion()});
-                }
-            }
-            this.tbAnimales.setModel(modelo);
-            this.tbAnimales.repaint();
-        }
-    } */
 
     private void cargarTabla() {
         this.modelo.setRowCount(0);

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package redpoll;
-import redpoll.ClasesProduccion.GuiProduccion;
+import redpoll.produccion.GuiProduccion;
 /**
  *
  * @author jefte

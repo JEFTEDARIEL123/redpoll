@@ -132,7 +132,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkFecha">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Orde&#xf1;o Tarde"/>
+            <Property name="text" type="java.lang.String" value="Fecha"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkFechaActionPerformed"/>
