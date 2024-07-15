@@ -26,6 +26,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         String[] nombreColumnas = new String[]{"Id", "Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbProducciones.setModel(modelo);
+        this.cargarTabla();
 
     }
 

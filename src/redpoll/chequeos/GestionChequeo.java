@@ -39,7 +39,7 @@ public class GestionChequeo {
         int id = obtenerUltimoId() + 1;
         chequeo.setId(id);
         this.infoChequeo.put(String.valueOf(chequeo.getId()), chequeo);
-        ordenarIds();
+
     }
     
     public Chequeo obtenerChequeo(String chequeo) {
@@ -65,11 +65,5 @@ public class GestionChequeo {
                 .orElse(0); 
     }
     
-    public void ordenarIds() {
-        int id = 1;
-        for (Chequeo chequeo : this.infoChequeo.values()) {
-            chequeo.setId(id);
-            id++;
-        }
-   }
+
 }

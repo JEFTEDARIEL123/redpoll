@@ -37,7 +37,7 @@ public class GestionAnimal {
         int id=obtenerUltimoId()+1;
         animal.setId(id);
         this.animales.put(String.valueOf(animal.getId()),animal);
-        ordenarIds();
+
         
     }
     
@@ -65,14 +65,8 @@ public class GestionAnimal {
                 .max()
                 .orElse(0); 
     }
-    
-    public void ordenarIds() {
-        int id = 1;
-        for (Animal animal : this.animales.values()) {
-            animal.setId(id);
-            id++;
-        }
-   }
+
+
     
     
 }
