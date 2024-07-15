@@ -7,7 +7,7 @@ package redpoll.auth;
 public class InterfazLogin extends javax.swing.JFrame {
 
   public InterfazLogin() {
-      
+        this.setLocationRelativeTo(null);
         this.setUndecorated(true);
         initComponents();
     }
@@ -174,12 +174,15 @@ public class InterfazLogin extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         this.dispose();
+        
     }//GEN-LAST:event_jLabel2MouseClicked
 
   
   private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistroActionPerformed
     Registro registro = new Registro();
     registro.setVisible(true);
+    registro.setResizable(false);
+    registro.setLocationRelativeTo(null);
     this.setVisible(false);
   }// GEN-LAST:event_btnRegistroActionPerformed
 
