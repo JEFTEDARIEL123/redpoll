@@ -18,238 +18,236 @@ import redpoll.propietarios.Propietario;
  * @author Usuario
  */
 public class NuevoFormularioGrupo extends javax.swing.JFrame {
-    private VentanaFormularioGrupos VentanaFormularioGrupos;
-    private DefaultTableModel modelo = new DefaultTableModel();
+  private VentanaFormularioGrupos VentanaFormularioGrupos;
+  private DefaultTableModel modelo = new DefaultTableModel();
 
+  // Metodos
+  public NuevoFormularioGrupo() {
+    initComponents();
+    String[] nombreColumnas = new String[] { "Id", "Tipo", "Descripción" };
+    this.modelo.setColumnIdentifiers(nombreColumnas);
+    this.tbGrupo.setModel(modelo);
+  }
 
-    //Metodos
-    public NuevoFormularioGrupo() {
-        initComponents();
-        String[] nombreColumnas = new String[]{"Id", "Tipo", "Descripción"};
-        this.modelo.setColumnIdentifiers(nombreColumnas);
-        this.tbGrupo.setModel(modelo);
-    }
+  private void abrirFormularioGrupo(Grupo grup) {
 
-    private void abrirFormularioGrupo(Grupo grup) {
-
-        this.VentanaFormularioGrupos = new VentanaFormularioGrupos(this, true, grup);
-        VentanaFormularioGrupos.setVisible(true);
-        //Revisar
-        if (VentanaFormularioGrupos.confirmacion()) {
-            Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
-            if (grup == null) {
-                //Revisar
-                if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getTipo())) {
-                    JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    GestorGrupo.getInstance().agregarGrupo(nuevoGrupo);
-                    this.actualizarTabla();
-                }
-            } else {
-                GestorGrupo.getInstance().actualizarGrupo(nuevoGrupo);
-            }
-        }
-    }
-
-    private boolean validarSeleccion() {
-        boolean valor = false;
-        int filaSeleccionada = this.tbGrupo.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            valor = true;
+    this.VentanaFormularioGrupos = new VentanaFormularioGrupos(this, true, grup);
+    VentanaFormularioGrupos.setVisible(true);
+    // Revisar
+    if (VentanaFormularioGrupos.confirmacion()) {
+      Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
+      if (grup == null) {
+        // Revisar
+        if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getTipo())) {
+          JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Primero selccione un grupo.");
+          GestorGrupo.getInstance().agregarGrupo(nuevoGrupo);
+          this.actualizarTabla();
         }
-        return valor;
+      } else {
+        GestorGrupo.getInstance().actualizarGrupo(nuevoGrupo);
+      }
+    }
+  }
+
+  private boolean validarSeleccion() {
+    boolean valor = false;
+    int filaSeleccionada = this.tbGrupo.getSelectedRow();
+    if (filaSeleccionada != -1) {
+      valor = true;
+    } else {
+      JOptionPane.showMessageDialog(this, "Primero selccione un grupo.");
+    }
+    return valor;
+  }
+
+  private void actualizarTabla() {
+
+    this.modelo.setRowCount(0);
+    for (Grupo grupo : GestorGrupo.getInstance().getGrupos().values()) {
+      this.modelo.addRow(new Object[] { grupo.getIdGrupo(), grupo.getTipo(), grupo.getDescripcion() });
     }
 
-    private void actualizarTabla() {
+  }
 
-        this.modelo.setRowCount(0);
-        for (Grupo grupo : GestorGrupo.getInstance().getGrupos().values()) {
-            this.modelo.addRow(new Object[]{grupo.getIdGrupo(), grupo.getTipo(), grupo.getDescripcion()});
-        }
-
+  private void update() {
+    int filaSeleccionada = this.tbGrupo.getSelectedRow();
+    if (this.validarSeleccion()) {
+      String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
+      Grupo grupo = GestorGrupo.getInstance().getGrupos().get(tipoGrupo);
+      this.abrirFormularioGrupo(grupo);
+      eliminarGrupo();
+      // Solucion
     }
 
-    private void update() {
-        int filaSeleccionada = this.tbGrupo.getSelectedRow();
-        if (this.validarSeleccion()) {
-            String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-            Grupo grupo = GestorGrupo.getInstance().getGrupos().get(tipoGrupo);
-            this.abrirFormularioGrupo(grupo);
-            eliminarGrupo();
-            //Solucion 
+  }
+
+  // Eliminar
+  private void eliminarGrupo() {
+    int filaSeleccionada = this.tbGrupo.getSelectedRow();
+    if (this.validarSeleccion()) {
+      String gP = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
+      GestorGrupo.getInstance().eliminarGrupo(gP);
+      this.actualizarTabla();
+    }
+  }
+
+  private void formFiltro() {
+
+    FiltroGrupos guiFiltro = new FiltroGrupos(this, true);
+    guiFiltro.setVisible(true);
+
+    if (guiFiltro.confirmacion()) {
+      this.modelo.setRowCount(0);
+
+      for (Grupo grupo : GestorGrupo.getInstance().getGrupos().values()) {
+        boolean filtro = true;
+        if (guiFiltro.getCheckNombre() && !String.valueOf(grupo.getTipo()).contentEquals(guiFiltro.getDatos(0))) {
+          filtro = false;
+        }
+        if (guiFiltro.getCheckCedula()
+            && !String.valueOf(grupo.getDescripcion()).contentEquals(guiFiltro.getDatos(1))) {
+          filtro = false;
         }
 
-    }
-
-    //Eliminar
-    private void eliminarGrupo() {
-        int filaSeleccionada = this.tbGrupo.getSelectedRow();
-        if (this.validarSeleccion()) {
-            String gP = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-            GestorGrupo.getInstance().eliminarGrupo(gP);
-            this.actualizarTabla();
+        if (filtro) {
+          this.modelo.addRow(new Object[] {
+              grupo.getIdGrupo(),
+              grupo.getTipo(),
+              grupo.getDescripcion()
+          });
         }
+
+      }
+
+      this.tbGrupo.setModel(modelo);
+      this.tbGrupo.repaint();
     }
+  }
 
-    private void formFiltro() {
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
+  // <editor-fold defaultstate="collapsed" desc="Generated
+  // Code">//GEN-BEGIN:initComponents
+  private void initComponents() {
 
-        FiltroGrupos guiFiltro = new FiltroGrupos(this, true);
-        guiFiltro.setVisible(true);
+    jScrollPane1 = new javax.swing.JScrollPane();
+    tbGrupos = new javax.swing.JTable();
+    jInternalFrame1 = new javax.swing.JInternalFrame();
+    jPanel1 = new javax.swing.JPanel();
+    btnEditar = new javax.swing.JButton();
+    btnEliminar = new javax.swing.JButton();
+    btnAgregar = new javax.swing.JButton();
+    lblGrupos = new javax.swing.JLabel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    tbGrupo = new javax.swing.JTable();
+    btbFiltrar = new javax.swing.JButton();
 
-        if (guiFiltro.confirmacion()) {
-            this.modelo.setRowCount(0);
+    tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
+        new Object[][] {
+            { null, null, null },
+            { null, null, null },
+            { null, null, null },
+            { null, null, null }
+        },
+        new String[] {
+            "id", "Grupo", "Descripcion"
+        }) {
+      boolean[] canEdit = new boolean[] {
+          false, false, false
+      };
 
-            for (Grupo grupo : GestorGrupo.getInstance().getGrupos().values()) {
-                boolean filtro = true;
-                if (guiFiltro.getCheckNombre() && !String.valueOf(grupo.getTipo()).contentEquals(guiFiltro.getDatos(0))) {
-                    filtro = false;
-                }
-                if (guiFiltro.getCheckCedula() && !String.valueOf(grupo.getDescripcion()).contentEquals(guiFiltro.getDatos(1))) {
-                    filtro = false;
-                }
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit[columnIndex];
+      }
+    });
+    tbGrupos.addContainerListener(new java.awt.event.ContainerAdapter() {
+      public void componentAdded(java.awt.event.ContainerEvent evt) {
+        tbGruposComponentAdded(evt);
+      }
+    });
+    tbGrupos.addInputMethodListener(new java.awt.event.InputMethodListener() {
+      public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+        tbGruposCaretPositionChanged(evt);
+      }
 
-                if (filtro) {
-                    this.modelo.addRow(new Object[]{
-                        grupo.getIdGrupo(),
-                        grupo.getTipo(), 
-                        grupo.getDescripcion()
-                    });
-                }
+      public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+        tbGruposInputMethodTextChanged(evt);
+      }
+    });
+    jScrollPane1.setViewportView(tbGrupos);
 
-            }
+    jInternalFrame1.setVisible(true);
+    jInternalFrame1.addFocusListener(new java.awt.event.FocusAdapter() {
+      public void focusLost(java.awt.event.FocusEvent evt) {
+        jInternalFrame1FocusLost(evt);
+      }
+    });
 
-            this.tbGrupo.setModel(modelo);
-            this.tbGrupo.repaint();
-        }
-    }
+    javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+    jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+    jInternalFrame1Layout.setHorizontalGroup(
+        jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE));
+    jInternalFrame1Layout.setVerticalGroup(
+        jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 294, Short.MAX_VALUE));
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbGrupos = new javax.swing.JTable();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        jPanel1 = new javax.swing.JPanel();
-        btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
-        lblGrupos = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbGrupo = new javax.swing.JTable();
-        btbFiltrar = new javax.swing.JButton();
+    jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "id", "Grupo", "Descripcion"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
+    btnEditar.setText("Editar");
+    btnEditar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEditarActionPerformed(evt);
+      }
+    });
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbGrupos.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                tbGruposComponentAdded(evt);
-            }
-        });
-        tbGrupos.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                tbGruposCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                tbGruposInputMethodTextChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbGrupos);
+    btnEliminar.setText("Eliminar");
+    btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEliminarActionPerformed(evt);
+      }
+    });
 
-        jInternalFrame1.setVisible(true);
-        jInternalFrame1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jInternalFrame1FocusLost(evt);
-            }
-        });
+    btnAgregar.setText("Agregar");
+    btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAgregarActionPerformed(evt);
+      }
+    });
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 294, Short.MAX_VALUE)
-        );
+    lblGrupos.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+    lblGrupos.setText("Grupos");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    tbGrupo.setModel(new javax.swing.table.DefaultTableModel(
+        new Object[][] {
+            { null, null, null },
+            { null, null, null },
+            { null, null, null },
+            { null, null, null }
+        },
+        new String[] {
+            "id", "Tipo", "Descripcion"
+        }));
+    jScrollPane2.setViewportView(tbGrupo);
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+    btbFiltrar.setText("Filtrar");
+    btbFiltrar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btbFiltrarActionPerformed(evt);
+      }
+    });
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
-        lblGrupos.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblGrupos.setText("Grupos");
-
-        tbGrupo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "id", "Tipo", "Descripcion"
-            }
-        ));
-        jScrollPane2.setViewportView(tbGrupo);
-
-        btbFiltrar.setText("Filtrar");
-        btbFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btbFiltrarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -258,23 +256,29 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btbFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                            .addComponent(btbFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 401,
+                            javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE)));
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(lblGrupos)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306,
+                            javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(btnAgregar)
@@ -284,79 +288,78 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btbFiltrar)))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+                .addContainerGap(31, Short.MAX_VALUE)));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                Short.MAX_VALUE));
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                    Short.MAX_VALUE)
+                .addContainerGap()));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    pack();
+  }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
-        this.abrirFormularioGrupo(null);
+  private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarActionPerformed
+    // TODO add your handling code here:
+    this.abrirFormularioGrupo(null);
 
-    }//GEN-LAST:event_btnAgregarActionPerformed
+  }// GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+  private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditarActionPerformed
+    // TODO add your handling code here:
 
-        this.update();
-    }//GEN-LAST:event_btnEditarActionPerformed
+    this.update();
+  }// GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+  private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarActionPerformed
+    // TODO add your handling code here:
 
-        this.eliminarGrupo();
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    this.eliminarGrupo();
+  }// GEN-LAST:event_btnEliminarActionPerformed
 
-    private void tbGruposComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tbGruposComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbGruposComponentAdded
+  private void tbGruposComponentAdded(java.awt.event.ContainerEvent evt) {// GEN-FIRST:event_tbGruposComponentAdded
+    // TODO add your handling code here:
+  }// GEN-LAST:event_tbGruposComponentAdded
 
-    private void tbGruposInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tbGruposInputMethodTextChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbGruposInputMethodTextChanged
+  private void tbGruposInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {// GEN-FIRST:event_tbGruposInputMethodTextChanged
+    // TODO add your handling code here:
+  }// GEN-LAST:event_tbGruposInputMethodTextChanged
 
-    private void tbGruposCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tbGruposCaretPositionChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbGruposCaretPositionChanged
+  private void tbGruposCaretPositionChanged(java.awt.event.InputMethodEvent evt) {// GEN-FIRST:event_tbGruposCaretPositionChanged
+    // TODO add your handling code here:
+  }// GEN-LAST:event_tbGruposCaretPositionChanged
 
-    private void jInternalFrame1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInternalFrame1FocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jInternalFrame1FocusLost
+  private void jInternalFrame1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jInternalFrame1FocusLost
+    // TODO add your handling code here:
+  }// GEN-LAST:event_jInternalFrame1FocusLost
 
-    private void btbFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbFiltrarActionPerformed
-        this.formFiltro();
-    }//GEN-LAST:event_btbFiltrarActionPerformed
+  private void btbFiltrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btbFiltrarActionPerformed
+    this.formFiltro();
+  }// GEN-LAST:event_btbFiltrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+  /**
+   * @param args the command line arguments
+   */
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btbFiltrar;
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblGrupos;
-    private javax.swing.JTable tbGrupo;
-    private javax.swing.JTable tbGrupos;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btbFiltrar;
+  private javax.swing.JButton btnAgregar;
+  private javax.swing.JButton btnEditar;
+  private javax.swing.JButton btnEliminar;
+  private javax.swing.JInternalFrame jInternalFrame1;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JLabel lblGrupos;
+  private javax.swing.JTable tbGrupo;
+  private javax.swing.JTable tbGrupos;
+  // End of variables declaration//GEN-END:variables
 }
