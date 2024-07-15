@@ -322,7 +322,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVacunasActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        this.menuHandler(4);
+        //this.menuHandler(4);
     }//GEN-LAST:event_btnReportesActionPerformed
 
     private void btnChequeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequeosActionPerformed
@@ -330,7 +330,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChequeosActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        this.menuHandler(6);
+        //this.menuHandler(6);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed

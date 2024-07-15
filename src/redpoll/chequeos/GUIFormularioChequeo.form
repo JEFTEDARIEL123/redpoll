@@ -98,7 +98,7 @@
                   <Component id="lblObservaciones" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
               <Font name="Arial Rounded MT Bold" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/informacion.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/informacion.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Informacion del Chequeo"/>
           </Properties>
@@ -123,7 +123,7 @@
         <Component class="javax.swing.JLabel" name="lblFecha">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/fecha.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/fecha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha "/>
           </Properties>
@@ -131,7 +131,7 @@
         <Component class="javax.swing.JLabel" name="lblVeterinario">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/nombreV.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/nombreV.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre del veterinario"/>
           </Properties>
@@ -139,7 +139,7 @@
         <Component class="javax.swing.JLabel" name="lblObservaciones">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/observaciones.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/observaciones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Observaciones"/>
           </Properties>
@@ -147,7 +147,7 @@
         <Component class="javax.swing.JLabel" name="lblIdAnimal">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/idAnimal.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/idAnimal.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ID del Animal"/>
           </Properties>
@@ -179,7 +179,7 @@
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/btnRegistrarse.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
@@ -190,7 +190,7 @@
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/btnCancelar.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/btnCancelar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
