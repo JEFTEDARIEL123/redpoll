@@ -12,11 +12,18 @@ import java.util.Map;
  * @author jefte
  */
 public class GestionUsuarios {
-        
+    private static GestionUsuarios instanciaGestionUsuarios;
     private Map<Integer, Usuario> usuarios;
     
     public GestionUsuarios(){
         usuarios = new HashMap<>();
+    }
+    
+    public static GestionUsuarios getInstance(){
+        if(instanciaGestionUsuarios == null){
+            instanciaGestionUsuarios = new GestionUsuarios();
+        }
+        return instanciaGestionUsuarios;
     }
     
     public void setUsuarioes(Map<Integer, Usuario> usuarios) {

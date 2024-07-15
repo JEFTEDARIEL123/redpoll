@@ -10,6 +10,7 @@ import java.util.HashMap;
  * @author Usuario
  */
 public class GestionRoles {
+    private static GestionRoles instanciaGestionRoles;
     private HashMap<Integer, Role> ListaRoles = new HashMap<>();
    
     public GestionRoles() {
@@ -23,6 +24,14 @@ public class GestionRoles {
         ListaRoles.put(2, veterinario);
         ListaRoles.put(3, lechero);
         this.ListaRoles = ListaRoles;
+    }
+    
+    public static GestionRoles getInstance(){
+        if(instanciaGestionRoles == null){
+            instanciaGestionRoles = new GestionRoles();
+        }
+        return instanciaGestionRoles;
+        
     }
     
     public int obtenerUltimoId(){

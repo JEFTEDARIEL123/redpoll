@@ -13,12 +13,20 @@ import java.util.HashMap;
  * @author Kristel Gamboa M
  */
 public class GestionChequeo {
+    private static GestionChequeo instanciaGestionChequeo;
     private Map<String ,Chequeo> infoChequeo;
 
     public GestionChequeo() {
         this.infoChequeo = new HashMap<>();
     }
-
+    
+    public static GestionChequeo getInstance(){
+        if(instanciaGestionChequeo == null){
+            instanciaGestionChequeo = new GestionChequeo();
+        } 
+        return instanciaGestionChequeo;
+    }
+    
     public Map<String,Chequeo> getInfoChequeo() {
         return infoChequeo;
     }

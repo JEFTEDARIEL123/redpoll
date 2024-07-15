@@ -12,10 +12,18 @@ import java.util.Map;
  * @author Kristel Gamboa M
  */
 public class GestionAnimal {
+    private static GestionAnimal instanciaGestionAnimal;
     private Map<String,Animal>animales;
 
     public GestionAnimal() {
         this.animales = new HashMap<>();
+    }
+    
+    public static GestionAnimal getInstance(){
+        if(instanciaGestionAnimal == null){
+            instanciaGestionAnimal = new GestionAnimal();
+        }
+        return instanciaGestionAnimal;
     }
 
     public Map<String, Animal> getAnimales() {

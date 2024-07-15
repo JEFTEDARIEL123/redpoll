@@ -13,11 +13,18 @@ import java.util.Map;
  * @author jefte
  */
 public class GestionProduccion {
-    
+    private static GestionProduccion instanciaGestionProduccion;
     private Map<Integer, Produccion> producciones;
     
     public GestionProduccion(){
         producciones = new HashMap<>();
+    }
+    
+    public static GestionProduccion getInstance(){
+        if(instanciaGestionProduccion == null){
+            instanciaGestionProduccion = new GestionProduccion();
+        }
+        return instanciaGestionProduccion;
     }
     
     public void setProducciones(Map<Integer, Produccion> producciones) {

@@ -8,11 +8,19 @@ import java.util.Map;
  * @author Luis Villalobos
  */
 public class GestionPropietario {
+    private static GestionPropietario instanciaGestionPropietario;
     private Map<String, Propietario> propietarios;
 
     public GestionPropietario() {
         this.propietarios = new HashMap<>();
         
+    }
+    
+    public static GestionPropietario getInstance(){
+        if(instanciaGestionPropietario == null){
+            instanciaGestionPropietario = new GestionPropietario();
+        }
+        return instanciaGestionPropietario;
     }
 
     public Map<String, Propietario> getPropietarios() {
