@@ -69,25 +69,25 @@ public class FormularioPropietarios extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/datosUsuario.png"))); // NOI18N
-        lblTitulo.setText("Datos del Usuario");
+        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/datosUsuario.png"))); // NOI18N
+        lblTitulo.setText("Datos del Propietario");
 
-        lblNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/nombrePropietario.png"))); // NOI18N
+        lblNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/nombrePropietario.png"))); // NOI18N
         lblNombre.setText("Nombre");
 
-        lblCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/cedulaPropietario.png"))); // NOI18N
+        lblCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/cedulaPropietario.png"))); // NOI18N
         lblCedula.setText("Cédula");
 
-        lblTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/telefonoPropietario.png"))); // NOI18N
+        lblTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/telefonoPropietario.png"))); // NOI18N
         lblTelefono.setText("Teléfono");
 
-        lblDireccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/direccionPropietario.png"))); // NOI18N
+        lblDireccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/direccionPropietario.png"))); // NOI18N
         lblDireccion.setText("Dirección");
 
-        lblCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/emailRegistro.png"))); // NOI18N
+        lblCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/emailRegistro.png"))); // NOI18N
         lblCorreo.setText("Correo");
 
-        BtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/btnCancelar.png"))); // NOI18N
+        BtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         BtnCancel.setText("Cancelar");
         BtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +95,7 @@ public class FormularioPropietarios extends javax.swing.JDialog {
             }
         });
 
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/btnRegistrarse.png"))); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnSave.setText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,28 +114,25 @@ public class FormularioPropietarios extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(BtnCancel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addComponent(btnSave))
-                            .addComponent(txtNombre)
-                            .addComponent(lblNombre)
-                            .addComponent(lblCedula)
-                            .addComponent(txtCedula)
-                            .addComponent(lblTelefono)
-                            .addComponent(txtTelefono)
-                            .addComponent(lblDireccion)
-                            .addComponent(txtDireccion)
-                            .addComponent(lblCorreo)
-                            .addComponent(txtCorreo)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(lblTitulo)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                    .addComponent(lblTitulo)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(BtnCancel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                            .addComponent(btnSave))
+                        .addComponent(txtNombre)
+                        .addComponent(lblNombre)
+                        .addComponent(lblCedula)
+                        .addComponent(txtCedula)
+                        .addComponent(lblTelefono)
+                        .addComponent(txtTelefono)
+                        .addComponent(lblDireccion)
+                        .addComponent(txtDireccion)
+                        .addComponent(lblCorreo)
+                        .addComponent(txtCorreo)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +163,7 @@ public class FormularioPropietarios extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCancel)
                     .addComponent(btnSave))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

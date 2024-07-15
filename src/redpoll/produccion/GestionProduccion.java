@@ -32,7 +32,7 @@ public class GestionProduccion {
     }
     
     public void agregarProduccion(Produccion produccion){
-        this.producciones.put(this.obtenerUltimoId()+1, produccion);
+        this.producciones.put(GestionProduccion.getInstance().obtenerUltimoId()+1, produccion);
     }
     
     public Produccion obtenerProduccion(int id) {    

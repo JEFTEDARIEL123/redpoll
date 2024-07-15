@@ -37,7 +37,6 @@ public class GestionVacuna {
         int id=obtenerUltimoId()+1;
         vacuna.setId(id);
         this.vacunas.put(String.valueOf(vacuna.getId()),vacuna);
-        ordenarIds();
    
     }
     
@@ -66,12 +65,6 @@ public class GestionVacuna {
                 .orElse(0); 
     }
     
-    public void ordenarIds() {
-        int id = 1;
-        for (Vacuna vacuna : this.vacunas.values()) {
-            vacuna.setId(id);
-            id++;
-        }
-   }
+
     
 }

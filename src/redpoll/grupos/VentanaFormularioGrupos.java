@@ -68,15 +68,15 @@ private boolean confirmar;
         jPanel1.setBackground(new java.awt.Color(255, 255, 153));
 
         txtTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        txtTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/addGrupos.png"))); // NOI18N
+        txtTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/addGrupos.png"))); // NOI18N
         txtTitulo.setText("Detalles");
 
         lblTipoGrupo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        lblTipoGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/tipoGrupo.png"))); // NOI18N
+        lblTipoGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/tipoGrupo.png"))); // NOI18N
         lblTipoGrupo.setText("Tipo de Grupo");
 
         lblDescripcionGrupo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        lblDescripcionGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/descripcion.png"))); // NOI18N
+        lblDescripcionGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/descripcion.png"))); // NOI18N
         lblDescripcionGrupo.setText("Descripcion");
 
         txtGrupo.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,7 @@ private boolean confirmar;
         jScrollPane1.setViewportView(txaDescripcion);
 
         btnGuardar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/btnRegistrarse.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +99,7 @@ private boolean confirmar;
         });
 
         btnCancelar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/btnCancelar.png"))); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +154,7 @@ private boolean confirmar;
                         .addComponent(lblTipoGrupo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblDescripcionGrupo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -166,7 +166,7 @@ private boolean confirmar;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

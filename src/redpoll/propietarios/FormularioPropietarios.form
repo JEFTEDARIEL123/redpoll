@@ -55,34 +55,29 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="BtnCancel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="60" max="32767" attributes="0"/>
-                                  <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtNombre" max="32767" attributes="0"/>
-                              <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCedula" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="BtnCancel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="60" max="32767" attributes="0"/>
+                              <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                          <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre" max="32767" attributes="0"/>
+                          <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCedula" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDireccion" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="103" max="32767" attributes="0"/>
+                  <EmptySpace pref="67" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,7 +111,7 @@
                       <Component id="BtnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -128,15 +123,15 @@
               <Font name="Arial Rounded MT Bold" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/datosUsuario.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/datosUsuario.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Datos del Usuario"/>
+            <Property name="text" type="java.lang.String" value="Datos del Propietario"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombre">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/nombrePropietario.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/nombrePropietario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
@@ -144,7 +139,7 @@
         <Component class="javax.swing.JLabel" name="lblCedula">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/cedulaPropietario.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/cedulaPropietario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="C&#xe9;dula"/>
           </Properties>
@@ -152,7 +147,7 @@
         <Component class="javax.swing.JLabel" name="lblTelefono">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/telefonoPropietario.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/telefonoPropietario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
           </Properties>
@@ -160,7 +155,7 @@
         <Component class="javax.swing.JLabel" name="lblDireccion">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/direccionPropietario.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/direccionPropietario.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
           </Properties>
@@ -168,7 +163,7 @@
         <Component class="javax.swing.JLabel" name="lblCorreo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/emailRegistro.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/emailRegistro.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Correo"/>
           </Properties>
@@ -176,7 +171,7 @@
         <Component class="javax.swing.JButton" name="BtnCancel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/btnCancelar.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/btnCancelar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
@@ -187,7 +182,7 @@
         <Component class="javax.swing.JButton" name="btnSave">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Icons/btnRegistrarse.png"/>
+              <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>

@@ -74,19 +74,19 @@ public class FormularioVacuna extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/informacion.png"))); // NOI18N
+        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/informacion.png"))); // NOI18N
         lblTitulo.setText("Información General");
 
-        lblFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/fecha.png"))); // NOI18N
+        lblFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/fecha.png"))); // NOI18N
         lblFecha.setText("Fecha");
 
-        lblNombreVacuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/gestionVacuna.png"))); // NOI18N
+        lblNombreVacuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/gestionVacuna.png"))); // NOI18N
         lblNombreVacuna.setText("Vacuna");
 
-        lblIdAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/idAnimal.png"))); // NOI18N
+        lblIdAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/idAnimal.png"))); // NOI18N
         lblIdAnimal.setText("Id-Animal");
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/btnCancelar.png"))); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class FormularioVacuna extends javax.swing.JDialog {
             }
         });
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/btnRegistrarse.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,8 +140,8 @@ public class FormularioVacuna extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNameVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIdAnimal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(lblIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
