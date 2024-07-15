@@ -165,7 +165,7 @@ public class InterfazLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if(mante.validarCorreoContraseña(txtCorreo.getText(), pswContraseña.getText())){
-        GuiPropietario gitProp = new GuiPropietario();
+        GuiPropietario guiProp = new GuiPropietario();
         guiProp.setVisible(true);
         this.setVisible(false);
         }
