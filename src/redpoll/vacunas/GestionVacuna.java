@@ -11,10 +11,18 @@ import java.util.HashMap;
  * @author Kristel Gamboa M
  */
 public class GestionVacuna {
+    private static GestionVacuna instanciaGestionVacuna;
     private Map<String,Vacuna> vacunas;
 
     public GestionVacuna() {
         this.vacunas = new HashMap<>();
+    }
+    
+    public static GestionVacuna getInstance(){
+        if(instanciaGestionVacuna == null){
+            instanciaGestionVacuna = new GestionVacuna();
+        }
+        return instanciaGestionVacuna;
     }
 
     public Map<String, Vacuna> getVacunas() {

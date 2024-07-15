@@ -1,25 +1,17 @@
-package redpoll.login;
+package redpoll.auth;
 
-import redpoll.ManejoArchivos.MantenimientoArchivos;
-import javax.swing.JOptionPane;
-import redpoll.propietarios.GuiPropietario;
 /**
  *
  * @author Luis Villalobos
  */
 public class InterfazLogin extends javax.swing.JFrame {
-    MantenimientoArchivos mante;
-    
-    private Login login;
 
-    public InterfazLogin() {
+  public InterfazLogin() {
         initComponents();
-        mante = new MantenimientoArchivos();
-        login = new Login();
     }
 
-
-    @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
+  // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -43,11 +35,11 @@ public class InterfazLogin extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(242, 197, 124));
 
         lblCorreo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        lblCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/emailLogin.png"))); // NOI18N
+        lblCorreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/emailLogin.png"))); // NOI18N
         lblCorreo.setText("Correo Electronico");
 
         lblContraseña.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        lblContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/contraseñaLogin.png"))); // NOI18N
+        lblContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/contraseдaLogin.png"))); // NOI18N
         lblContraseña.setText("Contraseña");
 
         btnRegistro.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -88,7 +80,7 @@ public class InterfazLogin extends javax.swing.JFrame {
         });
 
         lblTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/Login.png"))); // NOI18N
+        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/Login.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,7 +127,7 @@ public class InterfazLogin extends javax.swing.JFrame {
                 .addComponent(lblPregunta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegistro)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 380, 320));
@@ -157,34 +149,28 @@ public class InterfazLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-        Registro registro = new Registro();
-        registro.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnRegistroActionPerformed
+  private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistroActionPerformed
+    Registro registro = new Registro();
+    registro.setVisible(true);
+    this.setVisible(false);
+  }// GEN-LAST:event_btnRegistroActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        if(mante.validarCorreoContraseña(txtCorreo.getText(), pswContraseña.getText())){
-        GuiPropietario guiProp = new GuiPropietario();
-        guiProp.setVisible(true);
-        this.setVisible(false);
-        }
-        
-        else{
-        JOptionPane.showInternalMessageDialog(rootPane, "Usuario y/o contraseña incorrectos.");
-        }
-    }//GEN-LAST:event_btnLoginActionPerformed
+  private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+    GUIMenuPrincipal menu = new GUIMenuPrincipal();
+    menu.setVisible(true);
 
-    private void pswContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pswContraseñaActionPerformed
+    this.setVisible(false);
 
+  }// GEN-LAST:event_btnLoginActionPerformed
 
+  private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtCorreoActionPerformed
+    // TODO add your handling code here:
+  }// GEN-LAST:event_txtCorreoActionPerformed
 
+  private void pswContraseñaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_pswContraseñaActionPerformed
+    // TODO add your handling code here:
+  }// GEN-LAST:event_pswContraseñaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

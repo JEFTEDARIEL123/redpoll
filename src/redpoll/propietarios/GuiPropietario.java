@@ -12,14 +12,12 @@ import redpoll.produccion.Produccion;
 public class GuiPropietario extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
-    private GestionPropietario gestionPropietario;
     private FormularioPropietarios formulario;
 
     private TableRowSorter trsfiltro;
     String filtro;
 
     public GuiPropietario() {
-        this.gestionPropietario = new GestionPropietario();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Nombre", "Cedula", "Telefono", "Dirección", "Correo"};
         this.modelo = new DefaultTableModel(null, nombreColumnas);
@@ -37,14 +35,14 @@ public class GuiPropietario extends javax.swing.JFrame {
                 return;
             }
             if (propietario == null) {
-                if (this.gestionPropietario.validarExistencia(cp.getNombre())) {
+                if (GestionPropietario.getInstance().validarExistencia(cp.getNombre())) {
                     JOptionPane.showMessageDialog(this, "El propietario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    this.gestionPropietario.agregarPropietario(cp);
+                    GestionPropietario.getInstance().agregarPropietario(cp);
                     this.actualizarTabla();
                 }
             } else {
-                this.gestionPropietario.actualizarPropietario(cp);
+                GestionPropietario.getInstance().actualizarPropietario(cp);
                 this.actualizarTabla();
             }
         }
@@ -65,7 +63,7 @@ public class GuiPropietario extends javax.swing.JFrame {
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
         if (this.validarSeleccion()) {
             String nombreP = String.valueOf(this.tbPropietario.getValueAt(filaSeleccionada, 1));
-            Propietario propietario = this.gestionPropietario.obtenerPropietario(nombreP);
+            Propietario propietario = GestionPropietario.getInstance().obtenerPropietario(nombreP);
             this.abrirFormularioPropietario(propietario);
         }
     }
@@ -74,14 +72,14 @@ public class GuiPropietario extends javax.swing.JFrame {
         int filaSeleccionada = this.tbPropietario.getSelectedRow();
         if (this.validarSeleccion()) {
             String nombreP = String.valueOf(this.tbPropietario.getValueAt(filaSeleccionada, 1));
-            this.gestionPropietario.eliminarPropietario(nombreP);
+            GestionPropietario.getInstance().eliminarPropietario(nombreP);
             this.actualizarTabla();
         }
     }
 
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
-        for (Propietario propietario : this.gestionPropietario.getPropietarios().values()) {
+        for (Propietario propietario : GestionPropietario.getInstance().getPropietarios().values()) {
             this.modelo.addRow(new Object[]{propietario.getID(), propietario.getNombre(), propietario.getCedula(), propietario.getTelefono(), propietario.getDireccion(), propietario.getCorreo()});
         }
     }
@@ -247,7 +245,7 @@ public class GuiPropietario extends javax.swing.JFrame {
         if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
 
-            for (Propietario propietario : this.gestionPropietario.getPropietarios().values()) {
+            for (Propietario propietario : GestionPropietario.getInstance().getPropietarios().values()) {
                 boolean filtro = true;
                 if (guiFiltro.getCheckNombre() && !String.valueOf(propietario.getNombre()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;

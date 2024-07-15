@@ -12,13 +12,20 @@ import java.util.Map;
  * @author Extremetech SC
  */
 public class GestorGrupo {
-    
+    private static GestorGrupo instanciaGestorGrupo;
     private Map<String, Grupo> grupos;
 
     public GestorGrupo() {
         grupos = new HashMap<>();
     }
 
+    public static GestorGrupo getInstance(){
+        if(instanciaGestorGrupo == null){
+            instanciaGestorGrupo = new GestorGrupo();
+        }
+        return instanciaGestorGrupo;
+    }
+    
     public Map<String, Grupo> getGrupos() {
         return grupos;
     }

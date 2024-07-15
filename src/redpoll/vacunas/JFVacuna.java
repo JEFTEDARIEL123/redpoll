@@ -5,7 +5,6 @@
 package redpoll.vacunas;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,57 +13,55 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFVacuna extends javax.swing.JFrame {
 
-   private DefaultTableModel modelo = new DefaultTableModel();
-   private GestionVacuna gestionVacuna;
-   private FormularioVacuna formulario;
-   private Vacuna vacuna;
-   
-   
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private FormularioVacuna formulario;
+    private Vacuna vacuna;
+
     public JFVacuna() {
-        this.gestionVacuna=new GestionVacuna();
         initComponents();
-        String[] nombreColumnas = new String[]{"Id", "Nombre", "Fecha","Id-Animal"};
+        String[] nombreColumnas = new String[]{"Id", "Nombre", "Fecha", "Id-Animal"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbVacunas.setModel(modelo);
         mostrarTabla();
         tbVacunas.getTableHeader().setReorderingAllowed(false);
     }
-    
-    
+
     private void abrirFormularioVacuna(Vacuna vacuna) {
         this.formulario = new FormularioVacuna(this, true, vacuna);
         this.formulario.setVisible(true);
         if (formulario.confirmacion()) {
             Vacuna vcna = formulario.consultarVacuna();
             if (vacuna == null) {
-                if (this.gestionVacuna.validarExistencia(vcna.getNombre())) {
+                if (GestionVacuna.getInstance().validarExistencia(vcna.getNombre())) {
                     JOptionPane.showMessageDialog(this, "La vacuna ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    
-                    this.gestionVacuna.agregarVacuna(vcna);
+
+                    GestionVacuna.getInstance().agregarVacuna(vcna);
                     this.actualizarTabla();
                 }
 
             } else {
-                this.gestionVacuna.actualizarVacuna(vcna);
+                GestionVacuna.getInstance().actualizarVacuna(vcna);
             }
         }
     }
-    private boolean validarSeleccion(){
+
+    private boolean validarSeleccion() {
         boolean valor = false;
         int filaSeleccionada = this.tbVacunas.getSelectedRow();
         if (filaSeleccionada != -1) {
-            valor= true;
-        }else{
+            valor = true;
+        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
         }
         return valor;
     }
+
     private void editarVacuna() {
         int filaSeleccionada = this.tbVacunas.getSelectedRow();
         if (this.validarSeleccion()) {
             String idVacuna = String.valueOf(this.tbVacunas.getValueAt(filaSeleccionada, 0));
-            Vacuna vacuna = this.gestionVacuna.obtenerVacuna(idVacuna);
+            Vacuna vacuna = GestionVacuna.getInstance().obtenerVacuna(idVacuna);
             this.abrirFormularioVacuna(vacuna);
             actualizarTabla();
         }
@@ -74,25 +71,23 @@ public class JFVacuna extends javax.swing.JFrame {
         int filaSeleccionada = this.tbVacunas.getSelectedRow();
         if (this.validarSeleccion()) {
             String idVacuna = String.valueOf(this.tbVacunas.getValueAt(filaSeleccionada, 0));
-            this.gestionVacuna.eliminarVacuna(idVacuna);
+            GestionVacuna.getInstance().eliminarVacuna(idVacuna);
             this.actualizarTabla();
         }
     }
-    
+
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
-        for (Vacuna vacuna : this.gestionVacuna.getVacunas().values()) {
-            this.modelo.addRow(new Object[]{vacuna.getId(), vacuna.getNombre(),vacuna.getFecha()});
+        for (Vacuna vacuna : GestionVacuna.getInstance().getVacunas().values()) {
+            this.modelo.addRow(new Object[]{vacuna.getId(), vacuna.getNombre(), vacuna.getFecha()});
         }
     }
-    
+
     private void mostrarTabla() {
         this.actualizarTabla();
         this.tbVacunas.setModel(modelo);
-        this.tbVacunas.repaint(); 
+        this.tbVacunas.repaint();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,8 +104,7 @@ public class JFVacuna extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
+        btnFiltrar = new javax.swing.JButton();
         lblBuscar = new javax.swing.JLabel();
         lblEliminar = new javax.swing.JLabel();
         lblEditar = new javax.swing.JLabel();
@@ -127,31 +121,31 @@ public class JFVacuna extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/crear.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/crear.png"))); // NOI18N
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
             }
         });
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/editar.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/editar.png"))); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
             }
         });
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/eliminar.png"))); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/eliminar.png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/buscar.png"))); // NOI18N
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/buscar.png"))); // NOI18N
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnFiltrarActionPerformed(evt);
             }
         });
 
@@ -184,32 +178,27 @@ public class JFVacuna extends javax.swing.JFrame {
                         .addComponent(lblEliminar)))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBuscar)
+                    .addComponent(btnFiltrar)
                     .addComponent(lblBuscar))
                 .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnEditar)
-                    .addComponent(btnAgregar))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFiltrar)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEliminar)
+                        .addComponent(btnAgregar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBuscar)
                     .addComponent(lblEliminar)
                     .addComponent(lblEditar)
                     .addComponent(lblCrear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         tbVacunas.setModel(new javax.swing.table.DefaultTableModel(
@@ -237,16 +226,16 @@ public class JFVacuna extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(lblTitulo)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(144, 144, 144))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +243,7 @@ public class JFVacuna extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -274,33 +263,49 @@ public class JFVacuna extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarActionPerformed
         this.abrirFormularioVacuna(vacuna);
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }// GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditarActionPerformed
         this.editarVacuna();
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }// GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarActionPerformed
         this.eliminarVacuna();
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }// GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        this.buscarVacuna();
-    }//GEN-LAST:event_btnBuscarActionPerformed
-    
-    private void buscarVacuna() {
-        String textoBusqueda = this.txtBuscar.getText();
-        if (textoBusqueda.isEmpty()) {
-            mostrarTabla();
-        }else {
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnFiltrarActionPerformed
+        this.formFiltro();
+    }// GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void formFiltro() {
+
+        FiltroVacuna guiFiltro = new FiltroVacuna(this, true);
+        guiFiltro.setVisible(true);
+
+        if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
-            for (Vacuna vacuna : this.gestionVacuna.getVacunas().values()) {
-                if (String.valueOf(vacuna.getId()).contains(textoBusqueda)|| vacuna.getNombre().contains(textoBusqueda) || vacuna.getFecha().contains(textoBusqueda)) {
-                    this.modelo.addRow(new Object[]{vacuna.getId(), vacuna.getNombre(), vacuna.getFecha()});
+
+            for (Vacuna vacuna : GestionVacuna.getInstance().getVacunas().values()) {
+                boolean filtro = true;
+                if (guiFiltro.getCheckNombre() && !String.valueOf(vacuna.getNombre()).contentEquals(guiFiltro.getDatos(0))) {
+                    filtro = false;
                 }
+                if (guiFiltro.getCheckFecha() && !String.valueOf(vacuna.getFecha()).contentEquals(guiFiltro.getDatos(1))) {
+                    filtro = false;
+                }
+
+                if (filtro) {
+                    this.modelo.addRow(new Object[]{
+                        vacuna.getId(),
+                        vacuna.getNombre(),
+                        vacuna.getFecha()
+                    });
+                }
+
             }
+
             this.tbVacunas.setModel(modelo);
             this.tbVacunas.repaint();
         }
@@ -312,9 +317,9 @@ public class JFVacuna extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnFiltrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -324,6 +329,5 @@ public class JFVacuna extends javax.swing.JFrame {
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tbVacunas;
-    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
