@@ -18,20 +18,12 @@ import redpoll.propietarios.Propietario;
  * @author Usuario
  */
 public class NuevoFormularioGrupo extends javax.swing.JFrame {
-
-    private GestorGrupo gestionGrupos;
     private VentanaFormularioGrupos VentanaFormularioGrupos;
     private DefaultTableModel modelo = new DefaultTableModel();
-    private TableRowSorter trsfilttro;
-    String filtro;
 
-    /**
-     * Creates new form NuevoFormularioGrupo
-     */
+
     //Metodos
     public NuevoFormularioGrupo() {
-
-        this.gestionGrupos = new GestorGrupo();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Tipo", "Descripción"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
@@ -47,14 +39,14 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
             if (grup == null) {
                 //Revisar
-                if (this.gestionGrupos.validarExistencia(nuevoGrupo.getTipo())) {
+                if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getTipo())) {
                     JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    this.gestionGrupos.agregarGrupo(nuevoGrupo);
+                    GestorGrupo.getInstance().agregarGrupo(nuevoGrupo);
                     this.actualizarTabla();
                 }
             } else {
-                this.gestionGrupos.actualizarGrupo(nuevoGrupo);
+                GestorGrupo.getInstance().actualizarGrupo(nuevoGrupo);
             }
         }
     }
@@ -73,7 +65,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     private void actualizarTabla() {
 
         this.modelo.setRowCount(0);
-        for (Grupo grupo : this.gestionGrupos.getGrupos().values()) {
+        for (Grupo grupo : GestorGrupo.getInstance().getGrupos().values()) {
             this.modelo.addRow(new Object[]{grupo.getIdGrupo(), grupo.getTipo(), grupo.getDescripcion()});
         }
 
@@ -83,7 +75,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         int filaSeleccionada = this.tbGrupo.getSelectedRow();
         if (this.validarSeleccion()) {
             String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-            Grupo grupo = this.gestionGrupos.getGrupos().get(tipoGrupo);
+            Grupo grupo = GestorGrupo.getInstance().getGrupos().get(tipoGrupo);
             this.abrirFormularioGrupo(grupo);
             eliminarGrupo();
             //Solucion 
@@ -96,7 +88,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         int filaSeleccionada = this.tbGrupo.getSelectedRow();
         if (this.validarSeleccion()) {
             String gP = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-            this.gestionGrupos.eliminarGrupo(gP);
+            GestorGrupo.getInstance().eliminarGrupo(gP);
             this.actualizarTabla();
         }
     }
@@ -109,7 +101,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
 
-            for (Grupo grupo : this.gestionGrupos.getGrupos().values()) {
+            for (Grupo grupo : GestorGrupo.getInstance().getGrupos().values()) {
                 boolean filtro = true;
                 if (guiFiltro.getCheckNombre() && !String.valueOf(grupo.getTipo()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;

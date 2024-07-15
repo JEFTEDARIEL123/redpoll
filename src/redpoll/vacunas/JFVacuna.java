@@ -18,12 +18,10 @@ import redpoll.vacunas.Vacuna;
 public class JFVacuna extends javax.swing.JFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-    private GestionVacuna gestionVacuna;
     private FormularioVacuna formulario;
     private Vacuna vacuna;
 
     public JFVacuna() {
-        this.gestionVacuna = new GestionVacuna();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Nombre", "Fecha", "Id-Animal"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
@@ -38,16 +36,16 @@ public class JFVacuna extends javax.swing.JFrame {
         if (formulario.confirmacion()) {
             Vacuna vcna = formulario.consultarVacuna();
             if (vacuna == null) {
-                if (this.gestionVacuna.validarExistencia(vcna.getNombre())) {
+                if (GestionVacuna.getInstance().validarExistencia(vcna.getNombre())) {
                     JOptionPane.showMessageDialog(this, "La vacuna ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
 
-                    this.gestionVacuna.agregarVacuna(vcna);
+                    GestionVacuna.getInstance().agregarVacuna(vcna);
                     this.actualizarTabla();
                 }
 
             } else {
-                this.gestionVacuna.actualizarVacuna(vcna);
+                GestionVacuna.getInstance().actualizarVacuna(vcna);
             }
         }
     }
@@ -67,7 +65,7 @@ public class JFVacuna extends javax.swing.JFrame {
         int filaSeleccionada = this.tbVacunas.getSelectedRow();
         if (this.validarSeleccion()) {
             String idVacuna = String.valueOf(this.tbVacunas.getValueAt(filaSeleccionada, 0));
-            Vacuna vacuna = this.gestionVacuna.obtenerVacuna(idVacuna);
+            Vacuna vacuna = GestionVacuna.getInstance().obtenerVacuna(idVacuna);
             this.abrirFormularioVacuna(vacuna);
             actualizarTabla();
         }
@@ -77,14 +75,14 @@ public class JFVacuna extends javax.swing.JFrame {
         int filaSeleccionada = this.tbVacunas.getSelectedRow();
         if (this.validarSeleccion()) {
             String idVacuna = String.valueOf(this.tbVacunas.getValueAt(filaSeleccionada, 0));
-            this.gestionVacuna.eliminarVacuna(idVacuna);
+            GestionVacuna.getInstance().eliminarVacuna(idVacuna);
             this.actualizarTabla();
         }
     }
 
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
-        for (Vacuna vacuna : this.gestionVacuna.getVacunas().values()) {
+        for (Vacuna vacuna : GestionVacuna.getInstance().getVacunas().values()) {
             this.modelo.addRow(new Object[]{vacuna.getId(), vacuna.getNombre(), vacuna.getFecha()});
         }
     }
@@ -270,7 +268,7 @@ public class JFVacuna extends javax.swing.JFrame {
         if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
 
-            for (Vacuna vacuna : this.gestionVacuna.getVacunas().values()) {
+            for (Vacuna vacuna : GestionVacuna.getInstance().getVacunas().values()) {
                 boolean filtro = true;
                 if (guiFiltro.getCheckNombre() && !String.valueOf(vacuna.getNombre()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;

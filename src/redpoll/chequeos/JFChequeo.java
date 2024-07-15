@@ -14,12 +14,10 @@ import javax.swing.table.DefaultTableModel;
 public class JFChequeo extends javax.swing.JFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-    private GestionChequeo gestionChequeo;
     private GUIFormularioChequeo formulario;
     private Chequeo chequeo;
 
     public JFChequeo() {
-        this.gestionChequeo = new GestionChequeo();
         initComponents();
         String[] columnasChequeo = new String[]{"Id", "Fecha", "Nombre del veterinario", "Descripción", "ID Animal"};
         this.modelo.setColumnIdentifiers(columnasChequeo);
@@ -33,14 +31,14 @@ public class JFChequeo extends javax.swing.JFrame {
         if (formulario.confirmacion()) {
             Chequeo chequeoConsulta = formulario.consultarChequeo();
             if (chequeo == null) {
-                if (this.gestionChequeo.validarExistencia(chequeoConsulta.getNombreVeterinario())) {
+                if (GestionChequeo.getInstance().validarExistencia(chequeoConsulta.getNombreVeterinario())) {
                     JOptionPane.showMessageDialog(this, "El chequeo ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    this.gestionChequeo.agregarChequeo(chequeoConsulta);
+                    GestionChequeo.getInstance().agregarChequeo(chequeoConsulta);
                     this.actualizarTabla();
                 }
             } else {
-                this.gestionChequeo.actualizarChequeo(chequeoConsulta);
+                GestionChequeo.getInstance().actualizarChequeo(chequeoConsulta);
             }
         }
     }
@@ -53,7 +51,7 @@ public class JFChequeo extends javax.swing.JFrame {
         if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
 
-            for (Chequeo chequeo : this.gestionChequeo.getInfoChequeo().values()) {
+            for (Chequeo chequeo : GestionChequeo.getInstance().getInfoChequeo().values()) {
                 boolean filtro = true;
                 if (guiFiltro.getCheckFecha()&& !String.valueOf(chequeo.getFecha()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;
@@ -97,7 +95,7 @@ public class JFChequeo extends javax.swing.JFrame {
         int filaSeleccionada = this.tbChequeos.getSelectedRow();
         if (this.validarSeleccion()) {
             String idChequeo = String.valueOf(this.tbChequeos.getValueAt(filaSeleccionada, 0));
-            Chequeo chequeoObtenido = this.gestionChequeo.obtenerChequeo(idChequeo);
+            Chequeo chequeoObtenido = GestionChequeo.getInstance().obtenerChequeo(idChequeo);
             this.abrirFormularioChequeo(chequeoObtenido);
             actualizarTabla();
         }
@@ -107,14 +105,14 @@ public class JFChequeo extends javax.swing.JFrame {
         int filaSeleccionada = this.tbChequeos.getSelectedRow();
         if (this.validarSeleccion()) {
             String idChequeo = String.valueOf(this.tbChequeos.getValueAt(filaSeleccionada, 0));
-            this.gestionChequeo.eliminarChequeo(idChequeo);
+            GestionChequeo.getInstance().eliminarChequeo(idChequeo);
             this.actualizarTabla();
         }
     }
 
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
-        for (Chequeo chequeos : this.gestionChequeo.getInfoChequeo().values()) {
+        for (Chequeo chequeos : GestionChequeo.getInstance().getInfoChequeo().values()) {
             this.modelo.addRow(new Object[]{chequeos.getId(), chequeos.getFecha(), chequeos.getNombreVeterinario(), chequeos.getObservaciones(), chequeos.getIdAnimal()});
         }
     }

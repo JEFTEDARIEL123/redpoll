@@ -13,7 +13,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFAnimal extends javax.swing.JFrame {
     private DefaultTableModel modelo = new DefaultTableModel();
-    private GestionAnimal gestionAnimal;
     private FormularioAnimal formulario;
     private Animal animal;
 
@@ -21,7 +20,6 @@ public class JFAnimal extends javax.swing.JFrame {
      * Creates new form JFAnimal
      */
     public JFAnimal() {
-        this.gestionAnimal=new GestionAnimal();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Raza", "Fecha Nacimiento","Grupo","Propietario","Produccion"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
@@ -36,14 +34,14 @@ public class JFAnimal extends javax.swing.JFrame {
         if (formulario.confirmacion()) {
             Animal consultarAnimal = formulario.consultarAnimal();
             if (animal == null) {
-                if (this.gestionAnimal.validarExistencia(consultarAnimal.getRaza())) {
+                if (GestionAnimal.getInstance().validarExistencia(consultarAnimal.getRaza())) {
                     JOptionPane.showMessageDialog(this, "El animal ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {  
-                    this.gestionAnimal.agregarAnimal(consultarAnimal);
+                    GestionAnimal.getInstance().agregarAnimal(consultarAnimal);
                     this.actualizarTabla();
                 }
             } else {
-                this.gestionAnimal.actualizarAnimal(consultarAnimal);
+                GestionAnimal.getInstance().actualizarAnimal(consultarAnimal);
             }
         }
     }
@@ -62,7 +60,7 @@ public class JFAnimal extends javax.swing.JFrame {
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
         if (this.validarSeleccion()) {
             String idAnimal = String.valueOf(this.tbAnimales.getValueAt(filaSeleccionada, 0));
-            Animal animal = this.gestionAnimal.obtenerAnimal(idAnimal);
+            Animal animal = GestionAnimal.getInstance().obtenerAnimal(idAnimal);
             this.abrirFormularioAnimal(animal);
             actualizarTabla();
         }
@@ -72,7 +70,7 @@ public class JFAnimal extends javax.swing.JFrame {
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
         if (this.validarSeleccion()) {
             String idAnimal = String.valueOf(this.tbAnimales.getValueAt(filaSeleccionada, 0));
-            this.gestionAnimal.eliminarAnimal(idAnimal);
+            GestionAnimal.getInstance().eliminarAnimal(idAnimal);
             this.actualizarTabla();
         }
     }
@@ -84,7 +82,7 @@ public class JFAnimal extends javax.swing.JFrame {
         if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
 
-            for (Animal animal : this.gestionAnimal.getAnimales().values()) {
+            for (Animal animal : GestionAnimal.getInstance().getAnimales().values()) {
                 boolean filtro = true;
                 if (guiFiltro.getCheckRaza() && !String.valueOf(animal.getRaza()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;
@@ -118,7 +116,7 @@ public class JFAnimal extends javax.swing.JFrame {
     }
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
-        for (Animal animal : this.gestionAnimal.getAnimales().values()) {
+        for (Animal animal : GestionAnimal.getInstance().getAnimales().values()) {
             this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(),animal.getFechaNacimiento(),animal.getIdGrupo(),animal.getIdPropietario(),animal.getIdProduccion()});
         }
     }

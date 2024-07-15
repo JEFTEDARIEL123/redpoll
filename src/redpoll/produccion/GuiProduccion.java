@@ -15,15 +15,12 @@ import javax.swing.table.DefaultTableModel;
 public class GuiProduccion extends javax.swing.JFrame {
 
     private final DefaultTableModel modelo = new DefaultTableModel();
-    private final GestionProduccion gestionProduccion;
-
     /**
      * Creates new form GestionProduccion
      */
     public GuiProduccion() {
         this.setUndecorated(true);
         //Instanciamos la clase con el menú para Agregar Producciones
-        this.gestionProduccion = new GestionProduccion();
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Ordeño Mañana", "Ordeño Tarde", "Total", "Fecha"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
@@ -181,7 +178,7 @@ public class GuiProduccion extends javax.swing.JFrame {
 
     //Método para abrir un modal en el que ingresar una nueva produccion
     private void formProduccion(Produccion produccion) {
-        int id = (produccion != null) ? produccion.getId() : gestionProduccion.obtenerUltimoId();
+        int id = (produccion != null) ? produccion.getId() : GestionProduccion.getInstance().obtenerUltimoId();
 
         GuiAgregarProduccion gui = new GuiAgregarProduccion(this, true, produccion, id);
         gui.setVisible(true);
@@ -191,11 +188,11 @@ public class GuiProduccion extends javax.swing.JFrame {
 
             if (produccion == null) {
                 System.out.println("agregando");
-                prod.setId(gestionProduccion.obtenerUltimoId() + 1);
-                this.gestionProduccion.agregarProduccion(prod);
+                prod.setId(GestionProduccion.getInstance().obtenerUltimoId() + 1);
+                GestionProduccion.getInstance().agregarProduccion(prod);
             } else {
                 System.out.println("editando");
-                this.gestionProduccion.editarProduccion(prod);
+                GestionProduccion.getInstance().editarProduccion(prod);
             }
             this.cargarTabla();
         }
@@ -209,7 +206,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         if (guiFiltro.confirmacion()) {
             this.modelo.setRowCount(0);
 
-            for (Produccion produccion : this.gestionProduccion.getProducciones().values()) {
+            for (Produccion produccion : GestionProduccion.getInstance().getProducciones().values()) {
                 boolean filtro = true;
                 if (guiFiltro.getCheckMañana() && !String.valueOf(produccion.getOrdeñoMañana()).contentEquals(guiFiltro.getDatos(0))) {
                     filtro = false;
@@ -242,7 +239,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         int fila = this.tbProducciones.getSelectedRow();
         if (fila != -1) {
             int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
-            Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
+            Produccion produccion = GestionProduccion.getInstance().obtenerProduccion(id);
             this.formProduccion(produccion);
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder editarla.");
@@ -253,8 +250,8 @@ public class GuiProduccion extends javax.swing.JFrame {
         int fila = this.tbProducciones.getSelectedRow();
         if (fila != -1) {
             int id = Integer.parseInt(String.valueOf(this.tbProducciones.getValueAt(fila, 0)));
-            Produccion produccion = this.gestionProduccion.obtenerProduccion(id);
-            this.gestionProduccion.eliminarProduccion(id);
+            Produccion produccion = GestionProduccion.getInstance().obtenerProduccion(id);
+            GestionProduccion.getInstance().eliminarProduccion(id);
             this.cargarTabla();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una tarea para poder eliminarla.");
@@ -263,8 +260,8 @@ public class GuiProduccion extends javax.swing.JFrame {
 
     private void cargarTabla() {
         this.modelo.setRowCount(0);
-        //System.out.println(gestionProduccion.getProducciones().values());
-        for (Produccion produccion : gestionProduccion.getProducciones().values()) {
+        //System.out.println(GestionProduccion.getInstance().getProducciones().values());
+        for (Produccion produccion : GestionProduccion.getInstance().getProducciones().values()) {
             System.out.println(produccion.getId() + " " + produccion.getOrdeñoMañana() + " " + produccion.getOrdeñoTarde() + " " + produccion.getTotal() + " " + produccion.getFecha());
             this.modelo.addRow(new Object[]{produccion.getId(), produccion.getOrdeñoMañana(), produccion.getOrdeñoTarde(), produccion.getTotal(), produccion.getFecha()});
         }
