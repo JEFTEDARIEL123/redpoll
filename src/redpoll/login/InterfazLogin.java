@@ -2,7 +2,7 @@ package redpoll.login;
 
 import redpoll.ManejoArchivos.MantenimientoArchivos;
 import javax.swing.JOptionPane;
-import redpoll.propietarios.GitPropietario;
+import redpoll.propietarios.GuiPropietario;
 /**
  *
  * @author Luis Villalobos
