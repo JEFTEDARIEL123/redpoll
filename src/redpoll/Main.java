@@ -21,6 +21,7 @@ public class Main {
         gui.setVisible(true);
         gui.setResizable(false);
         gui.setLocationRelativeTo(null);
+        
     }
     
 }

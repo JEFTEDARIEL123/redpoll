@@ -162,6 +162,9 @@
                 <Property name="text" type="java.lang.String" value="Animales"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnimalesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnVacunas">
               <Properties>
@@ -174,6 +177,9 @@
                 <Property name="text" type="java.lang.String" value="Vacunas"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVacunasActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnChequeos">
               <Properties>
@@ -186,6 +192,9 @@
                 <Property name="text" type="java.lang.String" value="Chequeos"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChequeosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGrupos">
               <Properties>
@@ -198,6 +207,9 @@
                 <Property name="text" type="java.lang.String" value="Grupos"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGruposActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnProduccion">
               <Properties>
@@ -225,6 +237,9 @@
                 <Property name="text" type="java.lang.String" value="Reportes"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportesActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUsuarios">
               <Properties>
@@ -237,6 +252,9 @@
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPropietarios">
               <Properties>
@@ -266,6 +284,9 @@
             <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitulo2">
           <Properties>

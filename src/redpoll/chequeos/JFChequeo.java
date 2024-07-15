@@ -6,6 +6,7 @@ package redpoll.chequeos;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import redpoll.auth.InterfazLogin;
 
 /**
  *
@@ -18,6 +19,7 @@ public class JFChequeo extends javax.swing.JFrame {
   private Chequeo chequeo;
 
   public JFChequeo() {
+    this.setUndecorated(true);
     initComponents();
     String[] columnasChequeo = new String[] { "Id", "Fecha", "Nombre del veterinario", "Descripción", "ID Animal" };
     this.modelo.setColumnIdentifiers(columnasChequeo);
@@ -131,6 +133,7 @@ public class JFChequeo extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -144,6 +147,7 @@ public class JFChequeo extends javax.swing.JFrame {
         lblCrear = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbChequeos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion de Chequeos");
@@ -151,7 +155,7 @@ public class JFChequeo extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Icons/chequeo.png"))); // NOI18N
+        lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/chequeo.png"))); // NOI18N
         lblTitulo.setText("Gestión de Chequeos");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
@@ -256,6 +260,13 @@ public class JFChequeo extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbChequeos);
 
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -267,6 +278,8 @@ public class JFChequeo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(lblTitulo)
                 .addGap(87, 87, 87))
         );
@@ -274,7 +287,9 @@ public class JFChequeo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitulo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
@@ -294,6 +309,11 @@ public class JFChequeo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        InterfazLogin.menuPrincipal();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
   private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarActionPerformed
     this.abrirFormularioChequeo(chequeo);
@@ -320,10 +340,12 @@ public class JFChequeo extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnFiltrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCrear;
     private javax.swing.JLabel lblEditar;

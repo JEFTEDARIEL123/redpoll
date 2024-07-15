@@ -1,5 +1,12 @@
 package redpoll.auth;
 
+import redpoll.animales.JFAnimal;
+import redpoll.chequeos.JFChequeo;
+import redpoll.grupos.NuevoFormularioGrupo;
+import redpoll.produccion.GuiProduccion;
+import redpoll.propietarios.GuiPropietario;
+import redpoll.vacunas.JFVacuna;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -15,6 +22,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
      * Creates new form GUIMenuPrincipal
      */
     public GUIMenuPrincipal() {
+        this.setUndecorated(true);
         initComponents();
     }
 
@@ -54,21 +62,41 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnAnimales.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnAnimales.setText("Animales");
         btnAnimales.setBorderPainted(false);
+        btnAnimales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnimalesActionPerformed(evt);
+            }
+        });
 
         btnVacunas.setBackground(new java.awt.Color(127, 182, 133));
         btnVacunas.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnVacunas.setText("Vacunas");
         btnVacunas.setBorderPainted(false);
+        btnVacunas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVacunasActionPerformed(evt);
+            }
+        });
 
         btnChequeos.setBackground(new java.awt.Color(127, 182, 133));
         btnChequeos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnChequeos.setText("Chequeos");
         btnChequeos.setBorderPainted(false);
+        btnChequeos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChequeosActionPerformed(evt);
+            }
+        });
 
         btnGrupos.setBackground(new java.awt.Color(127, 182, 133));
         btnGrupos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnGrupos.setText("Grupos");
         btnGrupos.setBorderPainted(false);
+        btnGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGruposActionPerformed(evt);
+            }
+        });
 
         btnProduccion.setBackground(new java.awt.Color(127, 182, 133));
         btnProduccion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -84,11 +112,21 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnReportes.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnReportes.setText("Reportes");
         btnReportes.setBorderPainted(false);
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
 
         btnUsuarios.setBackground(new java.awt.Color(127, 182, 133));
         btnUsuarios.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnUsuarios.setText("Usuarios");
         btnUsuarios.setBorderPainted(false);
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
 
         btnPropietarios.setBackground(new java.awt.Color(127, 182, 133));
         btnPropietarios.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -146,6 +184,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnCerrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnCerrar.setText("Cerrar Sesion");
         btnCerrar.setBorderPainted(false);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         lblTitulo2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         lblTitulo2.setText("Redpoll");
@@ -198,13 +241,101 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void menuHandler(int i){
+        switch(i){
+            case 1:
+                JFAnimal menuAnimal = new JFAnimal();
+                menuAnimal.setVisible(true);
+                menuAnimal.setResizable(false);
+                menuAnimal.setLocationRelativeTo(this);
+                break;
+            case 2:
+                GuiProduccion menuProd = new GuiProduccion();
+                menuProd.setVisible(true);
+                menuProd.setResizable(false);
+                menuProd.setLocationRelativeTo(this);
+                break;
+            case 3:
+                JFVacuna menuVac = new JFVacuna();
+                menuVac.setVisible(true);
+                menuVac.setResizable(false);
+                menuVac.setLocationRelativeTo(this);
+                break;
+            case 4:
+                //GuiReportes menuRep = new GuiReportes();
+                //menuRep.setVisible(true);
+                //break;
+            case 5:
+                JFChequeo menuChequeo = new JFChequeo();
+                menuChequeo.setVisible(true);
+                menuChequeo.setResizable(false);
+                menuChequeo.setLocationRelativeTo(this);
+                break;
+            case 6:
+                //GuiUsuarios menuUsr = new GuiUsuarios();
+                //menuUsr.setVisible(true);
+                //menuUsr.setResizable(false);
+                //menuUsr.setLocationRelativeTo(this);
+                //break;
+            case 7:
+                NuevoFormularioGrupo menuGrup = new NuevoFormularioGrupo();
+                menuGrup.setVisible(true);
+                menuGrup.setResizable(false);
+                menuGrup.setLocationRelativeTo(this);
+                break;
+            case 8:
+                GuiPropietario menuPropietarios = new GuiPropietario();
+                menuPropietarios.setVisible(true);
+                menuPropietarios.setResizable(false);
+                menuPropietarios.setLocationRelativeTo(this);
+                break;
+            case 9:
+                InterfazLogin menuLogin = new InterfazLogin();
+                menuLogin.setVisible(true);
+                menuLogin.setResizable(false);
+                menuLogin.setLocationRelativeTo(this);
+                break;
+                
+        }
+        this.dispose();
+    }
+    
     private void btnPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropietariosActionPerformed
-        // TODO add your handling code here:
+        this.menuHandler(8);
     }//GEN-LAST:event_btnPropietariosActionPerformed
 
     private void btnProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduccionActionPerformed
-        // TODO add your handling code here:
+        this.menuHandler(2);
     }//GEN-LAST:event_btnProduccionActionPerformed
+
+    private void btnAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimalesActionPerformed
+        this.menuHandler(1);
+    }//GEN-LAST:event_btnAnimalesActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.menuHandler(9);
+        
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnVacunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacunasActionPerformed
+        this.menuHandler(3);
+    }//GEN-LAST:event_btnVacunasActionPerformed
+
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
+        this.menuHandler(4);
+    }//GEN-LAST:event_btnReportesActionPerformed
+
+    private void btnChequeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequeosActionPerformed
+        this.menuHandler(5);
+    }//GEN-LAST:event_btnChequeosActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        this.menuHandler(6);
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed
+        this.menuHandler(7);
+    }//GEN-LAST:event_btnGruposActionPerformed
 
     /**
      * @param args the command line arguments
