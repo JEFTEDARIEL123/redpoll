@@ -65,7 +65,7 @@ private boolean confirmar;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(197, 186, 175));
 
         txtTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         txtTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/addGrupos.png"))); // NOI18N
