@@ -1,19 +1,21 @@
 package redpoll.auth;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luis Villalobos
  */
 public class InterfazLogin extends javax.swing.JFrame {
 
-  public InterfazLogin() {
+    public InterfazLogin() {
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
         initComponents();
     }
 
-  @SuppressWarnings("unchecked")
-  // <editor-fold defaultstate="collapsed" desc="Generated
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -169,44 +171,60 @@ public class InterfazLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-        
+
     }//GEN-LAST:event_jLabel2MousePressed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         this.dispose();
-        
+
     }//GEN-LAST:event_jLabel2MouseClicked
 
-  
-  private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistroActionPerformed
-    Registro registro = new Registro();
-    registro.setVisible(true);
-    registro.setResizable(false);
-    registro.setLocationRelativeTo(null);
-    this.setVisible(false);
-  }// GEN-LAST:event_btnRegistroActionPerformed
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistroActionPerformed
+        Registro registro = new Registro();
+        registro.setVisible(true);
+        registro.setResizable(false);
+        registro.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }// GEN-LAST:event_btnRegistroActionPerformed
 
-  
-  public static void menuPrincipal(){
-      GUIMenuPrincipal menu = new GUIMenuPrincipal();
-      menu.setVisible(true);
-      menu.setResizable(false);
-      menu.setLocationRelativeTo(null);
-  }
-  private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
+    public static void menuPrincipal() {
+        GUIMenuPrincipal menu = new GUIMenuPrincipal();
+        menu.setVisible(true);
+        menu.setResizable(false);
+        menu.setLocationRelativeTo(null);
+    }
 
-    menuPrincipal();
-    this.dispose();
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
+        //Se valida la existencia del correo electronico, el cual es la key del hash
+        if (GestionUsuarios.getInstance().validarExistencia(this.txtCorreo.getText())) {
+            //Si existe se valida que la contraseña sea correcta
+            if (!GestionUsuarios.getInstance().getUsuarios().get(this.txtCorreo.getText()).getContraseña().equals(String.valueOf(this.pswContraseña.getText()))) {
+                JOptionPane.showMessageDialog(null, "La contraseña Ingresada es Incorrecta", "Error!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                //Si lo es entonces se valida por último que el usuario esté verificado.
+                if (GestionUsuarios.getInstance().getUsuarios().get(this.txtCorreo.getText()).getIdRole() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se pudo iniciar sesión, Su usuario aun no ha sido verificado! \nDebe contactarse con un Administrador.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    //Y si lo está se llama al menú
+                    menuPrincipal();
+                    this.dispose();
+                }
+            }
+        } else {
+            //
+            JOptionPane.showMessageDialog(null, "El correo electrónico no se encuentra registrado", "Error!", JOptionPane.ERROR_MESSAGE);
 
-  }// GEN-LAST:event_btnLoginActionPerformed
+        }
 
-  private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtCorreoActionPerformed
-    // TODO add your handling code here:
-  }// GEN-LAST:event_txtCorreoActionPerformed
+    }// GEN-LAST:event_btnLoginActionPerformed
 
-  private void pswContraseñaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_pswContraseñaActionPerformed
-    // TODO add your handling code here:
-  }// GEN-LAST:event_pswContraseñaActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_txtCorreoActionPerformed
+
+    private void pswContraseñaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_pswContraseñaActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_pswContraseñaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
