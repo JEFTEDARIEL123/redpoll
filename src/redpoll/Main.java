@@ -4,6 +4,7 @@
  */
 package redpoll;
 
+import redpoll.auth.GUIMenuPrincipal;
 import redpoll.auth.InterfazLogin;
 
 /**
@@ -17,7 +18,7 @@ public class Main {
    */
 
   public static void main(String[] args) {
-
+    GUIMenuPrincipal.menuReportes();
     InterfazLogin gui = new InterfazLogin();
     gui.setVisible(true);
     gui.setResizable(false);

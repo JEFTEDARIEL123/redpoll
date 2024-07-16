@@ -4,7 +4,9 @@
  */
 package redpoll.reportes;
 
-import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+import redpoll.auth.GUIMenuPrincipal;
+import redpoll.auth.InterfazLogin;
 
 /**
  *
@@ -31,56 +33,63 @@ public class MenuReportes extends javax.swing.JFrame {
         btnGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        rdbSalud = new javax.swing.JRadioButton();
-        rdbProduccion = new javax.swing.JRadioButton();
-        btnGenerar = new javax.swing.JButton();
+        btnSalud = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnProduccion = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         lblTitulo.setText("Reportes");
 
-        btnGroup.add(rdbSalud);
-        rdbSalud.setText("Salud");
-
-        btnGroup.add(rdbProduccion);
-        rdbProduccion.setText("Produccion");
-        rdbProduccion.addActionListener(new java.awt.event.ActionListener() {
+        btnSalud.setText("Salud");
+        btnSalud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbProduccionActionPerformed(evt);
-            }
-        });
-
-        btnGenerar.setText("Generar");
-        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarActionPerformed(evt);
+                btnSaludActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Seleccione un tipo de Reporte");
 
+        btnProduccion.setText("Produccion");
+        btnProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProduccionActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnGenerar)
-                .addGap(130, 130, 130))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
-                .addComponent(rdbSalud)
-                .addGap(50, 50, 50)
-                .addComponent(rdbProduccion)
-                .addGap(65, 65, 65))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnVolver)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(72, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnSalud)
+                                .addGap(131, 131, 131))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnProduccion)
+                                .addGap(118, 118, 118))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,13 +98,13 @@ public class MenuReportes extends javax.swing.JFrame {
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdbSalud)
-                    .addComponent(rdbProduccion))
-                .addGap(81, 81, 81)
-                .addComponent(btnGenerar)
-                .addGap(25, 25, 25))
+                .addGap(18, 18, 18)
+                .addComponent(btnSalud)
+                .addGap(18, 18, 18)
+                .addComponent(btnProduccion)
+                .addGap(79, 79, 79)
+                .addComponent(btnVolver)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,34 +121,32 @@ public class MenuReportes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rdbProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbProduccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdbProduccionActionPerformed
+    private void btnSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaludActionPerformed
+        ReporteSalud salud = new ReporteSalud();
+        salud.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSaludActionPerformed
 
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        if(btnGroup.getSelection()==this.rdbProduccion){
-            GuiRepProduccion gui = new GuiRepProduccion(this, true);
-            
-        } else if(btnGroup.getSelection() == this.rdbSalud){
-            GuiRepSalud gui = new GuiRepSalud(this, true);
-        }else {
-            
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de reporte!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnGenerarActionPerformed
+    private void btnProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduccionActionPerformed
+        
+    }//GEN-LAST:event_btnProduccionActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        InterfazLogin.menuPrincipal();
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerar;
     private javax.swing.ButtonGroup btnGroup;
+    private javax.swing.JButton btnProduccion;
+    private javax.swing.JButton btnSalud;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JRadioButton rdbProduccion;
-    private javax.swing.JRadioButton rdbSalud;
     // End of variables declaration//GEN-END:variables
 }

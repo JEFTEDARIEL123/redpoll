@@ -5,6 +5,7 @@ import redpoll.chequeos.JFChequeo;
 import redpoll.grupos.NuevoFormularioGrupo;
 import redpoll.produccion.GuiProduccion;
 import redpoll.propietarios.GuiPropietario;
+import redpoll.reportes.MenuReportes;
 import redpoll.vacunas.JFVacuna;
 
 /*
@@ -262,9 +263,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                 menuVac.setLocationRelativeTo(this);
                 break;
             case 4:
-                //GuiReportes menuRep = new GuiReportes();
-                //menuRep.setVisible(true);
-                //break;
+                MenuReportes menuRep = new MenuReportes();
+                menuRep.setVisible(true);
+                menuRep.setResizable(false);
+                menuRep.setLocationRelativeTo(this);
+                break;
             case 5:
                 JFChequeo menuChequeo = new JFChequeo();
                 menuChequeo.setVisible(true);
@@ -322,7 +325,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVacunasActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        //this.menuHandler(4);
+        this.menuHandler(4);
     }//GEN-LAST:event_btnReportesActionPerformed
 
     private void btnChequeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequeosActionPerformed
@@ -337,6 +340,13 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         this.menuHandler(7);
     }//GEN-LAST:event_btnGruposActionPerformed
 
+    
+    public static void menuReportes(){
+        MenuReportes menuRep = new MenuReportes();
+                menuRep.setVisible(true);
+                menuRep.setResizable(false);
+                menuRep.setLocationRelativeTo(null);
+    }
     /**
      * @param args the command line arguments
      */
