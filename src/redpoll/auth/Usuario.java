@@ -6,13 +6,26 @@ package redpoll.auth;
  */
 public class Usuario {
     private String correo,nombre,contraseña;
-    private int id;
+    private int id,idRole;
 
-    public Usuario(int id,String nombre, String correo, String contraseña) {
+    public Usuario(int id,String nombre, String correo, String contraseña, int idRole) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
+        this.idRole = idRole;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
     }
 
 

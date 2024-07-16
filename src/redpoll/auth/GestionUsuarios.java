@@ -13,10 +13,17 @@ import java.util.Map;
  */
 public class GestionUsuarios {
     private static GestionUsuarios instanciaGestionUsuarios;
-    private Map<Integer, Usuario> usuarios;
+    private Map<String, Usuario> usuarios;
     
     public GestionUsuarios(){
         usuarios = new HashMap<>();
+        Usuario adminDefault = new Usuario(obtenerUltimoId()+1, "Admin", "admin@redpoll.com","123", 1);
+        Usuario veterinarioDefault = new Usuario(obtenerUltimoId()+1, "Veterinario", "veterinario@redpoll.com","eldoctor", 2);
+        Usuario lecheroDefault = new Usuario(obtenerUltimoId()+1, "Lechero", "lechero@redpoll.com","llegolaleche", 3);
+        
+        this.usuarios.put(adminDefault.getCorreo(), adminDefault);
+        this.usuarios.put(veterinarioDefault.getCorreo(), veterinarioDefault);
+        this.usuarios.put(lecheroDefault.getCorreo(), lecheroDefault);
     }
     
     public static GestionUsuarios getInstance(){
@@ -26,12 +33,12 @@ public class GestionUsuarios {
         return instanciaGestionUsuarios;
     }
     
-    public void setUsuarioes(Map<Integer, Usuario> usuarios) {
+    public void setUsuarioes(Map<String, Usuario> usuarios) {
         this.usuarios = usuarios;
     }
     
     public void agregarUsuario(Usuario usuario){
-        this.usuarios.put(this.obtenerUltimoId()+1, usuario);
+        this.usuarios.put(usuario.getCorreo(), usuario);
     }
     
     public Usuario obtenerUsuario(int id) {    
@@ -39,7 +46,7 @@ public class GestionUsuarios {
     }
     
     public void editarUsuario(Usuario usuario) {
-        this.usuarios.put(usuario.getId(), usuario);
+        this.usuarios.put(usuario.getCorreo(), usuario);
     
     }
     
@@ -47,12 +54,12 @@ public class GestionUsuarios {
         this.usuarios.remove(id);
     }
     
-    public Map<Integer, Usuario> getUsuarioes() {
-        return usuarios;
+    public Map<String, Usuario> getUsuarios() {
+        return this.usuarios;
     }
     
-    public boolean validarExistencia(int id){
-        return this.usuarios.containsKey(id);
+    public boolean validarExistencia(String correo){
+        return this.usuarios.containsKey(correo);
     }
     
     public int obtenerUltimoId() {

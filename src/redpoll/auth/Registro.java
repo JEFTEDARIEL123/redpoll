@@ -180,7 +180,7 @@ public class Registro extends javax.swing.JFrame {
         } else if (Validaciones.validar(this.txtCorreo.getText(), "Debe ingresar un correo valido", "[A-Za-z0-9\\._%+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}")
                 && this.txtContraseña.getText().equals(this.txtContraseñaVerificada.getText())) {
             
-            Usuario usuario = new Usuario(1, this.txtNombre.getText(), this.txtCorreo.getText(), this.txtContraseña.getText());
+            Usuario usuario = new Usuario(1, this.txtNombre.getText(), this.txtCorreo.getText(), this.txtContraseña.getText(),0);
             GestionUsuarios.getInstance().agregarUsuario(usuario);
             
             InterfazLogin InterLogin = new InterfazLogin();
@@ -206,7 +206,7 @@ public class Registro extends javax.swing.JFrame {
     }
 
     public Usuario consultarUsuario() {
-        return new Usuario(this.id, this.txtNombre.getText(), this.txtCorreo.getText(), this.txtContraseña.getText());
+        return new Usuario(this.id, this.txtNombre.getText(), this.txtCorreo.getText(), this.txtContraseña.getText(),0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
