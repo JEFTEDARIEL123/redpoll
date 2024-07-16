@@ -211,9 +211,8 @@ public class InterfazLogin extends javax.swing.JFrame {
                 }
             }
         } else {
-            //
+            // Si el correo no existe
             JOptionPane.showMessageDialog(null, "El correo electrónico no se encuentra registrado", "Error!", JOptionPane.ERROR_MESSAGE);
-
         }
 
     }// GEN-LAST:event_btnLoginActionPerformed
