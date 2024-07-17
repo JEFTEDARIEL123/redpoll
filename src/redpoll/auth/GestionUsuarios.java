@@ -63,8 +63,8 @@ public class GestionUsuarios {
         this.usuarios.put(usuario.getCorreo(), usuario);
     }
 
-    public Usuario obtenerUsuario(int id) {
-        return this.usuarios.get(id);
+    public Usuario obtenerUsuario(String correo) {
+        return this.usuarios.get(correo);
     }
 
     public void editarUsuario(Usuario usuario) {
@@ -72,8 +72,8 @@ public class GestionUsuarios {
 
     }
 
-    public void eliminarUsuario(int id) {
-        this.usuarios.remove(id);
+    public void eliminarUsuario(String correo) {
+        this.usuarios.remove(correo);
     }
 
     public Map<String, Usuario> getUsuarios() {
@@ -90,6 +90,6 @@ public class GestionUsuarios {
         }
         return this.usuarios.values().stream()
                 .mapToInt(Usuario::getId)
-                .max().getAsInt();
+                .max().getAsInt(); 
     }
 }

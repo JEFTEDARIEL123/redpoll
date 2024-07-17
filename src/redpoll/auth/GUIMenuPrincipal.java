@@ -384,11 +384,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                 menuChequeo.setLocationRelativeTo(this);
                 break;
             case 6:
-                //GuiUsuarios menuUsr = new GuiUsuarios();
-                //menuUsr.setVisible(true);
-                //menuUsr.setResizable(false);
-                //menuUsr.setLocationRelativeTo(this);
-                //break;
+                GuiUsuarios menuUsr = new GuiUsuarios();
+                menuUsr.setVisible(true);
+                menuUsr.setResizable(false);
+                menuUsr.setLocationRelativeTo(this);
+                break;
             case 7:
                 NuevoFormularioGrupo menuGrup = new NuevoFormularioGrupo();
                 menuGrup.setVisible(true);

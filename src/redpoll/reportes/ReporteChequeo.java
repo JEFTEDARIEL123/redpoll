@@ -44,7 +44,6 @@ public class ReporteChequeo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnGenerar = new javax.swing.JButton();
-        btnFiltrar = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbReporteSalud = new javax.swing.JTable();
@@ -67,23 +66,6 @@ public class ReporteChequeo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 91, -1, 44));
-
-        btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
-        btnFiltrar.setText("Filtrar");
-        btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnFiltrarMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnFiltrarMousePressed(evt);
-            }
-        });
-        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiltrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 91, 186, 44));
 
         jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Volver");
@@ -119,18 +101,6 @@ public class ReporteChequeo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-        formFiltro();
-    }//GEN-LAST:event_btnFiltrarActionPerformed
-
-    private void btnFiltrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFiltrarMousePressed
-
-    private void btnFiltrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFiltrarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFiltrarMouseClicked
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         GUIMenuPrincipal.menuReportes();
@@ -188,7 +158,6 @@ public class ReporteChequeo extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnGenerar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
