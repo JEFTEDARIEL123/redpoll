@@ -15,6 +15,7 @@ import redpoll.auth.InterfazLogin;
 public class NuevoFormularioGrupo extends javax.swing.JFrame {
   private VentanaFormularioGrupos VentanaFormularioGrupos;
   private DefaultTableModel modelo = new DefaultTableModel();
+  private Grupo grup;
   
   // Metodo constructor
   public NuevoFormularioGrupo() {
@@ -35,7 +36,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
       Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
       if (grup == null) {
         // Revisar
-        if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getIdGrupo())) {
+        if (GestorGrupo.getInstance().validarExistencia(String.valueOf(nuevoGrupo.getIdGrupo()))) {
           JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
           GestorGrupo.getInstance().agregarGrupo(nuevoGrupo);
@@ -70,8 +71,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
   private void update() {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {
-      String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-      Grupo grupo = GestorGrupo.getInstance().obtenerGrupo(Integer.parseInt(tipoGrupo));
+      String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 0));
+      Grupo grupo = GestorGrupo.getInstance().obtenerGrupo(tipoGrupo);
       this.abrirFormularioGrupo(grupo);
       this.actualizarTabla();
       // Solucion
@@ -84,7 +85,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {
       String idGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 0));
-      GestorGrupo.getInstance().eliminarGrupo(Integer.parseInt(idGrupo));
+      GestorGrupo.getInstance().eliminarGrupo(idGrupo);
       this.actualizarTabla();
     }
   }
@@ -388,7 +389,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
 
   private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAgregarActionPerformed
     // TODO add your handling code here:
-    this.abrirFormularioGrupo(null);
+    this.abrirFormularioGrupo(grup);
 
   }// GEN-LAST:event_btnAgregarActionPerformed
 

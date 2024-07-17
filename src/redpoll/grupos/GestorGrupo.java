@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class GestorGrupo {
     private static GestorGrupo instanciaGestorGrupo;
-    private Map<Integer, Grupo> grupos;
+    private Map<String, Grupo> grupos;
 
     public GestorGrupo() {
         grupos = new HashMap<>();
@@ -35,7 +35,7 @@ public class GestorGrupo {
         return instanciaGestorGrupo;
     }
     
-    public void setGrupos(Map<Integer, Grupo> grupos) {
+    public void setGrupos(Map<String, Grupo> grupos) {
         this.grupos = grupos;
     }
     
@@ -43,29 +43,29 @@ public class GestorGrupo {
         int id=obtenerUltimoId()+1;
         grupo.setIdGrupo(id);
         //this.grupos.put(GestorGrupo.getInstance().obtenerUltimoId()+1, grupo);
-        this.grupos.put(grupo.getIdGrupo(),grupo);
+        this.grupos.put(String.valueOf(grupo.getIdGrupo()),grupo);
     }
     
-    public Grupo obtenerGrupo(int id) {    
-        return this.grupos.get(id);
+    public Grupo obtenerGrupo(String grupo) {    
+        return this.grupos.get(grupo);
     }
     
     public void editarGrupo(Grupo grupo) {
-        System.out.println(String.valueOf(grupo.getIdGrupo())+" "+ grupo.toString()); 
-        this.grupos.put(grupo.getIdGrupo(), grupo);
+        //System.out.println(String.valueOf(grupo.getIdGrupo())+" "+ grupo.toString()); 
+        this.grupos.put(String.valueOf(grupo.getIdGrupo()), grupo);
     
     }
     
-    public void eliminarGrupo(int id) {
-        this.grupos.remove(id);
+    public void eliminarGrupo(String idGrupo) {
+        this.grupos.remove(idGrupo);
     }
     
-    public Map<Integer, Grupo> getGrupos() {
+    public Map<String, Grupo> getGrupos() {
         return grupos;
     }
     
-    public boolean validarExistencia(int id){
-        return this.grupos.containsKey(id);
+    public boolean validarExistencia(String grupo){
+        return this.grupos.containsKey(grupo);
     }
     
     public int obtenerUltimoId() {
