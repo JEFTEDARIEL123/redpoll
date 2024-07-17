@@ -134,7 +134,10 @@ public class MenuReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaludActionPerformed
  //Metodo para abrir el menu de reporte produccion
     private void btnProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduccionActionPerformed
-        
+        ReporteProduccion produccion = new ReporteProduccion();
+        produccion.setLocationRelativeTo(null);
+        produccion.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnProduccionActionPerformed
     //metodo para volver 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
