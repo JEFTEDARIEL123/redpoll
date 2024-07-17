@@ -71,8 +71,9 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {
       String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-      Grupo grupo = GestorGrupo.getInstance().getGrupos().get(tipoGrupo);
+      Grupo grupo = GestorGrupo.getInstance().obtenerGrupo(Integer.parseInt(tipoGrupo));
       this.abrirFormularioGrupo(grupo);
+      this.actualizarTabla();
       // Solucion
     }
 
