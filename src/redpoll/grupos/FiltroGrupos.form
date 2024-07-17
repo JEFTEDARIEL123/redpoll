@@ -40,6 +40,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="JPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="b2" green="cf" red="eb" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -52,7 +57,10 @@
                               <Component id="txtDescripcion" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
                               <Component id="checkDescripcion" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               <Component id="txtTipo" min="-2" pref="229" max="-2" attributes="0"/>
-                              <Component id="checkTipo" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkTipo" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -67,7 +75,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="checkTipo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtTipo" min="-2" max="-2" attributes="0"/>
@@ -75,7 +85,7 @@
                   <Component id="checkDescripcion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtDescripcion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
@@ -118,11 +128,25 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAceptar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTitulo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Rounded MT Bold" size="14" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/redpoll/Imgs/filtrado.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Filtrado"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

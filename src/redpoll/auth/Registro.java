@@ -39,7 +39,7 @@ public class Registro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(242, 197, 124));
+        jPanel1.setBackground(new java.awt.Color(197, 186, 175));
 
         lblRegistro.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         lblRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/Registro.png"))); // NOI18N
@@ -120,7 +120,7 @@ public class Registro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblRegistro)
-                .addGap(104, 104, 104))
+                .addGap(112, 112, 112))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

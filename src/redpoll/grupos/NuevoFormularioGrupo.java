@@ -147,6 +147,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         lblEditar = new javax.swing.JLabel();
         lblCrear = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
+        lblVolver = new javax.swing.JLabel();
 
         tbGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,7 +203,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(235, 207, 178));
 
         lblGrupos.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         lblGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/Grupos.png"))); // NOI18N
@@ -221,6 +222,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbGrupo);
 
+        jPanel2.setBackground(new java.awt.Color(197, 186, 175));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/crear.png"))); // NOI18N
@@ -281,15 +283,15 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
                         .addComponent(lblEditar)
                         .addGap(59, 59, 59)
                         .addComponent(lblEliminar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblIngreseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(lblIngreseTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,20 +303,23 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
                     .addComponent(btnFiltrar)
                     .addComponent(btnAgregar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIngreseTipo)
-                    .addComponent(lblEliminar)
-                    .addComponent(lblEditar)
-                    .addComponent(lblCrear))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblEliminar)
+                        .addComponent(lblEditar)
+                        .addComponent(lblCrear))
+                    .addComponent(lblIngreseTipo))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        btnVolver.setText("Volver");
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/volver.png"))); // NOI18N
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+
+        lblVolver.setText("Volver");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -322,23 +327,34 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver)
-                .addGap(108, 108, 108)
-                .addComponent(lblGrupos))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(lblVolver)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(lblGrupos))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblGrupos)
-                    .addComponent(btnVolver))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblGrupos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblVolver)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -419,6 +435,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblGrupos;
     private javax.swing.JLabel lblIngreseTipo;
+    private javax.swing.JLabel lblVolver;
     private javax.swing.JTable tbGrupo;
     private javax.swing.JTable tbGrupos;
     // End of variables declaration//GEN-END:variables

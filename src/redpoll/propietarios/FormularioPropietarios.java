@@ -68,6 +68,8 @@ public class FormularioPropietarios extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(197, 186, 175));
+
         lblTitulo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/datosUsuario.png"))); // NOI18N
         lblTitulo.setText("Datos del Propietario");
