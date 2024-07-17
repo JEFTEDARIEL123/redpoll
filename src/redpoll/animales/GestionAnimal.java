@@ -17,6 +17,15 @@ public class GestionAnimal {
 
     public GestionAnimal() {
         this.animales = new HashMap<>();
+        Animal animal1 = new Animal(this.obtenerUltimoId()+1,"Angus","12/5/2020",1,1);
+        Animal animal2 = new Animal(this.obtenerUltimoId()+1,"Angus","2/3/2022",1,1);
+        Animal animal3 = new Animal(this.obtenerUltimoId()+1,"Holstein","6/8/2019",2,2);
+        Animal animal4 = new Animal(this.obtenerUltimoId()+1,"Holstein","22/9/2021",2,3);
+        
+        this.agregarAnimal(animal1);
+        this.agregarAnimal(animal2);
+        this.agregarAnimal(animal3);
+        this.agregarAnimal(animal4);
     }
     
     //Metodo estatico para crear una instancia de esta clase

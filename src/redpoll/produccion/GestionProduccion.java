@@ -16,8 +16,19 @@ public class GestionProduccion {
     private static GestionProduccion instanciaGestionProduccion;
     private Map<Integer, Produccion> producciones;
     
+    
+    
     public GestionProduccion(){
         producciones = new HashMap<>();
+        
+        Produccion prod1 = new Produccion(this.obtenerUltimoId()+1, 8, 10);
+        Produccion prod2 = new Produccion(this.obtenerUltimoId()+1, 30, 1);
+        Produccion prod3 = new Produccion(this.obtenerUltimoId()+1, 7, 6);
+        
+        this.agregarProduccion(prod1);
+        this.agregarProduccion(prod2);
+        this.agregarProduccion(prod3);
+        
     }
     
     public static GestionProduccion getInstance(){

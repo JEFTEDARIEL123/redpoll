@@ -13,19 +13,19 @@ import java.util.Map;
  */
 public class GestorGrupo {
     private static GestorGrupo instanciaGestorGrupo;
-    private Map<String, Grupo> grupos;
+    private Map<Integer, Grupo> grupos;
 
     public GestorGrupo() {
         grupos = new HashMap<>();
         //Pre cargamos datos en el hashmap
-        Grupo vacasBlancas = new Grupo(1, "Vaca Blanca", "Vacas de color blanco");
-        Grupo vacasPardas = new Grupo(2, "Vaca Parda", "Vacas de color pardo");
-        Grupo vacasNegras = new Grupo(3, "Vaca Negra", "Vacas de color negro");
+        Grupo vacasBlancas = new Grupo(this.obtenerUltimoId()+1, "Vaca Blanca", "Vacas de color blanco");
+        Grupo vacasPardas = new Grupo(this.obtenerUltimoId()+1, "Vaca Parda", "Vacas de color pardo");
+        Grupo vacasNegras = new Grupo(this.obtenerUltimoId()+1, "Vaca Negra", "Vacas de color negro");
         
-        this.grupos.put(String.valueOf(vacasBlancas.getIdGrupo()), vacasBlancas);
-        this.grupos.put(String.valueOf(vacasPardas.getIdGrupo()), vacasPardas);
-        this.grupos.put(String.valueOf(vacasNegras.getIdGrupo()), vacasNegras);
-        
+        this.agregarGrupo(vacasBlancas);
+        this.agregarGrupo(vacasPardas);
+        this.agregarGrupo(vacasNegras);
+       
     }
     //devuelve una instancia de la clase o la crea si no existe
     public static GestorGrupo getInstance(){
@@ -35,58 +35,42 @@ public class GestorGrupo {
         return instanciaGestorGrupo;
     }
     
-    public Map<String, Grupo> getGrupos() {
-        return grupos;
-    }
-
-    public void setGrupos(Map<String, Grupo> grupos) {
+    public void setGrupos(Map<Integer, Grupo> grupos) {
         this.grupos = grupos;
     }
-    //Metodos get y set
     
-    public void agregarGrupo(Grupo grupo) {
-    int idGrupo = obtenerUltimoId() + 1;
-    
-    grupo.setIdGrupo(idGrupo);
-    
-    this.grupos.put(grupo.getTipo(), grupo);
-}
-
-    
-    public void actualirGrupo(Grupo grupos) {
-        this.grupos.put(grupos.getTipo(), grupos);
+    public void agregarGrupo(Grupo grupo){
+        this.grupos.put(GestorGrupo.getInstance().obtenerUltimoId()+1, grupo);
     }
     
-    public boolean validarExistencia(String tipo){
-        return this.grupos.containsKey(tipo);
+    public Grupo obtenerGrupo(int id) {    
+        return this.grupos.get(id);
     }
-     public void actualizarGrupo(Grupo grupos) {
-        this.grupos.put(grupos.getTipo(), grupos);
+    
+    public void editarGrupo(Grupo grupo) {
+        System.out.println(String.valueOf(grupo.getIdGrupo())+" "+ grupo.toString()); 
+        this.grupos.put(grupo.getIdGrupo(), grupo);
+    
     }
-     //Elimina un grupo
-     public void eliminarGrupo(String tipo) {
-        this.grupos.remove(tipo);
+    
+    public void eliminarGrupo(int id) {
+        this.grupos.remove(id);
     }
-     
-      public Grupo obtenerGrupo(Grupo grupos) {
-        this.grupos.put(grupos.getTipo(), grupos);
-        return null;
+    
+    public Map<Integer, Grupo> getGrupos() {
+        return grupos;
     }
-     //saca el ultimo id
-     public int obtenerUltimoId() {
+    
+    public boolean validarExistencia(int id){
+        return this.grupos.containsKey(id);
+    }
+    
+    public int obtenerUltimoId() {
         if (this.grupos.isEmpty()) {
-            return 0; 
+            return 0;
         }
         return this.grupos.values().stream()
                 .mapToInt(Grupo::getIdGrupo)
-                .max()
-                .orElse(0); 
-    }
-
-    void actualizarGrupo(String gP) {
-        
-    }
-    
-    
-    
+                .max().getAsInt(); 
+    }  
 }

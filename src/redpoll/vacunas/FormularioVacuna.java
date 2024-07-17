@@ -66,8 +66,6 @@ public class FormularioVacuna extends javax.swing.JDialog {
         txtFecha = new javax.swing.JTextField();
         lblNombreVacuna = new javax.swing.JLabel();
         txtNameVacuna = new javax.swing.JTextField();
-        lblIdAnimal = new javax.swing.JLabel();
-        txtIdAnimal = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
 
@@ -84,9 +82,6 @@ public class FormularioVacuna extends javax.swing.JDialog {
 
         lblNombreVacuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/gestionVacuna.png"))); // NOI18N
         lblNombreVacuna.setText("Vacuna");
-
-        lblIdAnimal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/idAnimal.png"))); // NOI18N
-        lblIdAnimal.setText("Id-Animal");
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -117,12 +112,10 @@ public class FormularioVacuna extends javax.swing.JDialog {
                         .addComponent(btnGuardar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIdAnimal)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFecha)
                             .addComponent(lblNombreVacuna)
-                            .addComponent(txtNameVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNameVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(82, 82, 82))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
@@ -141,11 +134,7 @@ public class FormularioVacuna extends javax.swing.JDialog {
                 .addComponent(lblNombreVacuna)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNameVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
@@ -160,7 +149,7 @@ public class FormularioVacuna extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -181,7 +170,7 @@ public class FormularioVacuna extends javax.swing.JDialog {
     
     public Vacuna consultarVacuna() {
         return new Vacuna(
-                Integer.parseInt(this.txtIdAnimal.getText()),
+                this.edicion ? this.idVacuna : 0,
                 this.txtNameVacuna.getText(),
                 this.txtFecha.getText()
         );
@@ -192,11 +181,9 @@ public class FormularioVacuna extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblIdAnimal;
     private javax.swing.JLabel lblNombreVacuna;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtIdAnimal;
     private javax.swing.JTextField txtNameVacuna;
     // End of variables declaration//GEN-END:variables
 

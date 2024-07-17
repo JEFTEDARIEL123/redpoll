@@ -35,14 +35,14 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
       Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
       if (grup == null) {
         // Revisar
-        if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getTipo())) {
+        if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getIdGrupo())) {
           JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
           GestorGrupo.getInstance().agregarGrupo(nuevoGrupo);
           this.actualizarTabla();
         }
       } else {
-        GestorGrupo.getInstance().actualizarGrupo(nuevoGrupo);
+        GestorGrupo.getInstance().editarGrupo(nuevoGrupo);
       }
     }
   }
@@ -73,7 +73,6 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
       String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
       Grupo grupo = GestorGrupo.getInstance().getGrupos().get(tipoGrupo);
       this.abrirFormularioGrupo(grupo);
-      eliminarGrupo();
       // Solucion
     }
 
@@ -83,8 +82,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
   private void eliminarGrupo() {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {
-      String gP = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-      GestorGrupo.getInstance().eliminarGrupo(gP);
+      String idGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 0));
+      GestorGrupo.getInstance().eliminarGrupo(Integer.parseInt(idGrupo));
       this.actualizarTabla();
     }
   }

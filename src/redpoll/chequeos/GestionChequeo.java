@@ -18,6 +18,12 @@ public class GestionChequeo {
     //se inicializa la clase
     public GestionChequeo() {
         this.infoChequeo = new HashMap<>();
+        Chequeo chequeo1 = new Chequeo(this.obtenerUltimoId()+1, "10/2/2024","Juan", "Se encuentra bien, falta alimentar un poco mas", 1,1);
+        Chequeo chequeo2 = new Chequeo(this.obtenerUltimoId()+1, "11/2/2024","Juan", "Tiene problemas de mastitis", 2,3);
+        
+        
+        this.agregarChequeo(chequeo1);
+        this.agregarChequeo(chequeo2);
     }
     //Metodo para obtener/crear una unica instancia
     public static GestionChequeo getInstance(){

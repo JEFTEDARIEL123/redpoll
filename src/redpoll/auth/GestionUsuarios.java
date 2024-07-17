@@ -24,10 +24,10 @@ public class GestionUsuarios {
         Usuario adminDefault = new Usuario(obtenerUltimoId() + 1, "Admin", "admin@redpoll.com", "123", 1);
         Usuario veterinarioDefault = new Usuario(obtenerUltimoId() + 1, "Veterinario", "veterinario@redpoll.com", "eldoctor", 2);
         Usuario lecheroDefault = new Usuario(obtenerUltimoId() + 1, "Lechero", "lechero@redpoll.com", "llegolaleche", 3);
-
-        this.usuarios.put(adminDefault.getCorreo(), adminDefault);
-        this.usuarios.put(veterinarioDefault.getCorreo(), veterinarioDefault);
-        this.usuarios.put(lecheroDefault.getCorreo(), lecheroDefault);
+        
+        this.agregarUsuario(adminDefault);
+        this.agregarUsuario(veterinarioDefault);
+        this.agregarUsuario(lecheroDefault);
     }
     
     //Se obtiene una instancia de esta clase
