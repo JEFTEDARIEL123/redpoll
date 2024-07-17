@@ -16,7 +16,7 @@ public class Chequeo {
     private int idAnimal, idVacuna;
 
     
-    
+    //Clase base para chequeo
 
     public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones,int idAnimal,int idVacuna) {
         this.id = id;

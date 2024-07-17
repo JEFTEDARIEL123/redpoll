@@ -31,14 +31,17 @@ public class JFAnimal extends javax.swing.JFrame {
     }
     
     private void abrirFormularioAnimal(Animal animal) {
+        //Se gestiona toda la logica para agregar un nuevo animal
         this.formulario = new FormularioAnimal(this, true, animal);
         this.formulario.setVisible(true);
         if (formulario.confirmacion()) {
             Animal consultarAnimal = formulario.consultarAnimal();
+            //Si realmente es nulo se agrega
             if (animal == null) {
                 if (GestionAnimal.getInstance().validarExistencia(consultarAnimal.getRaza())) {
                     JOptionPane.showMessageDialog(this, "El animal ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {  
+                    //Si no se edita
                     GestionAnimal.getInstance().agregarAnimal(consultarAnimal);
                     this.actualizarTabla();
                 }
@@ -47,7 +50,7 @@ public class JFAnimal extends javax.swing.JFrame {
             }
         }
     }
-    
+    //Con esto se comprueba la seleccion de la fila de la tabla
     private boolean validarSeleccion(){
         boolean valor = false;
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
@@ -58,6 +61,7 @@ public class JFAnimal extends javax.swing.JFrame {
         }
         return valor;
     }
+    //Editamos un animal en base a la seleccion
     private void editarAnimal() {
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
         if (this.validarSeleccion()) {
@@ -67,7 +71,7 @@ public class JFAnimal extends javax.swing.JFrame {
             actualizarTabla();
         }
     }
-
+    //Y eliminamos igual basado en la seleecion
     private void eliminarAnimal() {
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
         if (this.validarSeleccion()) {
@@ -76,6 +80,7 @@ public class JFAnimal extends javax.swing.JFrame {
             this.actualizarTabla();
         }
     }
+    //Menu encargado de filtrar los animales por tipo de dato
     private void formFiltro() {
 
         FiltroAnimal guiFiltro = new FiltroAnimal(this, true);
@@ -115,13 +120,15 @@ public class JFAnimal extends javax.swing.JFrame {
             this.tbAnimales.repaint();
         }
     }
+    
+    //Se encarga de refrescar la tabla
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
         for (Animal animal : GestionAnimal.getInstance().getAnimales().values()) {
             this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(),animal.getFechaNacimiento(),animal.getIdGrupo(),animal.getIdPropietario()});
         }
     }
-    
+    //Despliega la tabla en si
     private void mostrarTabla() {
         this.actualizarTabla();
         this.tbAnimales.setModel(modelo);
@@ -339,7 +346,9 @@ public class JFAnimal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
     
-
+    // ?????????? que pereza por Dios
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;

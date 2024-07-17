@@ -26,7 +26,7 @@ public class GuiPropietario extends javax.swing.JFrame {
         this.tbPropietario.setModel(modelo);
         actualizarTabla();
     }
-
+    //Abre el menu para agregar/editar
     private void abrirFormularioPropietario(Propietario propietario) {
         this.formulario = new FormularioPropietarios(this, true, propietario);
         this.formulario.setVisible(true);
@@ -49,7 +49,7 @@ public class GuiPropietario extends javax.swing.JFrame {
             }
         }
     }
-
+    //valida la seleccion de la fila
     private boolean validarSeleccion() {
         boolean valor = false;
         int filaSeleccionada = this.tbPropietario.getSelectedRow();

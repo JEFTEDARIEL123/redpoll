@@ -17,6 +17,7 @@ public class GestorGrupo {
 
     public GestorGrupo() {
         grupos = new HashMap<>();
+        //Pre cargamos datos en el hashmap
         Grupo vacasBlancas = new Grupo(1, "Vaca Blanca", "Vacas de color blanco");
         Grupo vacasPardas = new Grupo(2, "Vaca Parda", "Vacas de color pardo");
         Grupo vacasNegras = new Grupo(3, "Vaca Negra", "Vacas de color negro");
@@ -26,7 +27,7 @@ public class GestorGrupo {
         this.grupos.put(String.valueOf(vacasNegras.getIdGrupo()), vacasNegras);
         
     }
-
+    //devuelve una instancia de la clase o la crea si no existe
     public static GestorGrupo getInstance(){
         if(instanciaGestorGrupo == null){
             instanciaGestorGrupo = new GestorGrupo();
@@ -41,7 +42,7 @@ public class GestorGrupo {
     public void setGrupos(Map<String, Grupo> grupos) {
         this.grupos = grupos;
     }
-    //Metodos
+    //Metodos get y set
     
     public void agregarGrupo(Grupo grupo) {
     int idGrupo = obtenerUltimoId() + 1;
@@ -62,7 +63,7 @@ public class GestorGrupo {
      public void actualizarGrupo(Grupo grupos) {
         this.grupos.put(grupos.getTipo(), grupos);
     }
-     
+     //Elimina un grupo
      public void eliminarGrupo(String tipo) {
         this.grupos.remove(tipo);
     }
@@ -71,7 +72,7 @@ public class GestorGrupo {
         this.grupos.put(grupos.getTipo(), grupos);
         return null;
     }
-     
+     //saca el ultimo id
      public int obtenerUltimoId() {
         if (this.grupos.isEmpty()) {
             return 0; 

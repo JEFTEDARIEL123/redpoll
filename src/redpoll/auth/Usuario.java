@@ -7,7 +7,7 @@ package redpoll.auth;
 public class Usuario {
     private String correo,nombre,contraseña;
     private int id,idRole;
-
+    //Clase base de usuario idk
     public Usuario(int id,String nombre, String correo, String contraseña, int idRole) {
         this.id = id;
         this.nombre = nombre;

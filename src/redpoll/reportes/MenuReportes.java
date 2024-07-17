@@ -17,6 +17,7 @@ public class MenuReportes extends javax.swing.JFrame {
     /**
      * Creates new form MenuReportes
      */
+    //constructor
     public MenuReportes() {
         
         this.setUndecorated(true);
@@ -42,9 +43,12 @@ public class MenuReportes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(235, 207, 178));
+
         lblTitulo.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         lblTitulo.setText("Reportes");
 
+        btnSalud.setBackground(new java.awt.Color(255, 255, 255));
         btnSalud.setText("Salud");
         btnSalud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +58,7 @@ public class MenuReportes extends javax.swing.JFrame {
 
         jLabel1.setText("Seleccione un tipo de Reporte");
 
+        btnProduccion.setBackground(new java.awt.Color(255, 255, 255));
         btnProduccion.setText("Produccion");
         btnProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +66,7 @@ public class MenuReportes extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,13 +91,10 @@ public class MenuReportes extends javax.swing.JFrame {
                         .addContainerGap(72, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnSalud)
-                                .addGap(131, 131, 131))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnProduccion)
-                                .addGap(118, 118, 118))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnProduccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(118, 118, 118))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,18 +125,18 @@ public class MenuReportes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Metodo para abrir el menu de reporte chequeo
     private void btnSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaludActionPerformed
         ReporteChequeo salud = new ReporteChequeo();
         salud.setLocationRelativeTo(null);
         salud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSaludActionPerformed
-
+ //Metodo para abrir el menu de reporte produccion
     private void btnProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProduccionActionPerformed
         
     }//GEN-LAST:event_btnProduccionActionPerformed
-
+    //metodo para volver 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         InterfazLogin.menuPrincipal();
         this.dispose();

@@ -34,6 +34,7 @@ public class FormularioAnimal extends javax.swing.JDialog {
     
     
     private void inicializarFormulario(Animal animal) {
+        //Si no se encuentra dicho animal se da por hecho que hay que hacer uno nuevo
         if (animal!=null){
             this.idAnimal = animal.getId();
             this.txtFechaN.setText(animal.getFechaNacimiento());
@@ -47,9 +48,10 @@ public class FormularioAnimal extends javax.swing.JDialog {
         }
     }
     private String fechaSistema(){
+        //sacamos la fecha del sistema 
         Date fecha=new Date();
         SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
-        return formatoFecha.format(fecha);
+        return formatoFecha.format(fecha); // Un pidgey salvaje ha aparecido!!!
     }
 
     /**

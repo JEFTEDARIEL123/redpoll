@@ -228,7 +228,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+        //guarda los datos ingresados en el filtro
         datos[0] = (this.txtNombre.isEnabled()) ? this.txtNombre.getText() : "";
         datos[1] = (this.txtCedula.isEnabled()) ? this.txtCedula.getText() : "";
         datos[2] = (this.txtTelefono.isEnabled()) ? this.txtTelefono.getText() : "";

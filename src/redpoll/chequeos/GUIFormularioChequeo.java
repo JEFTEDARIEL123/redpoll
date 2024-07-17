@@ -15,7 +15,7 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
     private boolean confirmacion;
     private int idChequeo,idAnimal;
     private boolean editar;
-    
+    //metodo constructor del filtro
     public GUIFormularioChequeo(java.awt.Frame parent,boolean modal,Chequeo chequeo){
         super(parent,modal);
         initComponents();
@@ -25,6 +25,8 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
         txtFecha.setText(fechaSistema());
     }
     
+    
+    //Se encarga de inicializar el form
     private void inicializarFormulario(Chequeo chequeo) {
         if (chequeo!=null){
             txtFecha.setText(fechaSistema());
@@ -38,7 +40,7 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
             this.editar=false;
         }
     }
-    
+    //Obtiene la fecha del sistema
     private String fechaSistema(){
         Date fecha=new Date();
         SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");

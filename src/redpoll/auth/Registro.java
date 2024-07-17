@@ -169,7 +169,7 @@ public class Registro extends javax.swing.JFrame {
     }// GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGuardarActionPerformed
-
+        //Logica para registrar y validar un usuario
         if (!(this.txtContraseña.getText().equals(this.txtContraseñaVerificada.getText()))) {
             Validaciones.menuErr("Las contraseñas no coinciden. \n vuelva a intentarlo");
             this.txtContraseña.setText("");
@@ -204,7 +204,7 @@ public class Registro extends javax.swing.JFrame {
     public boolean confirmacion() {
         return this.confirmar;
     }
-
+    //Devuelve un usuario
     public Usuario consultarUsuario() {
         return new Usuario(this.id, this.txtNombre.getText(), this.txtCorreo.getText(), this.txtContraseña.getText(),0);
     }

@@ -19,6 +19,8 @@ public class GestionUsuarios {
 
     public GestionUsuarios() {
         usuarios = new HashMap<>();
+        
+        //se inicializan algunos usuarios pre cargados
         Usuario adminDefault = new Usuario(obtenerUltimoId() + 1, "Admin", "admin@redpoll.com", "123", 1);
         Usuario veterinarioDefault = new Usuario(obtenerUltimoId() + 1, "Veterinario", "veterinario@redpoll.com", "eldoctor", 2);
         Usuario lecheroDefault = new Usuario(obtenerUltimoId() + 1, "Lechero", "lechero@redpoll.com", "llegolaleche", 3);
@@ -27,7 +29,8 @@ public class GestionUsuarios {
         this.usuarios.put(veterinarioDefault.getCorreo(), veterinarioDefault);
         this.usuarios.put(lecheroDefault.getCorreo(), lecheroDefault);
     }
-
+    
+    //Se obtiene una instancia de esta clase
     public static GestionUsuarios getInstance() {
         if (instanciaGestionUsuarios == null) {
             instanciaGestionUsuarios = new GestionUsuarios();
@@ -36,17 +39,22 @@ public class GestionUsuarios {
         return instanciaGestionUsuarios;
     }
 
+    
+    //Se setea un token de autenticacion, este token se maneja con la id del role
     public static void setTokenRoleActual(int token) {
 
         TokenRoleActual = token;
 
     }
-
+    
+    
+    //Lo mismo pero para obtener el token
     public static int getTokenRoleActual() {
 
         return TokenRoleActual;
     }
 
+    //Y otro  monton de getters y setters
     public void setUsuarioes(Map<String, Usuario> usuarios) {
         this.usuarios = usuarios;
     }

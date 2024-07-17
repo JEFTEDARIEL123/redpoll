@@ -189,6 +189,7 @@ public class InterfazLogin extends javax.swing.JFrame {
         this.setVisible(false);
     }// GEN-LAST:event_btnRegistroActionPerformed
 
+    //metodo estatico para llamar al menu principal
     public static void menuPrincipal() {
         GUIMenuPrincipal menu = new GUIMenuPrincipal();
         menu.setVisible(true);
@@ -196,7 +197,8 @@ public class InterfazLogin extends javax.swing.JFrame {
         menu.setLocationRelativeTo(null);
         
     }
-
+    
+    //Boton de iniciar sesion
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
         //Se valida la existencia del correo electronico, el cual es la key del hash
         if (GestionUsuarios.getInstance().validarExistencia(this.txtCorreo.getText())) {

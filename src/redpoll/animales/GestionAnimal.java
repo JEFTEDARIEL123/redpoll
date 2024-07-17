@@ -19,6 +19,7 @@ public class GestionAnimal {
         this.animales = new HashMap<>();
     }
     
+    //Metodo estatico para crear una instancia de esta clase
     public static GestionAnimal getInstance(){
         if(instanciaGestionAnimal == null){
             instanciaGestionAnimal = new GestionAnimal();

@@ -15,8 +15,8 @@ import redpoll.auth.InterfazLogin;
 public class NuevoFormularioGrupo extends javax.swing.JFrame {
   private VentanaFormularioGrupos VentanaFormularioGrupos;
   private DefaultTableModel modelo = new DefaultTableModel();
-
-  // Metodos
+  
+  // Metodo constructor
   public NuevoFormularioGrupo() {
     this.setUndecorated(true);
     initComponents();
@@ -46,7 +46,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
       }
     }
   }
-
+  //valida la seleccion de la fila
   private boolean validarSeleccion() {
     boolean valor = false;
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
@@ -66,7 +66,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     }
 
   }
-
+  //
   private void update() {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {

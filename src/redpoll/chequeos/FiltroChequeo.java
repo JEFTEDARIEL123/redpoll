@@ -207,7 +207,7 @@ public class FiltroChequeo extends javax.swing.JDialog {
     }//GEN-LAST:event_txtFechaActionPerformed
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+        //arreglo donde se van a guardar datos del filtro
         datos[0] = (this.txtFecha.isEnabled()) ? this.txtFecha.getText() : "";
         datos[1] = (this.txtNombreVeterinario.isEnabled()) ? this.txtNombreVeterinario.getText() : "";
         datos[2] = (this.txtAnimal.isEnabled()) ? this.txtAnimal.getText() : "";
@@ -218,6 +218,8 @@ public class FiltroChequeo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public String getDatos(int indice) {
+
+        //se obtienen los datos
         return datos[indice];
     }
     
@@ -225,6 +227,7 @@ public class FiltroChequeo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreVeterinarioActionPerformed
 
+    //Estos metodos se encargan de habilitar los campos de texto 
     private void checkNombreVeterinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkNombreVeterinarioActionPerformed
         this.txtNombreVeterinario.setEnabled((this.txtNombreVeterinario.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkNombreVeterinarioActionPerformed

@@ -3,7 +3,7 @@ package redpoll.propietarios;
  *
  * @author Luis Villalobos
  */
-
+//Clase base de propietario
 public class Propietario {
     private int ID;
     

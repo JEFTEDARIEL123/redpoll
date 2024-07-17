@@ -153,7 +153,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        //Guarda los datos del filtro en un array
         datos[0] = (this.txtTipo.isEnabled()) ? this.txtTipo.getText() : "";
         datos[1] = (this.txtDescripcion.isEnabled()) ? this.txtDescripcion.getText() : "";
         this.confirmar = true;

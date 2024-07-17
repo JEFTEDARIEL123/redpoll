@@ -10,6 +10,7 @@ package redpoll.reportes;
  *
  * @author jefte
  */
+//Clase abstracta para los pdfs
 public abstract class PdfHandler {
 
     abstract public void pdf();

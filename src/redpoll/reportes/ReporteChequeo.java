@@ -51,7 +51,7 @@ public class ReporteChequeo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(235, 207, 178));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -59,6 +59,7 @@ public class ReporteChequeo extends javax.swing.JFrame {
         jLabel1.setText("Reporte Salud");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 6, -1, -1));
 
+        btnGenerar.setBackground(new java.awt.Color(255, 255, 255));
         btnGenerar.setText("Generar PDF");
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +68,7 @@ public class ReporteChequeo extends javax.swing.JFrame {
         });
         jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 91, -1, 44));
 
+        btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltrar.setText("Filtrar");
         btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -83,6 +85,7 @@ public class ReporteChequeo extends javax.swing.JFrame {
         });
         jPanel1.add(btnFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 91, 186, 44));
 
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Volver");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -206,7 +206,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
     }//GEN-LAST:event_txtRazaActionPerformed
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+        //Se guarda en cada espacio del array los datos correspondientes
         datos[0] = (this.txtRaza.isEnabled()) ? this.txtRaza.getText() : "";
         datos[1] = (this.txtFechaNacimiento.isEnabled()) ? this.txtFechaNacimiento.getText() : "";
         datos[2] = (this.txtGrupo.isEnabled()) ? this.txtGrupo.getText() : "";
@@ -217,6 +217,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public String getDatos(int indice) {
+        //se obtiene un dato del array
         return datos[indice];
     }
     
@@ -225,14 +226,17 @@ public class FiltroAnimal extends javax.swing.JDialog {
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void checkFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkFechaNacimientoActionPerformed
+        //si la casilla esta marcada se habilita el txt
         this.txtFechaNacimiento.setEnabled((this.txtFechaNacimiento.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkFechaNacimientoActionPerformed
 
     private void checkRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkRazaActionPerformed
+        //lo mismo
         this.txtRaza.setEnabled((this.txtRaza.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkRazaActionPerformed
 
     private void checkGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkGrupoActionPerformed
+        // y lo mismo jaja
         this.txtGrupo.setEnabled((this.txtGrupo.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkGrupoActionPerformed
 
@@ -265,6 +269,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPropietarioActionPerformed
 
     private void checkPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPropietarioActionPerformed
+        //lo mismo pero abajo idk
         this.txtPropietario.setEnabled((this.txtPropietario.isEnabled()) ? false : true);
     }//GEN-LAST:event_checkPropietarioActionPerformed
 

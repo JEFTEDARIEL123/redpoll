@@ -12,7 +12,7 @@ public class GestionPropietario {
     private Map<String, Propietario> propietarios;
     
     
-    
+    //Constructor con objts pre cargados
     public GestionPropietario() {
         this.propietarios = new HashMap<>();
         Propietario prop1 = new Propietario(1, "Juan", 208830311, 85418900, "Por el barrio la juana", "juan@email.com");
@@ -22,7 +22,7 @@ public class GestionPropietario {
         this.propietarios.put(String.valueOf(prop2.getID()), prop2);
         this.propietarios.put(String.valueOf(prop3.getID()), prop3);
     }
-    
+    //devuelve una instancia o la crea segun sea
     public static GestionPropietario getInstance(){
         if(instanciaGestionPropietario == null){
             instanciaGestionPropietario = new GestionPropietario();

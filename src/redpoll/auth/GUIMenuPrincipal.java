@@ -26,41 +26,9 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     public GUIMenuPrincipal() {
         this.setUndecorated(true);
         initComponents();
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getAnimales()){
-            this.btnAnimales.setVisible(false);
-            this.lblAnimales.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getChequeos()){
-            this.btnChequeos.setVisible(false);
-            this.lblChequeos.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getGrupos()){
-            this.btnGrupos.setVisible(false);
-            this.lblGrupos.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getProduccion()){
-            this.btnProduccion.setVisible(false);
-            this.lblProduccion.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getPropietarios()){
-            this.btnPropietarios.setVisible(false);
-            this.lblPropietarios.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getVacunas()){
-            this.btnVacunas.setVisible(false);
-            this.lblVacunas.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getUsuarios()){
-            this.btnUsuarios.setVisible(false);
-            this.lblUsuarios.setVisible(false);
-        }
-        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getReportes()){
-            this.btnReportes.setVisible(false);
-            this.lblReportes.setVisible(false);
-        }
+        validarPermisos();
         
-        
-        
+      
     }
 
     /**
@@ -353,9 +321,38 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void validarPermisos(){
+        //Se encarga de validar cada uno de los permisos, y decidir si mostrar o no el btn
+        this.btnAnimales.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getAnimales());
+        this.lblAnimales.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getAnimales());
+        
+        this.btnChequeos.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getChequeos());
+        this.lblChequeos.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getChequeos());
+        
+        this.btnGrupos.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getGrupos());
+        this.lblGrupos.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getGrupos());
+        
+        this.btnProduccion.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getProduccion());
+        this.lblProduccion.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getProduccion());
+        
+        this.btnPropietarios.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getPropietarios());
+        this.lblPropietarios.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getPropietarios());
+        
+        this.btnVacunas.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getVacunas());
+        this.lblVacunas.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getVacunas());
+        
+        this.btnUsuarios.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getUsuarios());
+        this.lblUsuarios.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getUsuarios());
 
+        this.btnReportes.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getReportes());
+        this.lblReportes.setVisible(GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getReportes()); 
+    }
+    
     private void menuHandler(int i){
         switch(i){
+            
+            //un switch pa abrir los menus idk, podria estar mejor.
             case 1:
                 JFAnimal menuAnimal = new JFAnimal();
                 menuAnimal.setVisible(true);
@@ -452,6 +449,8 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         this.menuHandler(7);
     }//GEN-LAST:event_btnGruposActionPerformed
     
+    
+    //ESto abre el menu de reportes
     public static void menuReportes(){
         MenuReportes menuRep = new MenuReportes();
                 menuRep.setVisible(true);

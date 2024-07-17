@@ -18,6 +18,7 @@ public class Main {
    */
 
   public static void main(String[] args) {
+    //Inicializamos la gui de login
     InterfazLogin gui = new InterfazLogin();
     gui.setVisible(true);
     gui.setResizable(false);
