@@ -11,15 +11,13 @@ public class Animal {
     private String fechaNacimiento;
     private int idGrupo;
     private int idPropietario;
-    private int idProduccion;
 
-    public Animal(int id, String raza, String fechaNacimiento, int idGrupo, int idPropietario, int idProduccion) {
+    public Animal(int id, String raza, String fechaNacimiento, int idGrupo, int idPropietario) {
         this.id = id;
         this.raza = raza;
         this.fechaNacimiento = fechaNacimiento;
         this.idGrupo = idGrupo;
         this.idPropietario = idPropietario;
-        this.idProduccion = idProduccion;
     }
 
     public int getId() {
@@ -62,16 +60,9 @@ public class Animal {
         this.idPropietario = idPropietario;
     }
 
-    public int getIdProduccion() {
-        return idProduccion;
-    }
-
-    public void setIdProduccion(int idProduccion) {
-        this.idProduccion = idProduccion;
-    }
 
     @Override
     public String toString() {
-        return "Animal{" + "id=" + id + ", raza=" + raza + ", fechaNacimiento=" + fechaNacimiento + ", idGrupo=" + idGrupo + ", idPropietario=" + idPropietario + ", idProduccion=" + idProduccion + '}';
+        return "Animal{" + "id=" + id + ", raza=" + raza + ", fechaNacimiento=" + fechaNacimiento + ", idGrupo=" + idGrupo + ", idPropietario=" + idPropietario + '}';
     }
 }

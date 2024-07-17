@@ -48,6 +48,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
 
         JPanel.setBackground(new java.awt.Color(235, 207, 178));
 
+        checkTipo.setBackground(new java.awt.Color(235, 207, 178));
         checkTipo.setText("Tipo");
         checkTipo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -74,6 +75,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
             }
         });
 
+        checkDescripcion.setBackground(new java.awt.Color(235, 207, 178));
         checkDescripcion.setText("Descripcion");
         checkDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +83,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +153,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        //Guarda los datos del filtro en un array
         datos[0] = (this.txtTipo.isEnabled()) ? this.txtTipo.getText() : "";
         datos[1] = (this.txtDescripcion.isEnabled()) ? this.txtDescripcion.getText() : "";
         this.confirmar = true;

@@ -12,6 +12,8 @@ public class InterfazLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
         initComponents();
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -110,7 +112,7 @@ public class InterfazLogin extends javax.swing.JFrame {
                     .addComponent(lblContraseña))
                 .addGap(0, 39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(btnLogin)
@@ -120,10 +122,11 @@ public class InterfazLogin extends javax.swing.JFrame {
                         .addGap(103, 103, 103)
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPregunta)
-                            .addComponent(btnRegistro))
-                        .addGap(104, 104, 104))))
+                        .addComponent(btnRegistro)
+                        .addGap(104, 104, 104))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblPregunta)
+                        .addGap(90, 90, 90))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,13 +189,16 @@ public class InterfazLogin extends javax.swing.JFrame {
         this.setVisible(false);
     }// GEN-LAST:event_btnRegistroActionPerformed
 
+    //metodo estatico para llamar al menu principal
     public static void menuPrincipal() {
         GUIMenuPrincipal menu = new GUIMenuPrincipal();
         menu.setVisible(true);
         menu.setResizable(false);
         menu.setLocationRelativeTo(null);
+        
     }
-
+    
+    //Boton de iniciar sesion
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
         //Se valida la existencia del correo electronico, el cual es la key del hash
         if (GestionUsuarios.getInstance().validarExistencia(this.txtCorreo.getText())) {
@@ -204,9 +210,12 @@ public class InterfazLogin extends javax.swing.JFrame {
                 if (GestionUsuarios.getInstance().getUsuarios().get(this.txtCorreo.getText()).getIdRole() == 0) {
                     JOptionPane.showMessageDialog(null, "No se pudo iniciar sesión, Su usuario aun no ha sido verificado! \nDebe contactarse con un Administrador.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    //Y si lo está se llama al menú
+                    GestionUsuarios.setTokenRoleActual(GestionUsuarios.getInstance().getUsuarios().get(this.txtCorreo.getText()).getIdRole());
                     menuPrincipal();
                     this.dispose();
+                    
+                 
+
                 }
             }
         } else {

@@ -15,10 +15,10 @@ public class GestionRoles {
    
     public GestionRoles() {
         // Orden permisos:
-        // Animales, chequeos, grupos, produccion, propietarios, vacunas
-        Role admin = new Role(1,"Admin", true, true, true, true, true, true);
-        Role veterinario = new Role(2,"Veterinario", true, true, false, false, false, true);
-        Role lechero = new Role(3,"Lechero", false, false, false, true, false, false);
+        // Animales, chequeos, grupos, produccion, propietarios, vacunas, usuarios, reportes
+        Role admin = new Role(1,"Admin", true, true, true, true, true, true, true, true);
+        Role veterinario = new Role(2,"Veterinario", true, true, false, false, false, true, false , false);
+        Role lechero = new Role(3,"Lechero", false, false, false, true, false, false,false , false);
         
         ListaRoles.put(1, admin);
         ListaRoles.put(2, veterinario);

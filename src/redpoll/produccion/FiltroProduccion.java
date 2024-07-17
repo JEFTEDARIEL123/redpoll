@@ -48,6 +48,7 @@ public class FiltroProduccion extends javax.swing.JDialog {
 
         JPanel.setBackground(new java.awt.Color(235, 207, 178));
 
+        checkMañana.setBackground(new java.awt.Color(235, 207, 178));
         checkMañana.setText("Ordeño Mañana");
         checkMañana.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -74,6 +75,7 @@ public class FiltroProduccion extends javax.swing.JDialog {
             }
         });
 
+        checkTarde.setBackground(new java.awt.Color(235, 207, 178));
         checkTarde.setText("Ordeño Tarde");
         checkTarde.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +83,7 @@ public class FiltroProduccion extends javax.swing.JDialog {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +92,7 @@ public class FiltroProduccion extends javax.swing.JDialog {
             }
         });
 
+        checkFecha.setBackground(new java.awt.Color(235, 207, 178));
         checkFecha.setText("Fecha");
         checkFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

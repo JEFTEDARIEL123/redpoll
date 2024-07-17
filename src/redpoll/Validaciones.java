@@ -11,10 +11,12 @@ import javax.swing.JOptionPane;
  * @author jefte
  */
 public class Validaciones {
+    //COn este metodo estatico se van a realizar la myoria de validaciones
     public static boolean validar(String dato,String err, String regex){
         if(dato.matches(regex)){
             return true;
         } else {
+            //Si el dato no es valido se llama a este otro metodo pa mostrar un msg de error
             menuErr(err);
             return false;
         }

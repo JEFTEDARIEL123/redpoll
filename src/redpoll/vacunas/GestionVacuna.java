@@ -16,6 +16,14 @@ public class GestionVacuna {
 
     public GestionVacuna() {
         this.vacunas = new HashMap<>();
+        
+        Vacuna vacuna1 = new Vacuna(this.obtenerUltimoId()+1,"Mejora metabolismo","10/2/2024");
+        Vacuna vacuna2 = new Vacuna(this.obtenerUltimoId()+1,"Contra Parasito","10/2/2024");
+        Vacuna vacuna3 = new Vacuna(this.obtenerUltimoId()+1,"Contra Mastitis","10/2/2024");
+        
+        this.agregarVacuna(vacuna1);
+        this.agregarVacuna(vacuna2);
+        this.agregarVacuna(vacuna3);
     }
     
     public static GestionVacuna getInstance(){

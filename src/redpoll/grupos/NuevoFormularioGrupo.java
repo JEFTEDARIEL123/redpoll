@@ -15,13 +15,15 @@ import redpoll.auth.InterfazLogin;
 public class NuevoFormularioGrupo extends javax.swing.JFrame {
   private VentanaFormularioGrupos VentanaFormularioGrupos;
   private DefaultTableModel modelo = new DefaultTableModel();
-
-  // Metodos
+  
+  // Metodo constructor
   public NuevoFormularioGrupo() {
+    this.setUndecorated(true);
     initComponents();
     String[] nombreColumnas = new String[] { "Id", "Tipo", "Descripción" };
     this.modelo.setColumnIdentifiers(nombreColumnas);
     this.tbGrupo.setModel(modelo);
+    this.actualizarTabla();
   }
 
   private void abrirFormularioGrupo(Grupo grup) {
@@ -33,18 +35,18 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
       Grupo nuevoGrupo = VentanaFormularioGrupos.consultarGrupo();
       if (grup == null) {
         // Revisar
-        if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getTipo())) {
+        if (GestorGrupo.getInstance().validarExistencia(nuevoGrupo.getIdGrupo())) {
           JOptionPane.showMessageDialog(this, "Grupo ya existente", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
           GestorGrupo.getInstance().agregarGrupo(nuevoGrupo);
           this.actualizarTabla();
         }
       } else {
-        GestorGrupo.getInstance().actualizarGrupo(nuevoGrupo);
+        GestorGrupo.getInstance().editarGrupo(nuevoGrupo);
       }
     }
   }
-
+  //valida la seleccion de la fila
   private boolean validarSeleccion() {
     boolean valor = false;
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
@@ -64,14 +66,13 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     }
 
   }
-
+  //
   private void update() {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {
       String tipoGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
       Grupo grupo = GestorGrupo.getInstance().getGrupos().get(tipoGrupo);
       this.abrirFormularioGrupo(grupo);
-      eliminarGrupo();
       // Solucion
     }
 
@@ -81,8 +82,8 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
   private void eliminarGrupo() {
     int filaSeleccionada = this.tbGrupo.getSelectedRow();
     if (this.validarSeleccion()) {
-      String gP = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 1));
-      GestorGrupo.getInstance().eliminarGrupo(gP);
+      String idGrupo = String.valueOf(this.tbGrupo.getValueAt(filaSeleccionada, 0));
+      GestorGrupo.getInstance().eliminarGrupo(Integer.parseInt(idGrupo));
       this.actualizarTabla();
     }
   }
@@ -209,6 +210,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         lblGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/Grupos.png"))); // NOI18N
         lblGrupos.setText("Gestión de Grupos");
 
+        tbGrupo.setBackground(new java.awt.Color(255, 255, 255));
         tbGrupo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -225,6 +227,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(197, 186, 175));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
+        btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/crear.png"))); // NOI18N
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +235,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/editar.png"))); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +243,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/eliminar.png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,6 +251,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
             }
         });
 
+        btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/buscar.png"))); // NOI18N
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,6 +318,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/volver.png"))); // NOI18N
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

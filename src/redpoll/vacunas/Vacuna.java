@@ -15,14 +15,12 @@ public class Vacuna {
     protected int id;
     protected String nombre;
     protected String fecha;
-    protected Map<Integer,Vacuna> infoVacuna;
     
 
     public Vacuna(int id, String nombre,String fecha) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
-        this.infoVacuna=new HashMap<>(); 
     }
 
     public int getId() {
@@ -51,7 +49,7 @@ public class Vacuna {
 
     @Override
     public String toString() {
-        return "Vacuna{" + "id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", infoVacuna=" + infoVacuna + '}';
+        return "Vacuna{" + "id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + '}';
     }
     
 }

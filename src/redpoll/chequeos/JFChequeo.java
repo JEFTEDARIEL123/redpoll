@@ -17,7 +17,8 @@ public class JFChequeo extends javax.swing.JFrame {
   private DefaultTableModel modelo = new DefaultTableModel();
   private GUIFormularioChequeo formulario;
   private Chequeo chequeo;
-
+  
+  //Metodo constructor de la clase
   public JFChequeo() {
     this.setUndecorated(true);
     initComponents();
@@ -26,7 +27,7 @@ public class JFChequeo extends javax.swing.JFrame {
     this.tbChequeos.setModel(modelo);
     mostrarTabla();
   }
-
+  //abre el form para agregar/editar
   private void abrirFormularioChequeo(Chequeo chequeo) {
     this.formulario = new GUIFormularioChequeo(this, true, chequeo);
     formulario.setVisible(true);
@@ -45,6 +46,7 @@ public class JFChequeo extends javax.swing.JFrame {
     }
   }
 
+  //abre el form para el filtro
   private void formFiltro() {
 
     FiltroChequeo guiFiltro = new FiltroChequeo(this, true);
@@ -52,7 +54,8 @@ public class JFChequeo extends javax.swing.JFrame {
 
     if (guiFiltro.confirmacion()) {
       this.modelo.setRowCount(0);
-
+      
+      //Esto va a evaluar cada chequeo y ver si coincide
       for (Chequeo chequeo : GestionChequeo.getInstance().getInfoChequeo().values()) {
         boolean filtro = true;
         if (guiFiltro.getCheckFecha() && !String.valueOf(chequeo.getFecha()).contentEquals(guiFiltro.getDatos(0))) {
@@ -82,7 +85,7 @@ public class JFChequeo extends javax.swing.JFrame {
       this.tbChequeos.repaint();
     }
   }
-
+  //Valida que se haya seleccionado una fila
   private boolean validarSeleccion() {
     boolean valor = false;
     int filaSeleccionada = this.tbChequeos.getSelectedRow();
@@ -93,7 +96,7 @@ public class JFChequeo extends javax.swing.JFrame {
     }
     return valor;
   }
-
+  //Se encarga de editar un chequeo seleccionado en la fila
   private void editarChequeo() {
     int filaSeleccionada = this.tbChequeos.getSelectedRow();
     if (this.validarSeleccion()) {
@@ -103,7 +106,7 @@ public class JFChequeo extends javax.swing.JFrame {
       actualizarTabla();
     }
   }
-
+  //Elimina el chequeo de la fila seleccionada
   private void eliminarChequeo() {
     int filaSeleccionada = this.tbChequeos.getSelectedRow();
     if (this.validarSeleccion()) {
@@ -112,7 +115,7 @@ public class JFChequeo extends javax.swing.JFrame {
       this.actualizarTabla();
     }
   }
-
+  //refresca la tabla
   private void actualizarTabla() {
     this.modelo.setRowCount(0);
     for (Chequeo chequeos : GestionChequeo.getInstance().getInfoChequeo().values()) {
@@ -120,7 +123,7 @@ public class JFChequeo extends javax.swing.JFrame {
           chequeos.getObservaciones(), chequeos.getIdAnimal() });
     }
   }
-
+  //renderiza los datos del modelo
   private void mostrarTabla() {
     this.actualizarTabla();
     this.tbChequeos.setModel(modelo);
@@ -163,6 +166,7 @@ public class JFChequeo extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         jPanel2.setToolTipText("");
 
+        btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/crear.png"))); // NOI18N
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +174,7 @@ public class JFChequeo extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/editar.png"))); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +182,7 @@ public class JFChequeo extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/eliminar.png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +190,7 @@ public class JFChequeo extends javax.swing.JFrame {
             }
         });
 
+        btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/buscar.png"))); // NOI18N
         btnFiltrar.setToolTipText("");
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +256,7 @@ public class JFChequeo extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        tbChequeos.setBackground(new java.awt.Color(255, 255, 255));
         tbChequeos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -270,6 +278,7 @@ public class JFChequeo extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbChequeos);
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/volver.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

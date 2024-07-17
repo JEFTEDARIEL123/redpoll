@@ -101,6 +101,9 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="checkMa&#xf1;ana">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Orde&#xf1;o Ma&#xf1;ana"/>
           </Properties>
           <Events>
@@ -126,6 +129,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkTarde">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Orde&#xf1;o Tarde"/>
           </Properties>
           <Events>
@@ -134,6 +140,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAceptar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
             </Property>
@@ -145,6 +154,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkFecha">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Fecha"/>
           </Properties>
           <Events>

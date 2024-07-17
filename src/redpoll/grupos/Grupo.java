@@ -2,7 +2,7 @@ package redpoll.grupos;
 
 
 
- 
+ //Clase base para grupo
 public class Grupo {
     private int idGrupo;
  private String tipo,descripcion;

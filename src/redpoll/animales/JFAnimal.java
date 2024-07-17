@@ -23,7 +23,7 @@ public class JFAnimal extends javax.swing.JFrame {
     public JFAnimal() {
         this.setUndecorated(true);
         initComponents();
-        String[] nombreColumnas = new String[]{"Id", "Raza", "Fecha Nacimiento","Grupo","Propietario","Produccion"};
+        String[] nombreColumnas = new String[]{"Id", "Raza", "Fecha Nacimiento","Grupo","Propietario"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbAnimales.setModel(modelo);
         tbAnimales.getTableHeader().setReorderingAllowed(false);
@@ -31,14 +31,17 @@ public class JFAnimal extends javax.swing.JFrame {
     }
     
     private void abrirFormularioAnimal(Animal animal) {
+        //Se gestiona toda la logica para agregar un nuevo animal
         this.formulario = new FormularioAnimal(this, true, animal);
         this.formulario.setVisible(true);
         if (formulario.confirmacion()) {
             Animal consultarAnimal = formulario.consultarAnimal();
+            //Si realmente es nulo se agrega
             if (animal == null) {
                 if (GestionAnimal.getInstance().validarExistencia(consultarAnimal.getRaza())) {
                     JOptionPane.showMessageDialog(this, "El animal ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {  
+                    //Si no se edita
                     GestionAnimal.getInstance().agregarAnimal(consultarAnimal);
                     this.actualizarTabla();
                 }
@@ -47,7 +50,7 @@ public class JFAnimal extends javax.swing.JFrame {
             }
         }
     }
-    
+    //Con esto se comprueba la seleccion de la fila de la tabla
     private boolean validarSeleccion(){
         boolean valor = false;
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
@@ -58,6 +61,7 @@ public class JFAnimal extends javax.swing.JFrame {
         }
         return valor;
     }
+    //Editamos un animal en base a la seleccion
     private void editarAnimal() {
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
         if (this.validarSeleccion()) {
@@ -67,7 +71,7 @@ public class JFAnimal extends javax.swing.JFrame {
             actualizarTabla();
         }
     }
-
+    //Y eliminamos igual basado en la seleecion
     private void eliminarAnimal() {
         int filaSeleccionada = this.tbAnimales.getSelectedRow();
         if (this.validarSeleccion()) {
@@ -76,6 +80,7 @@ public class JFAnimal extends javax.swing.JFrame {
             this.actualizarTabla();
         }
     }
+    //Menu encargado de filtrar los animales por tipo de dato
     private void formFiltro() {
 
         FiltroAnimal guiFiltro = new FiltroAnimal(this, true);
@@ -105,8 +110,7 @@ public class JFAnimal extends javax.swing.JFrame {
                         animal.getRaza(),
                         animal.getFechaNacimiento(),
                         animal.getIdGrupo(),
-                        animal.getIdPropietario(),
-                        animal.getIdProduccion()
+                        animal.getIdPropietario()
                     });
                 }
 
@@ -116,13 +120,15 @@ public class JFAnimal extends javax.swing.JFrame {
             this.tbAnimales.repaint();
         }
     }
+    
+    //Se encarga de refrescar la tabla
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
         for (Animal animal : GestionAnimal.getInstance().getAnimales().values()) {
-            this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(),animal.getFechaNacimiento(),animal.getIdGrupo(),animal.getIdPropietario(),animal.getIdProduccion()});
+            this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(),animal.getFechaNacimiento(),animal.getIdGrupo(),animal.getIdPropietario()});
         }
     }
-    
+    //Despliega la tabla en si
     private void mostrarTabla() {
         this.actualizarTabla();
         this.tbAnimales.setModel(modelo);
@@ -153,6 +159,7 @@ public class JFAnimal extends javax.swing.JFrame {
         setTitle("Gestion de Animales");
 
         jPanel1.setBackground(new java.awt.Color(235, 207, 178));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/raza.png"))); // NOI18N
@@ -161,6 +168,7 @@ public class JFAnimal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(197, 186, 175));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
+        btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/crear.png"))); // NOI18N
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +176,7 @@ public class JFAnimal extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/editar.png"))); // NOI18N
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +184,7 @@ public class JFAnimal extends javax.swing.JFrame {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/eliminar.png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +192,7 @@ public class JFAnimal extends javax.swing.JFrame {
             }
         });
 
+        btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/buscar.png"))); // NOI18N
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,6 +251,7 @@ public class JFAnimal extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        tbAnimales.setBackground(new java.awt.Color(255, 255, 255));
         tbAnimales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -253,6 +265,8 @@ public class JFAnimal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbAnimales);
 
+        btnVolver.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/volver.png"))); // NOI18N
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,11 +304,10 @@ public class JFAnimal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(5, 5, 5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblVolver)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -333,7 +346,9 @@ public class JFAnimal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
     
-
+    // ?????????? que pereza por Dios
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;

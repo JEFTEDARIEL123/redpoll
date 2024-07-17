@@ -74,6 +74,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(197, 186, 175));
 
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +99,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
             }
         });
 
+        btnAgregar1.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAgregar1.setText("Agregar");
         btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,8 +118,10 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregar1)
-                .addGap(106, 106, 106))
+                .addGap(100, 100, 100))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -129,8 +133,7 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
                             .addComponent(lblOrdeñoMañana)
                             .addComponent(txtOrdeñoMañana, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblOrdeñoTarde)
-                            .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar))))
+                            .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

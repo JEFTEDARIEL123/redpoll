@@ -53,6 +53,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
 
         JPanel.setBackground(new java.awt.Color(235, 207, 178));
 
+        checkNombre.setBackground(new java.awt.Color(235, 207, 178));
         checkNombre.setText("Nombre");
         checkNombre.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -79,6 +80,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
             }
         });
 
+        checkCedula.setBackground(new java.awt.Color(235, 207, 178));
         checkCedula.setText("Cedula");
         checkCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +88,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +97,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
             }
         });
 
+        checkDireccion.setBackground(new java.awt.Color(235, 207, 178));
         checkDireccion.setText("Direccion");
         checkDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +112,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
             }
         });
 
+        checkTelefono.setBackground(new java.awt.Color(235, 207, 178));
         checkTelefono.setText("Telefono");
         checkTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +127,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
             }
         });
 
+        checkCorreo.setBackground(new java.awt.Color(235, 207, 178));
         checkCorreo.setText("Correo");
         checkCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +228,7 @@ public class FiltroPropietarios extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+        //guarda los datos ingresados en el filtro
         datos[0] = (this.txtNombre.isEnabled()) ? this.txtNombre.getText() : "";
         datos[1] = (this.txtCedula.isEnabled()) ? this.txtCedula.getText() : "";
         datos[2] = (this.txtTelefono.isEnabled()) ? this.txtTelefono.getText() : "";

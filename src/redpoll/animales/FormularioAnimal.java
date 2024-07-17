@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class FormularioAnimal extends javax.swing.JDialog {
     private boolean confirmar;
-    private int idAnimal,idGrupo,idPropietario,idProduccion;
+    private int idAnimal,idGrupo,idPropietario;
     private boolean edicion;
 
     /**
@@ -34,13 +34,13 @@ public class FormularioAnimal extends javax.swing.JDialog {
     
     
     private void inicializarFormulario(Animal animal) {
+        //Si no se encuentra dicho animal se da por hecho que hay que hacer uno nuevo
         if (animal!=null){
             this.idAnimal = animal.getId();
             this.txtFechaN.setText(animal.getFechaNacimiento());
             this.txtRaza.setText(animal.getRaza());
             this.idGrupo=animal.getIdGrupo();
             this.idPropietario=animal.getIdPropietario();
-            this.idProduccion=animal.getIdProduccion();
            
             this.edicion=true;
         } else {
@@ -48,9 +48,10 @@ public class FormularioAnimal extends javax.swing.JDialog {
         }
     }
     private String fechaSistema(){
+        //sacamos la fecha del sistema 
         Date fecha=new Date();
         SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/YYYY");
-        return formatoFecha.format(fecha);
+        return formatoFecha.format(fecha); // Un pidgey salvaje ha aparecido!!!
     }
 
     /**
@@ -68,12 +69,10 @@ public class FormularioAnimal extends javax.swing.JDialog {
         lblFechaN = new javax.swing.JLabel();
         lblGrupo = new javax.swing.JLabel();
         lblPropietario = new javax.swing.JLabel();
-        lblProduccion = new javax.swing.JLabel();
         txtRaza = new javax.swing.JTextField();
         txtFechaN = new javax.swing.JTextField();
         txtGrupo = new javax.swing.JTextField();
         txtPropietario = new javax.swing.JTextField();
-        txtProduccion = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
 
@@ -101,16 +100,13 @@ public class FormularioAnimal extends javax.swing.JDialog {
         lblPropietario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/nombreV.png"))); // NOI18N
         lblPropietario.setText("Propietario");
 
-        lblProduccion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        lblProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/produccion.png"))); // NOI18N
-        lblProduccion.setText("Producción");
-
         txtRaza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRazaActionPerformed(evt);
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +115,7 @@ public class FormularioAnimal extends javax.swing.JDialog {
             }
         });
 
+        btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,15 +140,13 @@ public class FormularioAnimal extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblTitulo)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblProduccion)
                                 .addComponent(lblPropietario)
                                 .addComponent(lblGrupo)
                                 .addComponent(lblFechaN)
                                 .addComponent(lblRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtRaza, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtProduccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                    .addComponent(txtGrupo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                                     .addComponent(txtFechaN, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPropietario, javax.swing.GroupLayout.Alignment.LEADING))))))
                 .addContainerGap(114, Short.MAX_VALUE))
@@ -177,11 +172,7 @@ public class FormularioAnimal extends javax.swing.JDialog {
                 .addComponent(lblPropietario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblProduccion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnGuardar))
@@ -226,8 +217,7 @@ public class FormularioAnimal extends javax.swing.JDialog {
                 this.txtRaza.getText(),
                 this.txtFechaN.getText(),
                 this.edicion ? this.idGrupo : 0,
-                this.edicion ? this.idPropietario : 0,
-                this.edicion ? this.idProduccion : 0
+                this.edicion ? this.idPropietario : 0
         );
     }
 
@@ -237,13 +227,11 @@ public class FormularioAnimal extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFechaN;
     private javax.swing.JLabel lblGrupo;
-    private javax.swing.JLabel lblProduccion;
     private javax.swing.JLabel lblPropietario;
     private javax.swing.JLabel lblRaza;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFechaN;
     private javax.swing.JTextField txtGrupo;
-    private javax.swing.JTextField txtProduccion;
     private javax.swing.JTextField txtPropietario;
     private javax.swing.JTextField txtRaza;
     // End of variables declaration//GEN-END:variables

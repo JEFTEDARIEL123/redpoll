@@ -108,6 +108,9 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="checkRaza">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Raza"/>
           </Properties>
           <Events>
@@ -133,6 +136,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkFechaNacimiento">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Fecha Nacimiento"/>
           </Properties>
           <Events>
@@ -141,6 +147,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAceptar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
             </Property>
@@ -152,6 +161,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkGrupo">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Grupo"/>
           </Properties>
           <Events>
@@ -176,6 +188,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkPropietario">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Propietario"/>
           </Properties>
           <Events>
