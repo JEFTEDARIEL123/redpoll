@@ -13,7 +13,7 @@ Este sistema es una aplicación desarrollada en Java con GUI que permite llevar 
 - [Java](https://adoptium.net/) (version 21.0.3 o una más reciente)
 - [IDE para Java](https://netbeans.apache.org/front/main/download/) (De preferencia NetBeans)
 - [Git](https://git-scm.com/)
-- [OpenPdf 2.0.2]
+- OpenPdf 2.0.2
 ## Uso del Repositorio 🛠️
 
 1. **Clonar el repositorio:**
