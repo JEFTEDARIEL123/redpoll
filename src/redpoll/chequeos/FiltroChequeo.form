@@ -31,7 +31,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="368" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="487" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Component id="JPanel" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -51,26 +51,29 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                          <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                          <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtNombreVeterinario" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
                               <Component id="checkNombreVeterinario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               <Component id="txtFecha" min="-2" pref="229" max="-2" attributes="0"/>
                               <Component id="checkAnimal" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               <Component id="txtAnimal" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="checkFecha" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="checkVacuna" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="txtVacuna" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
+                              <Component id="checkFecha" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                          <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,21 +82,25 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="checkFecha" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtFecha" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="checkNombreVeterinario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtNombreVeterinario" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="checkAnimal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtAnimal" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <Component id="checkVacuna" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="txtVacuna" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,6 +108,9 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="checkFecha">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Fecha"/>
           </Properties>
           <Events>
@@ -126,6 +136,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkNombreVeterinario">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Nombre Veterinario"/>
           </Properties>
           <Events>
@@ -134,6 +147,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAceptar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
             </Property>
@@ -145,6 +161,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkAnimal">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Animal"/>
           </Properties>
           <Events>
@@ -169,6 +188,25 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Filtrado"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkVacuna">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="cf" red="eb" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Vacuna"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkVacunaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtVacuna">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVacunaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

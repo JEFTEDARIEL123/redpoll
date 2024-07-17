@@ -39,6 +39,7 @@ public class GuiProduccion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,6 +65,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/produccion.png"))); // NOI18N
         jLabel1.setText("Gestion de Producciones");
 
+        tbProducciones.setBackground(new java.awt.Color(255, 255, 255));
         tbProducciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -74,6 +76,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbProducciones);
 
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/volver.png"))); // NOI18N
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +87,7 @@ public class GuiProduccion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(197, 186, 175));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
+        btnAgregarProduccion.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/crear.png"))); // NOI18N
         btnAgregarProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +95,7 @@ public class GuiProduccion extends javax.swing.JFrame {
             }
         });
 
+        btnEditarProduccion.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/editar.png"))); // NOI18N
         btnEditarProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +103,7 @@ public class GuiProduccion extends javax.swing.JFrame {
             }
         });
 
+        btnEliminarProduccion.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminarProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/eliminar.png"))); // NOI18N
         btnEliminarProduccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +111,7 @@ public class GuiProduccion extends javax.swing.JFrame {
             }
         });
 
+        btnFiltrar.setBackground(new java.awt.Color(255, 255, 255));
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/buscar.png"))); // NOI18N
         btnFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -357,6 +364,7 @@ public class GuiProduccion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCrear;

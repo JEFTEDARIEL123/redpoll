@@ -18,6 +18,8 @@ public class MenuReportes extends javax.swing.JFrame {
      * Creates new form MenuReportes
      */
     public MenuReportes() {
+        
+        this.setUndecorated(true);
         initComponents();
     }
 
@@ -123,6 +125,7 @@ public class MenuReportes extends javax.swing.JFrame {
 
     private void btnSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaludActionPerformed
         ReporteSalud salud = new ReporteSalud();
+        salud.setLocationRelativeTo(null);
         salud.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSaludActionPerformed

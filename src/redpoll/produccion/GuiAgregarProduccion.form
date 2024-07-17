@@ -45,8 +45,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnAgregar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -61,7 +63,6 @@
                               <Component id="txtOrdeñoMañana" min="-2" pref="233" max="-2" attributes="0"/>
                               <Component id="lblOrdeñoTarde" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtOrdeñoTarde" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -102,6 +103,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/redpoll/Imgs/btnCancelar.png"/>
             </Property>
@@ -133,6 +137,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregar1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/redpoll/Imgs/btnRegistrarse.png"/>
             </Property>

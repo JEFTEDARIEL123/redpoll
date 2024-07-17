@@ -13,7 +13,7 @@ import javax.swing.JCheckBox;
  * @author jefte
  */
 public class FiltroChequeo extends javax.swing.JDialog {
-    private String[] datos = {"", "", ""  };
+    private String[] datos = {"", "", ""};
     private boolean confirmar;
     /**
      * Creates new form NewJDialog
@@ -45,11 +45,14 @@ public class FiltroChequeo extends javax.swing.JDialog {
         checkAnimal = new javax.swing.JCheckBox();
         txtAnimal = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
+        checkVacuna = new javax.swing.JCheckBox();
+        txtVacuna = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JPanel.setBackground(new java.awt.Color(235, 207, 178));
 
+        checkFecha.setBackground(new java.awt.Color(235, 207, 178));
         checkFecha.setText("Fecha");
         checkFecha.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -76,6 +79,7 @@ public class FiltroChequeo extends javax.swing.JDialog {
             }
         });
 
+        checkNombreVeterinario.setBackground(new java.awt.Color(235, 207, 178));
         checkNombreVeterinario.setText("Nombre Veterinario");
         checkNombreVeterinario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +87,7 @@ public class FiltroChequeo extends javax.swing.JDialog {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +96,7 @@ public class FiltroChequeo extends javax.swing.JDialog {
             }
         });
 
+        checkAnimal.setBackground(new java.awt.Color(235, 207, 178));
         checkAnimal.setText("Animal");
         checkAnimal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +115,21 @@ public class FiltroChequeo extends javax.swing.JDialog {
         lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/filtrado.png"))); // NOI18N
         lblTitulo.setText("Filtrado");
 
+        checkVacuna.setBackground(new java.awt.Color(235, 207, 178));
+        checkVacuna.setText("Vacuna");
+        checkVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkVacunaActionPerformed(evt);
+            }
+        });
+
+        txtVacuna.setEnabled(false);
+        txtVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVacunaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout JPanelLayout = new javax.swing.GroupLayout(JPanel);
         JPanel.setLayout(JPanelLayout);
         JPanelLayout.setHorizontalGroup(
@@ -116,41 +137,48 @@ public class FiltroChequeo extends javax.swing.JDialog {
             .addGroup(JPanelLayout.createSequentialGroup()
                 .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(103, 103, 103)
+                        .addComponent(lblTitulo))
+                    .addGroup(JPanelLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btnAceptar))
+                    .addGroup(JPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(checkNombreVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(checkAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblTitulo)
-                                .addComponent(checkFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(JPanelLayout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(btnAceptar)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                            .addComponent(checkVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         JPanelLayout.setVerticalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitulo)
-                .addGap(32, 32, 32)
+                .addGap(27, 27, 27)
                 .addComponent(checkFecha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(checkNombreVeterinario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNombreVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(29, 29, 29)
                 .addComponent(checkAnimal)
                 .addGap(18, 18, 18)
                 .addComponent(txtAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(checkVacuna)
+                .addGap(18, 18, 18)
+                .addComponent(txtVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(btnAceptar)
-                .addGap(43, 43, 43))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,7 +191,7 @@ public class FiltroChequeo extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(JPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -230,6 +258,14 @@ public class FiltroChequeo extends javax.swing.JDialog {
     private void checkFechaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_checkFechaStateChanged
     }//GEN-LAST:event_checkFechaStateChanged
 
+    private void checkVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkVacunaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkVacunaActionPerformed
+
+    private void txtVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVacunaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVacunaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanel;
@@ -237,9 +273,11 @@ public class FiltroChequeo extends javax.swing.JDialog {
     private javax.swing.JCheckBox checkAnimal;
     private javax.swing.JCheckBox checkFecha;
     private javax.swing.JCheckBox checkNombreVeterinario;
+    private javax.swing.JCheckBox checkVacuna;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtAnimal;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombreVeterinario;
+    private javax.swing.JTextField txtVacuna;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,10 +10,17 @@ import java.util.Map;
 public class GestionPropietario {
     private static GestionPropietario instanciaGestionPropietario;
     private Map<String, Propietario> propietarios;
-
+    
+    
+    
     public GestionPropietario() {
         this.propietarios = new HashMap<>();
-        
+        Propietario prop1 = new Propietario(1, "Juan", 208830311, 85418900, "Por el barrio la juana", "juan@email.com");
+        Propietario prop2 = new Propietario(2, "Paco", 205230365, 85003111, "200mts este del palo de mango, barrio tomas", "paco@email.com");
+        Propietario prop3 = new Propietario(3, "Maria", 207540433, 55769649, "100mts sur de la plaza queko", "maria@email.com");
+        this.propietarios.put(String.valueOf(prop1.getID()), prop1);
+        this.propietarios.put(String.valueOf(prop2.getID()), prop2);
+        this.propietarios.put(String.valueOf(prop3.getID()), prop3);
     }
     
     public static GestionPropietario getInstance(){

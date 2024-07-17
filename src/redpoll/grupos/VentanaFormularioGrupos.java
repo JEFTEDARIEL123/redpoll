@@ -79,16 +79,19 @@ private boolean confirmar;
         lblDescripcionGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/descripcion.png"))); // NOI18N
         lblDescripcionGrupo.setText("Descripcion");
 
+        txtGrupo.setBackground(new java.awt.Color(255, 255, 255));
         txtGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGrupoActionPerformed(evt);
             }
         });
 
+        txaDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txaDescripcion.setColumns(20);
         txaDescripcion.setRows(5);
         jScrollPane1.setViewportView(txaDescripcion);
 
+        btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
         btnGuardar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -98,6 +101,7 @@ private boolean confirmar;
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");

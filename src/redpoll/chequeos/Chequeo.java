@@ -4,9 +4,6 @@
  */
 package redpoll.chequeos;
 
-import java.util.Date;
-
-
 /**
  *
  * @author PC-Familiar
@@ -16,7 +13,9 @@ public class Chequeo {
     private String fecha;
     private String nombreVeterinario;
     private String observaciones;
-    private int idAnimal;
+    private int idAnimal, idVacuna;
+
+    
     
 
     public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones,int idAnimal) {
@@ -27,6 +26,13 @@ public class Chequeo {
         this.idAnimal=idAnimal;
     }
     
+    public void setIdVacuna(int idVacuna) {
+        this.idVacuna = idVacuna;
+    }
+
+    public int getIdVacuna() {
+        return idVacuna;
+    }
     public int getId() {
         return id;
     }

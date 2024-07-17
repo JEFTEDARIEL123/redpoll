@@ -29,7 +29,7 @@ public class ReporteSalud extends javax.swing.JFrame {
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbReporteSalud.setModel(modelo);
         this.cargarTabla();
-
+       
     }
 
     /**
@@ -180,7 +180,7 @@ public class ReporteSalud extends javax.swing.JFrame {
         this.modelo.setRowCount(0);
         //System.out.println(GestionProduccion.getInstance().getProducciones().values());
         for (Chequeo chequeo: GestionChequeo.getInstance().getInfoChequeo().values()) {
-            this.modelo.addRow(new Object[]{chequeo.getObservaciones(), "Falta obtener vacuna del menu", chequeo.getNombreVeterinario(), chequeo.getFecha()});
+            this.modelo.addRow(new Object[]{chequeo.getObservaciones(), chequeo.getIdVacuna(), chequeo.getNombreVeterinario(), chequeo.getFecha()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

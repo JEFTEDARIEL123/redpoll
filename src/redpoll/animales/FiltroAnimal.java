@@ -51,6 +51,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
 
         JPanel.setBackground(new java.awt.Color(235, 207, 178));
 
+        checkRaza.setBackground(new java.awt.Color(235, 207, 178));
         checkRaza.setText("Raza");
         checkRaza.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -77,6 +78,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
             }
         });
 
+        checkFechaNacimiento.setBackground(new java.awt.Color(235, 207, 178));
         checkFechaNacimiento.setText("Fecha Nacimiento");
         checkFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +86,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +95,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
             }
         });
 
+        checkGrupo.setBackground(new java.awt.Color(235, 207, 178));
         checkGrupo.setText("Grupo");
         checkGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +117,7 @@ public class FiltroAnimal extends javax.swing.JDialog {
             }
         });
 
+        checkPropietario.setBackground(new java.awt.Color(235, 207, 178));
         checkPropietario.setText("Propietario");
         checkPropietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

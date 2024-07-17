@@ -5,6 +5,8 @@ import redpoll.chequeos.JFChequeo;
 import redpoll.grupos.NuevoFormularioGrupo;
 import redpoll.produccion.GuiProduccion;
 import redpoll.propietarios.GuiPropietario;
+import redpoll.reportes.MenuReportes;
+import redpoll.roles.GestionRoles;
 import redpoll.vacunas.JFVacuna;
 
 /*
@@ -24,6 +26,41 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     public GUIMenuPrincipal() {
         this.setUndecorated(true);
         initComponents();
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getAnimales()){
+            this.btnAnimales.setVisible(false);
+            this.lblAnimales.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getChequeos()){
+            this.btnChequeos.setVisible(false);
+            this.lblChequeos.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getGrupos()){
+            this.btnGrupos.setVisible(false);
+            this.lblGrupos.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getProduccion()){
+            this.btnProduccion.setVisible(false);
+            this.lblProduccion.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getPropietarios()){
+            this.btnPropietarios.setVisible(false);
+            this.lblPropietarios.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getVacunas()){
+            this.btnVacunas.setVisible(false);
+            this.lblVacunas.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getUsuarios()){
+            this.btnUsuarios.setVisible(false);
+            this.lblUsuarios.setVisible(false);
+        }
+        if(!GestionRoles.getInstance().mostrarRole(GestionUsuarios.getTokenRoleActual()).getReportes()){
+            this.btnReportes.setVisible(false);
+            this.lblReportes.setVisible(false);
+        }
+        
+        
+        
     }
 
     /**
@@ -46,14 +83,14 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         btnReportes = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
         btnPropietarios = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblAnimales = new javax.swing.JLabel();
+        lblProduccion = new javax.swing.JLabel();
+        lblVacunas = new javax.swing.JLabel();
+        lblChequeos = new javax.swing.JLabel();
+        lblGrupos = new javax.swing.JLabel();
+        lblReportes = new javax.swing.JLabel();
+        lblUsuarios = new javax.swing.JLabel();
+        lblPropietarios = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         lblTitulo2 = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
@@ -68,6 +105,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(197, 186, 175));
 
+        btnAnimales.setBackground(new java.awt.Color(255, 255, 255));
         btnAnimales.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnAnimales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/animalesMenuP.png"))); // NOI18N
         btnAnimales.setBorderPainted(false);
@@ -77,6 +115,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnVacunas.setBackground(new java.awt.Color(255, 255, 255));
         btnVacunas.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnVacunas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/vacunasMenuP.png"))); // NOI18N
         btnVacunas.setBorderPainted(false);
@@ -86,6 +125,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnChequeos.setBackground(new java.awt.Color(255, 255, 255));
         btnChequeos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnChequeos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/chequeoMenuP.png"))); // NOI18N
         btnChequeos.setBorderPainted(false);
@@ -95,6 +135,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnGrupos.setBackground(new java.awt.Color(255, 255, 255));
         btnGrupos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/gruposMenuP.png"))); // NOI18N
         btnGrupos.setBorderPainted(false);
@@ -104,6 +145,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnProduccion.setBackground(new java.awt.Color(255, 255, 255));
         btnProduccion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnProduccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/produccionMenuP.png"))); // NOI18N
         btnProduccion.setBorderPainted(false);
@@ -113,6 +155,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnReportes.setBackground(new java.awt.Color(255, 255, 255));
         btnReportes.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/reporteMenuP.png"))); // NOI18N
         btnReportes.setBorderPainted(false);
@@ -122,6 +165,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/usuarioMenuP.png"))); // NOI18N
         btnUsuarios.setBorderPainted(false);
@@ -131,6 +175,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnPropietarios.setBackground(new java.awt.Color(255, 255, 255));
         btnPropietarios.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         btnPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/propietarioMenuP.png"))); // NOI18N
         btnPropietarios.setBorderPainted(false);
@@ -140,21 +185,21 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Animales");
+        lblAnimales.setText("Animales");
 
-        jLabel2.setText("Producciones");
+        lblProduccion.setText("Producciones");
 
-        jLabel3.setText("Vacunas");
+        lblVacunas.setText("Vacunas");
 
-        jLabel4.setText("Chequeos");
+        lblChequeos.setText("Chequeos");
 
-        jLabel5.setText("Grupos");
+        lblGrupos.setText("Grupos");
 
-        jLabel6.setText("Reportes");
+        lblReportes.setText("Reportes");
 
-        jLabel7.setText("Usuarios");
+        lblUsuarios.setText("Usuarios");
 
-        jLabel8.setText("Propietarios");
+        lblPropietarios.setText("Propietarios");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,23 +211,23 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                                .addComponent(jLabel2))
+                                .addComponent(lblAnimales)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                                .addComponent(lblProduccion))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnVacunas)
                                     .addComponent(btnChequeos)
                                     .addComponent(btnGrupos)
-                                    .addComponent(jLabel4)
+                                    .addComponent(lblChequeos)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel3))))
+                                            .addComponent(lblGrupos)
+                                            .addComponent(lblVacunas))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
+                                    .addComponent(lblPropietarios)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnReportes)
@@ -190,8 +235,8 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel7))))
+                                                    .addComponent(lblReportes)
+                                                    .addComponent(lblUsuarios))))
                                         .addComponent(btnPropietarios, javax.swing.GroupLayout.Alignment.TRAILING)))))
                         .addGap(32, 32, 32))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -209,35 +254,36 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(btnProduccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(lblProduccion)
+                    .addComponent(lblAnimales))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReportes)
                     .addComponent(btnVacunas, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6))
+                    .addComponent(lblVacunas, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblReportes))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnChequeos, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel4))
+                    .addComponent(lblUsuarios)
+                    .addComponent(lblChequeos))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGrupos)
                     .addComponent(btnPropietarios))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8))
+                    .addComponent(lblGrupos)
+                    .addComponent(lblPropietarios))
                 .addGap(16, 16, 16))
         );
 
+        btnCerrar.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnCancelar.png"))); // NOI18N
         btnCerrar.setBorderPainted(false);
@@ -248,6 +294,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
         });
 
         lblTitulo2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        lblTitulo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/logo.png"))); // NOI18N
         lblTitulo2.setText("Redpoll");
 
         lblCerrar.setText("Cerrar Sesión");
@@ -260,37 +307,37 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(lblTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lblCerrar))
-                            .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addGap(39, 39, 39))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(39, 39, 39))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(lblTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCerrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCerrar)
-                .addGap(10, 10, 10))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTitulo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCerrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCerrar)
+                        .addGap(15, 15, 15))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,9 +375,11 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
                 menuVac.setLocationRelativeTo(this);
                 break;
             case 4:
-                //GuiReportes menuRep = new GuiReportes();
-                //menuRep.setVisible(true);
-                //break;
+                MenuReportes menuRep = new MenuReportes();
+                menuRep.setVisible(true);
+                menuRep.setResizable(false);
+                menuRep.setLocationRelativeTo(null);
+                break;
             case 5:
                 JFChequeo menuChequeo = new JFChequeo();
                 menuChequeo.setVisible(true);
@@ -388,7 +437,7 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVacunasActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        //this.menuHandler(4);
+        this.menuHandler(4);
     }//GEN-LAST:event_btnReportesActionPerformed
 
     private void btnChequeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequeosActionPerformed
@@ -396,13 +445,19 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChequeosActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        //this.menuHandler(6);
+        this.menuHandler(6);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed
         this.menuHandler(7);
     }//GEN-LAST:event_btnGruposActionPerformed
-
+    
+    public static void menuReportes(){
+        MenuReportes menuRep = new MenuReportes();
+                menuRep.setVisible(true);
+                menuRep.setResizable(false);
+                menuRep.setLocationRelativeTo(null);
+    }
     /**
      * @param args the command line arguments
      */
@@ -418,18 +473,18 @@ public class GUIMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVacunas;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblAnimales;
     private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblChequeos;
+    private javax.swing.JLabel lblGrupos;
+    private javax.swing.JLabel lblProduccion;
+    private javax.swing.JLabel lblPropietarios;
+    private javax.swing.JLabel lblReportes;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo2;
+    private javax.swing.JLabel lblUsuarios;
+    private javax.swing.JLabel lblVacunas;
     // End of variables declaration//GEN-END:variables
 }

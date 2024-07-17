@@ -15,14 +15,14 @@ public class Role {
     //Nombre, ej Veterinario
     private String NombreRole;
     //Lista de Permisos
-    private Boolean animales, chequeos, grupos, produccion, propietarios, vacunas;
+    private Boolean animales, chequeos, grupos, produccion, propietarios, vacunas, usuarios, reportes;
 
     @Override
     public String toString() {
         return "Permisos{" + "Vacunas=" + vacunas + '}';
     }
 
-    public Role(int idRole, String NombreRole,Boolean animales, Boolean chequeos, Boolean grupos, Boolean produccion, Boolean propietarios, Boolean vacunas) {
+    public Role(int idRole, String NombreRole,Boolean animales, Boolean chequeos, Boolean grupos, Boolean produccion, Boolean propietarios, Boolean vacunas, Boolean usuarios, Boolean reportes) {
         this.idRole = idRole;
         this.NombreRole = NombreRole;
         this.animales = animales;
@@ -31,7 +31,53 @@ public class Role {
         this.produccion = produccion;
         this.propietarios = propietarios;
         this.vacunas = vacunas;
+        this.usuarios = usuarios;
+        this.reportes = reportes;
         
+    }
+
+    public Boolean getUsuarios() {
+        return usuarios;
+    }
+
+    public void setNombreRole(String NombreRole) {
+        this.NombreRole = NombreRole;
+    }
+
+    public void setAnimales(Boolean animales) {
+        this.animales = animales;
+    }
+
+    public void setChequeos(Boolean chequeos) {
+        this.chequeos = chequeos;
+    }
+
+    public void setGrupos(Boolean grupos) {
+        this.grupos = grupos;
+    }
+
+    public void setProduccion(Boolean produccion) {
+        this.produccion = produccion;
+    }
+
+    public void setPropietarios(Boolean propietarios) {
+        this.propietarios = propietarios;
+    }
+
+    public void setVacunas(Boolean vacunas) {
+        this.vacunas = vacunas;
+    }
+
+    public void setUsuarios(Boolean usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public void setReportes(Boolean reportes) {
+        this.reportes = reportes;
+    }
+
+    public Boolean getReportes() {
+        return reportes;
     }
 
 

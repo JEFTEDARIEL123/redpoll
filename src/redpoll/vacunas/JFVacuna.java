@@ -19,12 +19,14 @@ public class JFVacuna extends javax.swing.JFrame {
     private Vacuna vacuna;
 
     public JFVacuna() {
+        this.setUndecorated(true);
         initComponents();
         String[] nombreColumnas = new String[]{"Id", "Nombre", "Fecha", "Id-Animal"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbVacunas.setModel(modelo);
         mostrarTabla();
         tbVacunas.getTableHeader().setReorderingAllowed(false);
+        
     }
 
     private void abrirFormularioVacuna(Vacuna vacuna) {
@@ -205,9 +207,8 @@ public class JFVacuna extends javax.swing.JFrame {
                         .addComponent(btnAgregar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblBuscar)
-                        .addComponent(lblEliminar))
+                    .addComponent(lblBuscar)
+                    .addComponent(lblEliminar)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCrear)
                         .addComponent(lblEditar)))
@@ -279,7 +280,7 @@ public class JFVacuna extends javax.swing.JFrame {
                         .addComponent(lblTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -291,9 +292,7 @@ public class JFVacuna extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

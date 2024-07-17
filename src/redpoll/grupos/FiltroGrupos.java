@@ -48,6 +48,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
 
         JPanel.setBackground(new java.awt.Color(235, 207, 178));
 
+        checkTipo.setBackground(new java.awt.Color(235, 207, 178));
         checkTipo.setText("Tipo");
         checkTipo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -74,6 +75,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
             }
         });
 
+        checkDescripcion.setBackground(new java.awt.Color(235, 207, 178));
         checkDescripcion.setText("Descripcion");
         checkDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +83,7 @@ public class FiltroGrupos extends javax.swing.JDialog {
             }
         });
 
+        btnAceptar.setBackground(new java.awt.Color(255, 255, 255));
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/btnRegistrarse.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
