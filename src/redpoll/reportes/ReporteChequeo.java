@@ -16,13 +16,13 @@ import redpoll.vacunas.GestionVacuna;
  * @author jefte
  */
 //Reportes
-public class ReporteSalud extends javax.swing.JFrame {
+public class ReporteChequeo extends javax.swing.JFrame {
 
     private final DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form GestionProduccion
      */
-    public ReporteSalud() {
+    public ReporteChequeo() {
         this.setUndecorated(true);
         initComponents();
         String[] nombreColumnas = new String[]{"Chequeo","Vacuna", "Veterinario", "Fecha"};
@@ -135,7 +135,8 @@ public class ReporteSalud extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        PdfHandler.pdf(1);
+        PdfChequeos reporte = new PdfChequeos();
+        reporte.pdf();
     }//GEN-LAST:event_btnGenerarActionPerformed
 
 
@@ -180,7 +181,7 @@ public class ReporteSalud extends javax.swing.JFrame {
         this.modelo.setRowCount(0);
         //System.out.println(GestionProduccion.getInstance().getProducciones().values());
         for (Chequeo chequeo: GestionChequeo.getInstance().getInfoChequeo().values()) {
-            this.modelo.addRow(new Object[]{chequeo.getObservaciones(), chequeo.getIdVacuna(), chequeo.getNombreVeterinario(), chequeo.getFecha()});
+            this.modelo.addRow(new Object[]{chequeo.getObservaciones(), GestionVacuna.getInstance().getVacunas().get((String.valueOf(chequeo.getIdVacuna()))).getNombre(), chequeo.getNombreVeterinario(), chequeo.getFecha()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

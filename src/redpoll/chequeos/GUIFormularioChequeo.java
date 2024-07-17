@@ -229,7 +229,8 @@ public class GUIFormularioChequeo extends javax.swing.JDialog {
                 this.txtFecha.getText(),
                 this.txtNombreV.getText(),
                 this.taObservaciones.getText(),
-                this.editar ? this.idAnimal:1    
+                Integer.parseInt(this.txtIdVacuna.getText()),
+                this.editar ? this.idAnimal:1  
         );
     }
     

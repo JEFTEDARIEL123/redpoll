@@ -56,15 +56,13 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblProduccion" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPropietario" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblGrupo" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblFechaN" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblRaza" min="-2" pref="81" max="-2" attributes="0"/>
                                   <Component id="txtRaza" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtProduccion" alignment="0" pref="162" max="32767" attributes="0"/>
-                                      <Component id="txtGrupo" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtGrupo" alignment="0" pref="162" max="32767" attributes="0"/>
                                       <Component id="txtFechaN" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txtPropietario" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -97,11 +95,7 @@
                   <Component id="lblPropietario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtPropietario" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblProduccion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtProduccion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -167,17 +161,6 @@
             <Property name="text" type="java.lang.String" value="Propietario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblProduccion">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Rounded MT Bold" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/redpoll/Imgs/produccion.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Producci&#xf3;n"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtRaza">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRazaActionPerformed"/>
@@ -188,8 +171,6 @@
         <Component class="javax.swing.JTextField" name="txtGrupo">
         </Component>
         <Component class="javax.swing.JTextField" name="txtPropietario">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtProduccion">
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>

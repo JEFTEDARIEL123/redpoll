@@ -18,12 +18,13 @@ public class Chequeo {
     
     
 
-    public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones,int idAnimal) {
+    public Chequeo(int id,String fecha,String nombreVeterinario,String observaciones,int idAnimal,int idVacuna) {
         this.id = id;
         this.fecha=fecha;
         this.nombreVeterinario = nombreVeterinario;
         this.observaciones = observaciones;
         this.idAnimal=idAnimal;
+        this.idVacuna = idVacuna;
     }
     
     public void setIdVacuna(int idVacuna) {

@@ -23,7 +23,7 @@ public class JFAnimal extends javax.swing.JFrame {
     public JFAnimal() {
         this.setUndecorated(true);
         initComponents();
-        String[] nombreColumnas = new String[]{"Id", "Raza", "Fecha Nacimiento","Grupo","Propietario","Produccion"};
+        String[] nombreColumnas = new String[]{"Id", "Raza", "Fecha Nacimiento","Grupo","Propietario"};
         this.modelo.setColumnIdentifiers(nombreColumnas);
         this.tbAnimales.setModel(modelo);
         tbAnimales.getTableHeader().setReorderingAllowed(false);
@@ -105,8 +105,7 @@ public class JFAnimal extends javax.swing.JFrame {
                         animal.getRaza(),
                         animal.getFechaNacimiento(),
                         animal.getIdGrupo(),
-                        animal.getIdPropietario(),
-                        animal.getIdProduccion()
+                        animal.getIdPropietario()
                     });
                 }
 
@@ -119,7 +118,7 @@ public class JFAnimal extends javax.swing.JFrame {
     private void actualizarTabla() {
         this.modelo.setRowCount(0);
         for (Animal animal : GestionAnimal.getInstance().getAnimales().values()) {
-            this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(),animal.getFechaNacimiento(),animal.getIdGrupo(),animal.getIdPropietario(),animal.getIdProduccion()});
+            this.modelo.addRow(new Object[]{animal.getId(), animal.getRaza(),animal.getFechaNacimiento(),animal.getIdGrupo(),animal.getIdPropietario()});
         }
     }
     

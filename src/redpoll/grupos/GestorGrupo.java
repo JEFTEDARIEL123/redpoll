@@ -17,6 +17,14 @@ public class GestorGrupo {
 
     public GestorGrupo() {
         grupos = new HashMap<>();
+        Grupo vacasBlancas = new Grupo(1, "Vaca Blanca", "Vacas de color blanco");
+        Grupo vacasPardas = new Grupo(2, "Vaca Parda", "Vacas de color pardo");
+        Grupo vacasNegras = new Grupo(3, "Vaca Negra", "Vacas de color negro");
+        
+        this.grupos.put(String.valueOf(vacasBlancas.getIdGrupo()), vacasBlancas);
+        this.grupos.put(String.valueOf(vacasPardas.getIdGrupo()), vacasPardas);
+        this.grupos.put(String.valueOf(vacasNegras.getIdGrupo()), vacasNegras);
+        
     }
 
     public static GestorGrupo getInstance(){

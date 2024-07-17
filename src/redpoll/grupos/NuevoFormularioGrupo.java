@@ -23,7 +23,7 @@ public class NuevoFormularioGrupo extends javax.swing.JFrame {
     String[] nombreColumnas = new String[] { "Id", "Tipo", "Descripción" };
     this.modelo.setColumnIdentifiers(nombreColumnas);
     this.tbGrupo.setModel(modelo);
-    
+    this.actualizarTabla();
   }
 
   private void abrirFormularioGrupo(Grupo grup) {

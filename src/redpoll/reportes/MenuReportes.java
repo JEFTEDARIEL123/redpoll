@@ -124,7 +124,7 @@ public class MenuReportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaludActionPerformed
-        ReporteSalud salud = new ReporteSalud();
+        ReporteChequeo salud = new ReporteChequeo();
         salud.setLocationRelativeTo(null);
         salud.setVisible(true);
         this.dispose();
