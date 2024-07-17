@@ -14,16 +14,17 @@ import java.time.LocalDate;
 //Referentes a cada produccion ingresada.
 public class Produccion {
 
-    private int id;
+    private int id, idAnimal;
     private double ordeñoMañana, ordeñoTarde, total;
     private LocalDate fecha;
 
-    public Produccion(int id, double ordeñoMañana, double ordeñoTarde) {
+    public Produccion(int id, double ordeñoMañana, double ordeñoTarde, int idAnimal) {
         this.id = id;
         this.ordeñoMañana = ordeñoMañana;
         this.ordeñoTarde = ordeñoTarde;
         this.total = this.ordeñoMañana + this.ordeñoTarde;
         this.fecha = LocalDate.now();
+        this.idAnimal = idAnimal;
     }
 
     @Override
@@ -39,8 +40,24 @@ public class Produccion {
         this.id = id;
     }
 
+    public void setIdAnimal(int idAnimal) {
+        this.idAnimal = idAnimal;
+    }
+
+    public void setOrdeñoMañana(double ordeñoMañana) {
+        this.ordeñoMañana = ordeñoMañana;
+    }
+
+    public void setOrdeñoTarde(double ordeñoTarde) {
+        this.ordeñoTarde = ordeñoTarde;
+    }
+
     public double getOrdeñoMañana() {
         return ordeñoMañana;
+    }
+
+    public int getIdAnimal() {
+        return idAnimal;
     }
 
     public double getOrdeñoTarde() {

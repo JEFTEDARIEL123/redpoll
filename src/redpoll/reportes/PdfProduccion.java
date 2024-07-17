@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import redpoll.animales.GestionAnimal;
 import redpoll.chequeos.GestionChequeo;
 import redpoll.produccion.GestionProduccion;
 import redpoll.produccion.Produccion;
@@ -57,13 +58,13 @@ public class PdfProduccion extends PdfHandler {
                 document.add(new Paragraph(" "));
 
                 //Creamos la tabla y sus filas
-                PdfPTable tb = new PdfPTable(4);
-                tb.setHeaderRows(GestionChequeo.getInstance().getInfoChequeo().size());
+                PdfPTable tb = new PdfPTable(3);
+                tb.setHeaderRows(GestionProduccion.getInstance().getProducciones().size());
                 //Ponemos la fuente Times Roman pal header
                 Font fontHeader = new Font(Font.TIMES_ROMAN, 12, Font.BOLD);
                 PdfPCell celda;
 
-                //Se define la columna chequeo y sus props
+                //Se define la columna PROD y sus props
                 celda = new PdfPCell(new Phrase("ID Animal", fontHeader));
                 celda.setHorizontalAlignment(Element.ALIGN_CENTER);
                 celda.setBackgroundColor(Color.LIGHT_GRAY);
@@ -81,8 +82,9 @@ public class PdfProduccion extends PdfHandler {
 
   
                 //Se traen los datos y se unen en una sola tabla
-                for (Produccion produccion : GestionProduccion.getInstance().getProducciones().values()) {
-                    tb.addCell("a");
+                for (Produccion produccion: GestionProduccion.getInstance().getProducciones().values()) {
+                    
+                    tb.addCell(String.valueOf(produccion.getIdAnimal()));
                     tb.addCell(String.valueOf(produccion.getTotal()));
                     tb.addCell(String.valueOf(produccion.getFecha()));
                     

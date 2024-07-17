@@ -227,7 +227,7 @@ public class GuiAgregarUsuarios extends javax.swing.JDialog {
     }
     
     public Usuario consultarUsuario() {
-        return new Usuario(this.id, Validaciones.validarStr(this.txtNombre.getText(), "Debe ingresar un nombre valido", "\\w") , Validaciones.validarStr(this.txtCorreo.getText(),"Debe ingresar un correo valido","[A-Za-z0-9\\._%+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}"),this.txtContraseña.getText(), Integer.parseInt(Validaciones.validarStr(this.txtIdRole.getText(), "Debe ingresar unicamente numeros", "[0-9]+")));
+        return new Usuario(this.id, Validaciones.validarStr(this.txtNombre.getText(), "Debe ingresar un nombre valido", "\\w+") , Validaciones.validarStr(this.txtCorreo.getText(),"Debe ingresar un correo valido","[A-Za-z0-9\\._%+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}"),this.txtContraseña.getText(), Integer.parseInt(Validaciones.validarStr(this.txtIdRole.getText(), "Debe ingresar unicamente numeros", "[0-9]+")));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar1;

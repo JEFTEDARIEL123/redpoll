@@ -4,8 +4,8 @@
  */
 package redpoll.produccion;
 
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import redpoll.Validaciones;
 
 /**
  *
@@ -69,6 +69,8 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         txtOrdeñoTarde = new javax.swing.JTextField();
         btnAgregar1 = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
+        lblIdAnimal = new javax.swing.JLabel();
+        txtIdAnimal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -112,16 +114,18 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         lblTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/redpoll/Imgs/descripcion.png"))); // NOI18N
         lblTitulo.setText("Informacion");
 
+        lblIdAnimal.setText("ID Animal");
+
+        txtIdAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdAnimalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAgregar1)
-                .addGap(100, 100, 100))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -133,8 +137,15 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
                             .addComponent(lblOrdeñoMañana)
                             .addComponent(txtOrdeñoMañana, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblOrdeñoTarde)
-                            .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                            .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIdAnimal)
+                            .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAgregar1)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,17 +158,17 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
                 .addComponent(txtOrdeñoMañana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblOrdeñoTarde)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAgregar1)
-                            .addComponent(btnCancelar))
-                        .addGap(72, 72, 72))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtOrdeñoTarde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(lblIdAnimal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIdAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar1)
+                    .addComponent(btnCancelar))
+                .addGap(46, 46, 46))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,21 +202,27 @@ public class GuiAgregarProduccion extends javax.swing.JDialog {
         this.confirmar = true;
         this.setVisible(false);
     }//GEN-LAST:event_btnAgregar1ActionPerformed
+
+    private void txtIdAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdAnimalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdAnimalActionPerformed
     
     public boolean confirmacion() {
         return this.confirmar;
     }
     
     public Produccion consultarProduccion() {
-        return new Produccion(this.id, validar(this.txtOrdeñoMañana.getText()) , validar(this.txtOrdeñoTarde.getText()));
+        return new Produccion(this.id, validar(this.txtOrdeñoMañana.getText()) , validar(this.txtOrdeñoTarde.getText()),Integer.parseInt(Validaciones.validarStr(this.txtIdAnimal.getText(), "Debe ingresar numeros", "[0-9]+")));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblIdAnimal;
     private javax.swing.JLabel lblOrdeñoMañana;
     private javax.swing.JLabel lblOrdeñoTarde;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtIdAnimal;
     private javax.swing.JTextField txtOrdeñoMañana;
     private javax.swing.JTextField txtOrdeñoTarde;
     // End of variables declaration//GEN-END:variables

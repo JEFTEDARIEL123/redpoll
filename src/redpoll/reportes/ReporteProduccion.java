@@ -6,6 +6,7 @@ package redpoll.reportes;
 
 import redpoll.produccion.*;
 import javax.swing.table.DefaultTableModel;
+import redpoll.animales.GestionAnimal;
 import redpoll.auth.GUIMenuPrincipal;
 import redpoll.chequeos.Chequeo;
 import redpoll.chequeos.GestionChequeo;
@@ -108,7 +109,7 @@ public class ReporteProduccion extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        PdfChequeos reporte = new PdfChequeos();
+        PdfProduccion reporte = new PdfProduccion();
         reporte.pdf();
     }//GEN-LAST:event_btnGenerarActionPerformed
 
@@ -154,7 +155,7 @@ public class ReporteProduccion extends javax.swing.JFrame {
         this.modelo.setRowCount(0);
         //System.out.println(GestionProduccion.getInstance().getProducciones().values());
         for (Produccion produccion: GestionProduccion.getInstance().getProducciones().values()) {
-            this.modelo.addRow(new Object[]{"a", produccion.getTotal(), produccion.getFecha()});
+            this.modelo.addRow(new Object[]{produccion.getIdAnimal(), produccion.getTotal(), produccion.getFecha()});
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
