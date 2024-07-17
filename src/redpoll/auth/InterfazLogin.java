@@ -198,7 +198,7 @@ public class InterfazLogin extends javax.swing.JFrame {
         //Se valida la existencia del correo electronico, el cual es la key del hash
         if (GestionUsuarios.getInstance().validarExistencia(this.txtCorreo.getText())) {
             //Si existe se valida que la contraseña sea correcta
-            if (!GestionUsuarios.getInstance().getUsuarios().get(this.txtCorreo.getText()).getContraseña().equals(String.valueOf(this.pswContraseña.getText()))) {
+            if (!this.pswContraseña.equals(GestionUsuarios.getInstance().getUsuarios().get(this.txtCorreo.getText()).getContraseña())) {
                 JOptionPane.showMessageDialog(null, "La contraseña Ingresada es Incorrecta", "Error!", JOptionPane.ERROR_MESSAGE);
             } else {
                 //Si lo es entonces se valida por último que el usuario esté verificado.

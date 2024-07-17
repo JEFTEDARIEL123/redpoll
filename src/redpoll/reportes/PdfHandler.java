@@ -33,29 +33,29 @@ public class PdfHandler {
                 if (opcion == JFileChooser.APPROVE_OPTION) {
                     try {
 
-                        final PdfWriter instance = PdfWriter.getInstance(document, new FileOutputStream(jFileChoose.getSelectedFile().getPath()+".pdf"));
+                        final PdfWriter instance = PdfWriter.getInstance(document, new FileOutputStream(jFileChoose.getSelectedFile().getPath() + ".pdf"));
 
                         document.open();
                         instance.getInfo().put(PdfName.CREATOR, new PdfString(Document.getVersion()));
 
                         PdfPTable tb = new PdfPTable(3);
+
                         document.add(new Paragraph("Reporte Salud"));
-                        
+                        tb.setHeaderRows(3);
                         
                         tb.addCell("Chequeo");
                         tb.addCell("Vacuna");
                         tb.addCell("Veterinario");
                         tb.addCell("Fecha");
 
-                        
-                        
                         document.add(tb);
+                        JOptionPane.showMessageDialog(null, "Documento generado exitosamente!");
+                        document.close();
                     } catch (DocumentException | IOException de) {
                         System.err.println(de.getMessage());
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Documento generado exitosamente!");
-                document.close();
+
         }
 
     }
