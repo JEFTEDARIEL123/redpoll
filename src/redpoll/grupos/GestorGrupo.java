@@ -40,7 +40,10 @@ public class GestorGrupo {
     }
     
     public void agregarGrupo(Grupo grupo){
-        this.grupos.put(GestorGrupo.getInstance().obtenerUltimoId()+1, grupo);
+        int id=obtenerUltimoId()+1;
+        grupo.setIdGrupo(id);
+        //this.grupos.put(GestorGrupo.getInstance().obtenerUltimoId()+1, grupo);
+        this.grupos.put(grupo.getIdGrupo(),grupo);
     }
     
     public Grupo obtenerGrupo(int id) {    
